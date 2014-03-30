@@ -16,7 +16,7 @@ public:
 	SDL_Renderer* getRenderer(){ return renderer; }
 
 	void addDrawable(Drawable* d);
-	void renderScene();
+	void renderScene();	
 	void graph();
 
 private:
