@@ -19,7 +19,7 @@ void GameEngine::renderScene(){
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
 
-	for (auto o : objects){
+	for (auto& o : objects){
 		o->draw();
 	}
 	SDL_RenderPresent(renderer);
