@@ -21,5 +21,11 @@ private:
 	int x;
 	int y;
 	std::string m_name;
+
+
+	SDL_Rect m_sourceRectangle; // the first rectangle
+	SDL_Rect m_destinationRectangle; // another rectangle
+	int currentFrame;
+
 };
 

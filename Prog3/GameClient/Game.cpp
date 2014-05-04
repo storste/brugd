@@ -21,20 +21,23 @@ int main(int argc, char *argv[])
 	//engine.render_grid_dots();
 	//engine.render_dot();
 
-	Sprite s1("../GameEngine/golddot.png", engine.getRenderer());
+
+	
+
+	Sprite s1("assets/dude.bmp", engine.getRenderer());
 	s1.setPosition(100, 200);
 
-	Sprite s2("../GameEngine/golddot.png", engine.getRenderer());
-	s2.setPosition(200, 300);
+	//Sprite s2("../GameEngine/golddot.png", engine.getRenderer());
+	//s2.setPosition(200, 300);
 
-	Player p1("../GameEngine/golddot.png", engine.getRenderer(), "Player 1");
-	Player p2("../GameEngine/golddot.png", engine.getRenderer(), "Player 2");
+	//Player p1("../../animation/assets/dude.bmp", engine.getRenderer(), "Player 1");
+	//Player p2("../GameEngine/golddot.png", engine.getRenderer(), "Player 2");
 
 
-	std::cout << p1.getName() << std::endl;
+	//std::cout << p1.getName() << std::endl;
 
-	engine.addDrawable(&p1);
-	engine.addDrawable(&p2);
+	engine.addDrawable(&s1);
+	//engine.addDrawable(&p2);
 
 
 	engine.run();
