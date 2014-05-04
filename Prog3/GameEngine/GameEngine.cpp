@@ -45,11 +45,6 @@ void GameEngine::update()
 	for (auto& o : objects){
 		o->update();
 	}
-
-	//currentFrame = int(((SDL_GetTicks() / 30) % 27));
-	//std::cout << currentFrame << std::endl;
-	//m_sourceRectangle.x = 130 * (currentFrame % 7);
-	//m_sourceRectangle.y = 150 * (currentFrame / 7);
 }
 
 
