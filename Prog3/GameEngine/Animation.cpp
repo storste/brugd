@@ -1,6 +1,10 @@
 #include "Animation.h"
 #include <SDL_image.h>
 
+void Animation::setPosition(int x, int y){
+	destinationRectangle.x = x;
+	destinationRectangle.y = y;
+}
 
 Animation::Animation(const char* filename, SDL_Renderer* r, int frameWidth, int frameHeight, int frameCount, int framesPerRow)
 :frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow)

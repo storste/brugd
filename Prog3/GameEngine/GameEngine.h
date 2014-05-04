@@ -7,12 +7,16 @@
 
 class GameEngine{
 public:
-	//static GameEngine getEngineInstance();
-	void render_grid_dots();
-	void render_dot();
-	GameEngine::GameEngine(int width = 640, int height = 480);
+	static GameEngine* getEngineInstance()	{
+		if (instance == 0)
+		{
+			instance = new GameEngine();
+		}
+		return instance;
+	}
 
-	~GameEngine();
+	
+
 	SDL_Renderer* getRenderer(){ return renderer; }
 
 	void addDrawable(GameObject* d);
@@ -26,7 +30,7 @@ public:
 
 private:
 	std::vector<GameObject*> objects;
-	//static GameEngine instance;
+	static GameEngine* instance;
 	bool init();
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -34,5 +38,8 @@ private:
 	int screen_height;
 	int screen_width;
 	bool running;
+	GameEngine::GameEngine(int width = 640, int height = 480);
+	~GameEngine();
+
 };
 
