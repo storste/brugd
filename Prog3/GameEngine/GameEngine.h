@@ -3,7 +3,7 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <vector>
-#include "Drawable.h"
+#include "GameObject.h"
 
 class GameEngine{
 public:
@@ -15,12 +15,17 @@ public:
 	~GameEngine();
 	SDL_Renderer* getRenderer(){ return renderer; }
 
-	void addDrawable(Drawable* d);
-	void renderScene();	
+	void addDrawable(GameObject* d);
+	void render();	
+	void update();
+	void handleEvents();
 	void graph();
 
+	void run();
+
+
 private:
-	std::vector<Drawable*> objects;
+	std::vector<GameObject*> objects;
 	//static GameEngine instance;
 	bool init();
 	SDL_Window* window;
@@ -28,5 +33,6 @@ private:
 	bool ttf_init;
 	int screen_height;
 	int screen_width;
+	bool running;
 };
 

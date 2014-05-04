@@ -70,7 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Drawable.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>

@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 
 	GameEngine engine = GameEngine();
 
-	engine.render_grid_dots();
-	engine.render_dot();
+	//engine.render_grid_dots();
+	//engine.render_dot();
 
 	Sprite s1("../GameEngine/golddot.png", engine.getRenderer());
 	s1.setPosition(100, 200);
@@ -36,12 +36,15 @@ int main(int argc, char *argv[])
 	engine.addDrawable(&p1);
 	engine.addDrawable(&p2);
 
-	engine.renderScene();
+
+	engine.run();
+
+	//engine.render();
 	//std::string tmp;
 	//std::cin >> tmp;
 
 
-	engine.graph();
+	//engine.graph();
 
 	return (0);
 }

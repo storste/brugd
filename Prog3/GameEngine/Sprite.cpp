@@ -21,7 +21,7 @@ void Sprite::setPosition(int x_pos, int y_pos){
 	y = y_pos;
 }
 
-void Sprite::draw()
+void Sprite::render()
 {
 	if (!renderer)
 		std::cout << "No renderer..." << std::endl;
@@ -41,5 +41,8 @@ void Sprite::draw()
 
 	//SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 	std::cout << "Rendering dot" << std::endl;
+
+}
+void Sprite::update(){
 
 }

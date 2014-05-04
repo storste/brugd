@@ -1,18 +1,22 @@
 #pragma once
-#include "Drawable.h"
+#include "GameObject.h"
 
 
-Drawable::Drawable()
+GameObject::GameObject()
 {
 }
 
 
-Drawable::~Drawable()
+GameObject::~GameObject()
 {
 }
 
 
-void Drawable::draw()
+void GameObject::render()
+{
+
+}
+void GameObject::update()
 {
 
 }

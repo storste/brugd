@@ -10,17 +10,60 @@
 //#include "ListGraph.h"
 //#include "Dijkstra.h"
 
-void GameEngine::addDrawable(Drawable* d){
+void GameEngine::run(){
+
+	running = true;
+
+	while (running)
+	{
+		handleEvents();
+		update();
+		render();
+	}
+	//g_game->clean();
+
+}
+
+void GameEngine::handleEvents()
+{
+	SDL_Event event;
+	if (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+			case SDL_QUIT:
+				running = false;
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+void GameEngine::update()
+{
+	for (auto& o : objects){
+		o->update();
+	}
+
+	//currentFrame = int(((SDL_GetTicks() / 30) % 27));
+	//std::cout << currentFrame << std::endl;
+	//m_sourceRectangle.x = 130 * (currentFrame % 7);
+	//m_sourceRectangle.y = 150 * (currentFrame / 7);
+}
+
+
+void GameEngine::addDrawable(GameObject* d){
 	objects.push_back(d);
 }
 
-void GameEngine::renderScene(){
+void GameEngine::render(){
 
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
 
 	for (auto& o : objects){
-		o->draw();
+		o->render();
 	}
 	SDL_RenderPresent(renderer);
 	SDL_Delay(2000);
