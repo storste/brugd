@@ -29,6 +29,15 @@ Sprite::~Sprite()
 void Sprite::setPosition(int x_pos, int y_pos){
 	x = x_pos;
 	y = y_pos;
+	m_destinationRectangle.x = x;
+	m_destinationRectangle.y = y;
+}
+
+void Sprite::updatePosition(int x_pos, int y_pos){
+	x = x + x_pos;
+	y = y + y_pos;
+	m_destinationRectangle.x = x;
+	m_destinationRectangle.y = y;
 }
 
 void Sprite::render()
@@ -56,10 +65,10 @@ void Sprite::render()
 	//std::cout << "Rendering dot" << std::endl;
 
 }
+
 void Sprite::update(){
 	currentFrame = int(((SDL_GetTicks() / 30) % 27));
 	std::cout << currentFrame << std::endl;
 	m_sourceRectangle.x = 130 * (currentFrame % 7);
 	m_sourceRectangle.y = 150 * (currentFrame / 7);
-
 }

@@ -6,6 +6,5 @@ public:
 	~GameObject();
 	virtual void render();
 	virtual void update();
-
 };
 

@@ -9,6 +9,7 @@ public:
 	~Sprite();
 	virtual void render();
 	virtual void setPosition(int x, int y);
+	virtual void updatePosition(int x, int y);
 	virtual void setName(std::string name){ m_name = name; }
 	virtual std::string getName() const{ return m_name; }
 	virtual void update();
@@ -21,8 +22,6 @@ private:
 	int x;
 	int y;
 	std::string m_name;
-
-
 	SDL_Rect m_sourceRectangle; // the first rectangle
 	SDL_Rect m_destinationRectangle; // another rectangle
 	int currentFrame;

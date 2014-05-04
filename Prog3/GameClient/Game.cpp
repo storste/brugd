@@ -18,36 +18,15 @@ int main(int argc, char *argv[])
 
 	GameEngine engine = GameEngine();
 
-	//engine.render_grid_dots();
-	//engine.render_dot();
-
-
-	
 
 	Sprite s1("assets/dude.bmp", engine.getRenderer());
-	s1.setPosition(100, 200);
-
-	//Sprite s2("../GameEngine/golddot.png", engine.getRenderer());
-	//s2.setPosition(200, 300);
-
-	//Player p1("../../animation/assets/dude.bmp", engine.getRenderer(), "Player 1");
-	//Player p2("../GameEngine/golddot.png", engine.getRenderer(), "Player 2");
-
-
-	//std::cout << p1.getName() << std::endl;
+	s1.setPosition(0, 0);
 
 	engine.addDrawable(&s1);
 	//engine.addDrawable(&p2);
 
 
 	engine.run();
-
-	//engine.render();
-	//std::string tmp;
-	//std::cin >> tmp;
-
-
-	//engine.graph();
 
 	return (0);
 }
