@@ -70,12 +70,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="InputHandler.cpp" />
