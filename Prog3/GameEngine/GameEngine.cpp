@@ -7,6 +7,8 @@
 #include <array>
 #include "GameEngine.h"
 
+GameEngine* GameEngine::instance;
+
 void GameEngine::run(){
 
 	running = true;
@@ -108,37 +110,6 @@ GameEngine::~GameEngine()
 
 }
 
-void GameEngine::render_dot(){
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(renderer);
-	if (!getRenderer())
-		std::cout << "No renderer..." << std::endl;
-
-	// lite irriterande att path refererar till Game och inte GameEngine här...
-	SDL_Texture* golddot = IMG_LoadTexture(getRenderer(), "../GameEngine/golddot.png");
-	if (!golddot)
-		std::cout << "Image failed to load" << std::endl;
-
-	SDL_Rect src;
-	src.h = 32; src.w = 32;
-	SDL_Rect dst;
-	dst.h = 32; dst.w = 32;
-	src.x = 1 * 32;
-
-	for (int i = 0; i < 15; ++i){
-		for (int j = 0; j < 20; ++j){
-			dst.x = j * 32; dst.y = i * 32;
-			SDL_RenderCopyEx(getRenderer(), golddot, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
-		}
-		src.y = i * 32;
-	}
-
-
-	//SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-	std::cout << "Rendering dot" << std::endl;
-	SDL_RenderPresent(getRenderer());
-	SDL_Delay(2000);
-}
 
 
 
@@ -150,23 +121,3 @@ void GameEngine::render_dot(){
 TTF_Font *gFont = NULL;
 
 
-void GameEngine::render_grid_dots(){
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(renderer);
-	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-	for (int i = 0, z = 0; i < 15; ++i){
-		for (int j = 0; j < 20; ++j, ++z){
-
-
-			//Set rendering space and render to screen
-			SDL_Rect renderQuad = { j * 32, i * 32, 32, 32 };
-
-			//Render to screen
-			SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0x00);
-			SDL_RenderDrawPoint(renderer, j * 32, i * 32);
-		}
-	}
-	SDL_RenderPresent(renderer);
-	SDL_Delay(2000);
-
-}
