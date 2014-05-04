@@ -1,17 +1,31 @@
 #pragma once
 #include <SDL.h>
 #include "GameObject.h"
+#include "Animation.h"
 #include <string>
+#include <map>
 
 class Sprite :public GameObject {
 public:
 	Sprite(const char* filename, SDL_Renderer* r);
+	Sprite(Animation* a);
+	Sprite();
 	~Sprite();
 	virtual void render();
 	virtual void setPosition(int x, int y);
 	virtual void setName(std::string name){ m_name = name; }
 	virtual std::string getName() const{ return m_name; }
 	virtual void update();
+	void addAnimation(std::string name, Animation* a){
+		std::pair<std::string, Animation*> pair = std::make_pair(name, a);
+		animations.insert(pair);
+	}
+
+	void setAnimation(const char* name){
+
+		currentAnimation = animations[name];
+	
+	}
 
 private:
 	SDL_Texture* texture;
@@ -21,11 +35,7 @@ private:
 	int x;
 	int y;
 	std::string m_name;
-
-
-	SDL_Rect m_sourceRectangle; // the first rectangle
-	SDL_Rect m_destinationRectangle; // another rectangle
-	int currentFrame;
-
+	std::map<std::string, Animation*> animations;
+	Animation* currentAnimation;
 };
 

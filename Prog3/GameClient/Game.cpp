@@ -5,6 +5,7 @@
 #include <stack>
 #include <array>
 #include "..\GameEngine\GameEngine.h"
+#include "..\GameEngine\Animation.h"
 //#include "..\GameEngine\Sprite.h"
 #include "Player.h"
 
@@ -22,9 +23,15 @@ int main(int argc, char *argv[])
 	//engine.render_dot();
 
 
-	
+	Animation a("assets/dude.bmp", engine.getRenderer(), 130, 150, 27, 7);
 
-	Sprite s1("assets/dude.bmp", engine.getRenderer());
+
+
+	//Sprite s1("assets/dude.bmp", engine.getRenderer());
+	Sprite s1;
+	s1.addAnimation("run", &a);
+	s1.setAnimation("run");
+	
 	s1.setPosition(100, 200);
 
 	//Sprite s2("../GameEngine/golddot.png", engine.getRenderer());

@@ -270,7 +270,7 @@ TTF_Font *gFont = NULL;
 //	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 //	{
 //		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
-//		return false;
+//		return false; 
 //	}
 //	else
 //	{

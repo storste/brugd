@@ -3,22 +3,18 @@
 #include <iostream>
 #include "Sprite.h"
 
+Sprite::Sprite(Animation* a){
 
+}
+
+Sprite::Sprite(){
+
+}
 
 Sprite::Sprite(const char* filename, SDL_Renderer* r)
 {
 	renderer = r;
 	texture = IMG_LoadTexture(renderer, filename);
-
-	m_sourceRectangle.w = 130;
-	m_sourceRectangle.h = 150;
-
-	m_destinationRectangle.x = m_sourceRectangle.x = 0;
-	m_destinationRectangle.y = m_sourceRectangle.y = 0;
-	m_destinationRectangle.w = m_sourceRectangle.w;
-	m_destinationRectangle.h = m_sourceRectangle.h;
-
-
 }
 
 
@@ -33,14 +29,19 @@ void Sprite::setPosition(int x_pos, int y_pos){
 
 void Sprite::render()
 {
-	if (!renderer)
-		std::cout << "No renderer..." << std::endl;
+	if (currentAnimation){
+		currentAnimation->renderAnimation();
 
-	if (!texture)
-		std::cout << "No texture..." << std::endl;
+	}
+	else{
+		if (!renderer)
+			std::cout << "No renderer..." << std::endl;
 
-	SDL_RenderCopy(renderer, texture, &m_sourceRectangle,
-		&m_destinationRectangle);
+		if (!texture)
+			std::cout << "No texture..." << std::endl;
+
+	}
+
 
 	//SDL_Rect src;
 	//src.h = 32; src.w = 32;
@@ -57,9 +58,7 @@ void Sprite::render()
 
 }
 void Sprite::update(){
-	currentFrame = int(((SDL_GetTicks() / 30) % 27));
-	std::cout << currentFrame << std::endl;
-	m_sourceRectangle.x = 130 * (currentFrame % 7);
-	m_sourceRectangle.y = 150 * (currentFrame / 7);
 
+	currentAnimation->playAnimation();
+	
 }
