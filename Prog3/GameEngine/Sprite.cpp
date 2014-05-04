@@ -2,6 +2,7 @@
 #include <SDL_image.h>
 #include <iostream>
 #include "Sprite.h"
+#include "../GameEngine/GameEngine.h"
 
 Sprite::Sprite(Animation* a){
 
@@ -26,6 +27,10 @@ void Sprite::setPosition(int x_pos, int y_pos){
 	x = x_pos;
 	y = y_pos;
 }
+
+int Sprite::getY(){ return y; }
+
+int Sprite::getX(){ return x; }
 
 void Sprite::render()
 {
@@ -60,6 +65,7 @@ void Sprite::render()
 
 void Sprite::update(){
 
+	currentAnimation->setPosition(x, y);
 	currentAnimation->playAnimation();
-	
+
 }

@@ -13,6 +13,8 @@ public:
 	~Sprite();
 	virtual void render();
 	virtual void setPosition(int x, int y);
+	int getY();
+	int getX();
 	virtual void setName(std::string name){ m_name = name; }
 	virtual std::string getName() const{ return m_name; }
 	virtual void update();

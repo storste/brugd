@@ -22,10 +22,8 @@ int main(int argc, char *argv[])
 
 	Animation a("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
 
-
-
 	//Sprite s1("assets/dude.bmp", engine.getRenderer());
-	Sprite s1;
+	Player s1;
 	s1.addAnimation("run", &a);
 	s1.setAnimation("run");
 	

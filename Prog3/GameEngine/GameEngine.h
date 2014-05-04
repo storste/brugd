@@ -15,14 +15,13 @@ public:
 		return instance;
 	}
 
-	
-
 	SDL_Renderer* getRenderer(){ return renderer; }
 
 	void addDrawable(GameObject* d);
 	void render();	
 	void update();
 	void handleEvents();
+	Uint8* getKeyStates();
 	void graph();
 	void quit();
 	void run();
@@ -32,6 +31,7 @@ private:
 	std::vector<GameObject*> objects;
 	static GameEngine* instance;
 	bool init();
+	void handleInput();
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	bool ttf_init;
@@ -39,6 +39,7 @@ private:
 	int screen_width;
 	bool running;
 	GameEngine::GameEngine(int width = 640, int height = 480);
+	Uint8* currentKeyStates;
 	~GameEngine();
 
 };

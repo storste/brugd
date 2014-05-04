@@ -10,7 +10,6 @@
 
 
 GameEngine* GameEngine::instance;
-InputHandler* input = InputHandler::Instance();
 
 void GameEngine::run(){
 
@@ -26,6 +25,7 @@ void GameEngine::run(){
 
 }
 
+
 void GameEngine::quit()
 {
 	running = false;
@@ -33,7 +33,7 @@ void GameEngine::quit()
 
 void GameEngine::handleEvents()
 {
-	input->update();
+	InputHandler::Instance()->update();
 }
 
 void GameEngine::update()

@@ -15,10 +15,13 @@ public:
 		}
 		return instance;
 	}
+	bool InputHandler::isKeyDown(SDL_Scancode key);
 private:
 	InputHandler();
 	~InputHandler();
-
+	void onKeyDown();
+	void onKeyUp();
+	const Uint8* keystates;
 	static InputHandler* instance;
 };
 
