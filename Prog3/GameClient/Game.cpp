@@ -8,24 +8,15 @@
 #include "..\GameEngine\Animation.h"
 //#include "..\GameEngine\Sprite.h"
 #include "Player.h"
+#include "..\GameEngine\InputHandler.h"
 
 
 
 int main(int argc, char *argv[])
 {
 
-
-	//GameEngine engine = GameEngine::getEngineInstance();
-
 	GameEngine engine = GameEngine();
-
-	//engine.render_grid_dots();
-	//engine.render_dot();
-
-
 	Animation a("assets/dude.bmp", engine.getRenderer(), 130, 150, 27, 7);
-
-
 
 	//Sprite s1("assets/dude.bmp", engine.getRenderer());
 	Sprite s1;

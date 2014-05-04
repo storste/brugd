@@ -1,5 +1,7 @@
 #pragma once
 #include "SDL.h"
+#include "GameEngine.h"
+
 
 class InputHandler
 {
@@ -7,16 +9,16 @@ public:
 	void update();
 	static InputHandler* Instance()
 	{
-		if (s_pInstance == 0)
+		if (instance == 0)
 		{
-			s_pInstance = new InputHandler();
+			instance = new InputHandler();
 		}
-		return s_pInstance;
+		return instance;
 	}
 private:
 	InputHandler();
-	~InputHandler() {}
+	~InputHandler();
 
-	static InputHandler* s_pInstance;
+	static InputHandler* instance;
 };
 

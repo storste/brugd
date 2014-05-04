@@ -21,6 +21,11 @@ void GameEngine::run(){
 
 }
 
+void GameEngine::quit()
+{
+	running = false;
+}
+
 void GameEngine::handleEvents()
 {
 	SDL_Event event;

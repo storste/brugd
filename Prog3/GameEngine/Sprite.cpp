@@ -25,15 +25,6 @@ Sprite::~Sprite()
 void Sprite::setPosition(int x_pos, int y_pos){
 	x = x_pos;
 	y = y_pos;
-	m_destinationRectangle.x = x;
-	m_destinationRectangle.y = y;
-}
-
-void Sprite::updatePosition(int x_pos, int y_pos){
-	x = x + x_pos;
-	y = y + y_pos;
-	m_destinationRectangle.x = x;
-	m_destinationRectangle.y = y;
 }
 
 void Sprite::render()

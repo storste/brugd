@@ -20,7 +20,7 @@ public:
 	void update();
 	void handleEvents();
 	void graph();
-
+	void quit();
 	void run();
 
 
