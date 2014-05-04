@@ -60,6 +60,8 @@ bool InputHandler::isKeyDown(SDL_Scancode key)
 		{
 			return false;
 		}
+
+		
 	}
 	return false;
 }

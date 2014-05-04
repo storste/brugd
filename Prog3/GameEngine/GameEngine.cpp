@@ -21,7 +21,6 @@ void GameEngine::run(){
 		update();
 		render();
 	}
-	//g_game->clean();
 
 }
 
