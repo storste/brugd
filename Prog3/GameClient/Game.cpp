@@ -8,7 +8,7 @@
 #include "..\GameEngine\Animation.h"
 //#include "..\GameEngine\Sprite.h"
 #include "Player.h"
-#include "..\GameEngine\InputHandler.h"
+//#include "..\GameEngine\InputHandler.h"
 
 
 int main(int argc, char *argv[])

@@ -6,10 +6,14 @@
 #include <stack>
 #include <array>
 #include "GameEngine.h"
-#include "..\GameEngine\InputHandler.h"
-
+#include "InputHandler.h"
 
 GameEngine* GameEngine::instance;
+
+#define FPS 60 // frames per second
+const int tickInterval = 1000 / FPS;
+Uint32 nextTick;
+int delay;
 
 void GameEngine::run(){
 
@@ -17,11 +21,16 @@ void GameEngine::run(){
 
 	while (running)
 	{
+		nextTick = SDL_GetTicks() + tickInterval;
+
 		handleEvents();
 		update();
 		render();
-	}
 
+		delay = nextTick - SDL_GetTicks();
+		if (delay > 0)
+			SDL_Delay(delay);
+	}
 }
 
 
