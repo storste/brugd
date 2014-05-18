@@ -56,7 +56,6 @@ void GameEngine::render(){
 		o->render();
 	}
 	SDL_RenderPresent(renderer);
-	//SDL_Delay(2000);
 
 }
 
