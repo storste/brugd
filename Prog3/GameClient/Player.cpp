@@ -18,7 +18,7 @@ void Player::update(int dt){
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		setPosition(getX() + 1, getY());
+		setPosition(getX() + 3, getY());
 	}
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
