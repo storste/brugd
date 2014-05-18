@@ -9,19 +9,28 @@ Player::Player(const char* filename, SDL_Renderer* r, const char* name) :Sprite(
 }
 
 Player::Player(){
-	std::cout << "player constructor" << std::endl;
+
 }
 
 
 void Player::update(int dt){
-	Sprite::update(dt);
 
-	
+	Sprite::update(dt);
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
+		for (auto& o : GameEngine::getEngineInstance()->getObjects()){
+
+			if (GameEngine::getEngineInstance()->cd(this, o)){
+				std::cout << "player collided with " << o->getName() << std::endl;
+			}
+		}
+	}
+
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+	{	
 		Sprite::getAnimation()->setFlip(false);
-		setPosition(getX() + 3, getY());
+		setPosition(getX() + 1, getY());
 	}
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
