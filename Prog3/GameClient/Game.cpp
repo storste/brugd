@@ -21,19 +21,21 @@ int main(int argc, char *argv[])
 
 
 	Animation a("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
-	Animation stand("assets/dude.bmp", engine->getRenderer(), 130, 150, 1, 7);
-	Animation b("assets/runningSprite.bmp", engine->getRenderer(), 85, 102, 30, 6);
+	Animation b("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
 
+	//Sprite s1("assets/dude.bmp", engine.getRenderer());
 	Player s1;
 	s1.addAnimation("run", &a);
-	s1.addAnimation("stand", &stand);
 	s1.setAnimation("run");
 	s1.setPosition(100, 200);
+	s1.setName("player");
+
 
 	Sprite s2;
 	s2.addAnimation("run", &b);
 	s2.setAnimation("run");
-	s2.setPosition(0, 0);
+	s2.setPosition(10, 20);
+	s2.setName("Sprite");
 
 	//Sprite s2("../GameEngine/golddot.png", engine.getRenderer());
 	//s2.setPosition(200, 300);
