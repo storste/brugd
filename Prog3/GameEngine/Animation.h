@@ -9,6 +9,7 @@ public:
 	void setPosition(int x, int y);
 	void playAnimation(int dt);
 	void renderAnimation();
+	void setFlip(bool b);
 private:
 	int currentFrame;
 	SDL_Texture* texture;
@@ -17,7 +18,7 @@ private:
 	SDL_Rect destinationRectangle;
 	int frameWidth;
 	int frameHeight;
-
+	bool flip;
 	int frameCount;
 	int framesPerRow;
 

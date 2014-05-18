@@ -17,20 +17,22 @@ void Player::update(int dt){
 	Sprite::update(dt);
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
-	{
-		setPosition(getX() + 3, getY());
+	{	
+		Sprite::getAnimation()->setFlip(false);
+		setPosition(getX() + 1, getY());
 	}
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
-		setPosition(getX() - 1, getY());
+		Sprite::getAnimation()->setFlip(true);
+		setPosition(getX() - 2, getY());
 	}
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
 	{
-		setPosition(getX(), getY() + 1);
+		setPosition(getX(), getY() + 3);
 	}
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
 	{
-		setPosition(getX(), getY() - 1);
+		setPosition(getX(), getY() - 4);
 	}
 }
 

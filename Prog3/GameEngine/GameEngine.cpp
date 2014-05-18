@@ -67,9 +67,9 @@ void GameEngine::render(){
 	for (auto& o : objects){
 		o->render();
 	}
+
 	SDL_RenderPresent(renderer);
 	
-
 }
 
 

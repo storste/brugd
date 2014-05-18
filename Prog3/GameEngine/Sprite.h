@@ -23,12 +23,11 @@ public:
 		std::pair<std::string, Animation*> pair = std::make_pair(name, a);
 		animations.insert(pair);
 	}
-
 	void setAnimation(const char* name){
 
 		currentAnimation = animations[name];
-	
 	}
+	Animation* getAnimation(){ return currentAnimation; }
 
 private:
 	SDL_Texture* texture;
