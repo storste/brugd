@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{07ade5c8-d13e-4e1a-95f6-41258502b4bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -29,7 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\dude.png">
-      <Filter>Source Files</Filter>
+      <Filter>Assets</Filter>
     </Image>
   </ItemGroup>
 </Project>

@@ -9,7 +9,6 @@ Player::Player(const char* filename, SDL_Renderer* r, const char* name) :Sprite(
 }
 
 Player::Player(){
-
 }
 
 

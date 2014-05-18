@@ -17,19 +17,14 @@ public:
 	int getX();
 	int getH();
 	int getW();
-	virtual void setName(std::string name){ m_name = name; }
-	std::string getName(){ return m_name; }
+	void setName(const char *name);
+	std::string getName();
 	virtual std::string getName() const{ return m_name; }
 	virtual void update(int dt);
-	void addAnimation(std::string name, Animation* a){
-		std::pair<std::string, Animation*> pair = std::make_pair(name, a);
-		animations.insert(pair);
-	}
-	void setAnimation(const char* name){
 
-		currentAnimation = animations[name];
-	}
-	Animation* getAnimation(){ return currentAnimation; }
+	void addAnimation(std::string name, Animation* a);
+	void setAnimation(const char *name);
+	Animation* getAnimation();
 
 private:
 	SDL_Texture* texture;

@@ -43,35 +43,17 @@ void Sprite::render()
 	else{
 
 		if (!renderer)
-		std::cout << "No renderer..." << std::endl;
+			std::cout << "No renderer..." << std::endl;
 
 		if (!texture)
-		std::cout << "No texture..." << std::endl;
+			std::cout << "No texture..." << std::endl;
 
 		SDL_Rect dst;
 		SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
-
-//		dst.h = 161; dst.w = 158;
 		dst.x = x; dst.y = y;
 
 		SDL_RenderCopyEx(renderer, texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
-
 	}
-
-
-	//SDL_Rect src;
-	//src.h = 32; src.w = 32;
-	//src.x = x * 32;	src.y = y * 32;
-
-	//SDL_Rect dst;
-	//dst.h = 32; dst.w = 32;
-	//dst.x = x; dst.y = y;
-
-	//SDL_RenderCopyEx(renderer, texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
-
-	////SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-	//std::cout << "Rendering dot" << std::endl;
-
 }
 
 void Sprite::update(int dt){
@@ -82,3 +64,20 @@ void Sprite::update(int dt){
 		currentAnimation->playAnimation(dt);
 	}
 }
+
+void Sprite::addAnimation(std::string name, Animation* a){
+	std::pair<std::string, Animation*> pair = std::make_pair(name, a);
+	animations.insert(pair);
+}
+
+void Sprite::setAnimation(const char *name){
+	currentAnimation = animations[name];
+}
+
+std::string Sprite::getName(){
+	return m_name;
+}
+
+void Sprite::setName(const char * name){ m_name = name; }
+
+Animation* Sprite::getAnimation(){ return currentAnimation; }

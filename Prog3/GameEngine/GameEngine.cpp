@@ -8,8 +8,7 @@
 #include "GameEngine.h"
 #include "InputHandler.h"
 
-GameEngine* GameEngine::instance;
-
+#define FPS 60
 GameEngine* GameEngine::instance;
 
 const int tickInterval = 1000 / FPS;
@@ -27,6 +26,10 @@ void GameEngine::run(){
 		handleEvents();
 		update(nextTick);
 		render();
+
+		delay = nextTick - SDL_GetTicks();
+		if (delay > 0)
+			SDL_Delay(delay);
 	}
 }
 

@@ -5,7 +5,7 @@
 #include <vector>
 #include "GameObject.h"
 
-class GameEngine{
+class GameEngine {
 public:
 	static GameEngine* getEngineInstance()	{
 		if (instance == 0)
@@ -18,7 +18,7 @@ public:
 	SDL_Renderer* getRenderer(){ return renderer; }
 
 	void addDrawable(GameObject* d);
-	void render();	
+	void render();
 	void update(int dt);
 	void handleEvents();
 	Uint8* getKeyStates();
@@ -26,9 +26,7 @@ public:
 	void quit();
 	void run();
 	bool cd(GameObject *a, GameObject *b);
-	std::vector<GameObject*> getObjects(){
-		return objects;
-	};
+	std::vector<GameObject*> getObjects(){ return objects; };
 
 private:
 	std::vector<GameObject*> objects;
