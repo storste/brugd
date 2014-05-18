@@ -4,7 +4,7 @@
 class Player :
 	public Sprite {
 public:
-	void Player::update();
+	void Player::update(int dt);
 	Player(const char* filename, SDL_Renderer* r, const char* name);
 	Player();
 	~Player();

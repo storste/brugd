@@ -13,8 +13,8 @@ Player::Player(){
 }
 
 
-void Player::update(){
-	Sprite::update();
+void Player::update(int dt){
+	Sprite::update(dt);
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{

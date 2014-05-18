@@ -7,7 +7,7 @@ public:
 	Animation(const char* filename, SDL_Renderer* r, int frameWidth, int frameHeight, int frameCount, int framesPerRow);
 	~Animation();
 	void setPosition(int x, int y);
-	void playAnimation();
+	void playAnimation(int dt);
 	void renderAnimation();
 private:
 	int currentFrame;

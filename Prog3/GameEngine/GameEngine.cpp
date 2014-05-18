@@ -10,7 +10,7 @@
 
 
 GameEngine* GameEngine::instance;
-#define FPS 60 
+#define FPS 200
 
 const int tickInterval = 1000 / FPS;
 Uint32 nextTick;
@@ -25,7 +25,7 @@ void GameEngine::run(){
 		nextTick = SDL_GetTicks() + tickInterval;
 
 		handleEvents();
-		update();
+		update(nextTick);
 		render();
 
 		delay = nextTick - SDL_GetTicks();
@@ -47,10 +47,10 @@ void GameEngine::handleEvents()
 	InputHandler::Instance()->update();
 }
 
-void GameEngine::update()
+void GameEngine::update(int dt)
 {
 	for (auto& o : objects){
-		o->update();
+		o->update(dt);
 	}
 }
 

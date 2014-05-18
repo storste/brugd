@@ -5,6 +5,6 @@ public:
 	GameObject();
 	~GameObject();
 	virtual void render();
-	virtual void update();
+	virtual void update(int dt);
 };
 

@@ -63,9 +63,9 @@ void Sprite::render()
 
 }
 
-void Sprite::update(){
+void Sprite::update(int dt){
 
 	currentAnimation->setPosition(x, y);
-	currentAnimation->playAnimation();
+	currentAnimation->playAnimation(dt);
 
 }

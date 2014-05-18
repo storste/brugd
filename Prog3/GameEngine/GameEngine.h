@@ -19,7 +19,7 @@ public:
 
 	void addDrawable(GameObject* d);
 	void render();	
-	void update();
+	void update(int dt);
 	void handleEvents();
 	Uint8* getKeyStates();
 	void graph();

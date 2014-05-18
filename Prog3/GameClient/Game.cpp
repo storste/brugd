@@ -22,12 +22,18 @@ int main(int argc, char *argv[])
 
 	Animation a("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
 
-	//Sprite s1("assets/dude.bmp", engine.getRenderer());
+	//Sprite s2("assets/dude.bmp", engine->getRenderer());
 	Player s1;
 	s1.addAnimation("run", &a);
 	s1.setAnimation("run");
-	
 	s1.setPosition(100, 200);
+
+	Sprite s2;// ("assets/dude.bmp", engine->getRenderer());
+	s2.addAnimation("run", &a);
+	s2.setAnimation("run");
+	s2.setPosition(200, 300);
+
+
 
 	//Sprite s2("../GameEngine/golddot.png", engine.getRenderer());
 	//s2.setPosition(200, 300);
@@ -39,7 +45,7 @@ int main(int argc, char *argv[])
 	//std::cout << p1.getName() << std::endl;
 
 	engine->addDrawable(&s1);
-	//engine.addDrawable(&p2);
+	engine->addDrawable(&s2);
 
 
 	engine->run();

@@ -17,7 +17,7 @@ public:
 	int getX();
 	virtual void setName(std::string name){ m_name = name; }
 	virtual std::string getName() const{ return m_name; }
-	virtual void update();
+	virtual void update(int dt);
 	void addAnimation(std::string name, Animation* a){
 		std::pair<std::string, Animation*> pair = std::make_pair(name, a);
 		animations.insert(pair);
