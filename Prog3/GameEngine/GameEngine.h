@@ -25,7 +25,10 @@ public:
 	void graph();
 	void quit();
 	void run();
-
+	bool cd(GameObject *a, GameObject *b);
+	std::vector<GameObject*> getObjects(){
+		return objects;
+	};
 
 private:
 	std::vector<GameObject*> objects;

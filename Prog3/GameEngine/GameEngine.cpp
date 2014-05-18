@@ -68,7 +68,6 @@ void GameEngine::render(){
 		o->render();
 	}
 	SDL_RenderPresent(renderer);
-	
 
 }
 
@@ -113,6 +112,42 @@ GameEngine::~GameEngine()
 
 }
 
+bool GameEngine::cd(GameObject* a, GameObject* b)
+{
+	int left1, left2;
+	int right1, right2;
+	int top1, top2;
+	int bottom1, bottom2;
+
+	left1 = a->getX();
+	left2 = b->getX();
+	right1 = a->getX() + a->getW();
+	right2 = b->getX() + b->getW();
+	top1 = a->getY();
+	top2 = b->getY();
+	bottom1 = a->getY() + a->getH();
+	bottom2 = b->getY() + b->getH();
+
+	if (bottom1 <= top2)
+	{
+		return(false);
+	}
+	if (top1 >= bottom2)
+	{
+		return(false);
+	}
+
+	if (right1 <= left2)
+	{
+		return(false);
+	}
+	if (left1 >= right2)
+	{
+		return(false);
+	}
+
+	return(true);
+}
 
 
 

@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	//engine.render_dot();
 
 
-	Animation a("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
+	Animation a("assets/dude.png", engine->getRenderer(), 130, 150, 27, 7);
 	Animation b("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
 
 	//Sprite s1("assets/dude.bmp", engine.getRenderer());
@@ -31,9 +31,9 @@ int main(int argc, char *argv[])
 	s1.setName("player");
 
 
-	Sprite s2;
-	s2.addAnimation("run", &b);
-	s2.setAnimation("run");
+	Sprite s2("assets/poteto.bmp", engine->getRenderer());
+	//s2.addAnimation("run", &b);
+	//s2.setAnimation("run");
 	s2.setPosition(10, 20);
 	s2.setName("Sprite");
 
@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
 
 	//std::cout << p1.getName() << std::endl;
 
-	engine->addDrawable(&s1);
 	engine->addDrawable(&s2);
+	engine->addDrawable(&s1);
 
 
 	engine->run();

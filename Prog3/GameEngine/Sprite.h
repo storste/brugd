@@ -15,6 +15,8 @@ public:
 	virtual void setPosition(int x, int y);
 	int getY();
 	int getX();
+	int getH();
+	int getW();
 	virtual void setName(std::string name){ m_name = name; }
 	std::string getName(){ return m_name; }
 	virtual std::string getName() const{ return m_name; }

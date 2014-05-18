@@ -29,8 +29,9 @@ void Sprite::setPosition(int x_pos, int y_pos){
 }
 
 int Sprite::getY(){ return y; }
-
 int Sprite::getX(){ return x; }
+int Sprite::getW(){ return width; }
+int Sprite::getH(){ return height; }
 
 void Sprite::render()
 {
@@ -40,11 +41,20 @@ void Sprite::render()
 	}
 
 	else{
-	if (!renderer)
+
+		if (!renderer)
 		std::cout << "No renderer..." << std::endl;
 
-	if (!texture)
+		if (!texture)
 		std::cout << "No texture..." << std::endl;
+
+		SDL_Rect dst;
+		SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
+
+//		dst.h = 161; dst.w = 158;
+		dst.x = x; dst.y = y;
+
+		SDL_RenderCopyEx(renderer, texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
 
 	}
 
@@ -66,7 +76,9 @@ void Sprite::render()
 
 void Sprite::update(int dt){
 
-	currentAnimation->setPosition(x, y);
-	currentAnimation->playAnimation(dt);
+	if (currentAnimation){
 
+		currentAnimation->setPosition(x, y);
+		currentAnimation->playAnimation(dt);
+	}
 }
