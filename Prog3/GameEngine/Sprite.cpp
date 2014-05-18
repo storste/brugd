@@ -34,10 +34,11 @@ int Sprite::getX(){ return x; }
 
 void Sprite::render()
 {
+
 	if (currentAnimation){
 		currentAnimation->renderAnimation();
-
 	}
+
 	else{
 	if (!renderer)
 		std::cout << "No renderer..." << std::endl;

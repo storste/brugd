@@ -9,15 +9,18 @@ Player::Player(const char* filename, SDL_Renderer* r, const char* name) :Sprite(
 }
 
 Player::Player(){
-
+	std::cout << "player constructor" << std::endl;
 }
 
 
 void Player::update(int dt){
 	Sprite::update(dt);
 
+	
+
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
+		
 		setPosition(getX() + 3, getY());
 	}
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))

@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Drawable.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Sprite.cpp" />
