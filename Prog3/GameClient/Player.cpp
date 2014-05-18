@@ -14,7 +14,16 @@ Player::Player(){
 
 
 void Player::update(int dt){
+
 	Sprite::update(dt);
+
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+	{
+		for (auto& o : GameEngine::getEngineInstance()->getObjects()){
+			
+			if (GameEngine::getEngineInstance()->cd(this, o)){
+				std::cout << "player collided with " << o->getName() << std::endl;
+			}
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{	

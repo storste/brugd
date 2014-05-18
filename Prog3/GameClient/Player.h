@@ -9,6 +9,7 @@ public:
 	Player();
 	~Player();
 	std::string getName(){ return m_name; }
+	void setName(const char* name){ m_name = name; }
 private:
 	std::string m_name;
 };
