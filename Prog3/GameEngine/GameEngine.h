@@ -19,13 +19,16 @@ public:
 
 	void addDrawable(GameObject* d);
 	void render();	
-	void update();
+	void update(int dt);
 	void handleEvents();
 	Uint8* getKeyStates();
 	void graph();
 	void quit();
 	void run();
-
+	bool cd(GameObject *a, GameObject *b);
+	std::vector<GameObject*> getObjects(){
+		return objects;
+	};
 
 private:
 	std::vector<GameObject*> objects;

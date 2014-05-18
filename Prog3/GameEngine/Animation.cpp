@@ -7,7 +7,7 @@ void Animation::setPosition(int x, int y){
 }
 
 Animation::Animation(const char* filename, SDL_Renderer* r, int frameWidth, int frameHeight, int frameCount, int framesPerRow)
-:frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow)
+:flip(false),frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow)
 {
 	renderer = r;
 	texture = IMG_LoadTexture(renderer, filename);
@@ -29,15 +29,26 @@ Animation::~Animation()
 {
 }
 
-void Animation::playAnimation() {
-	currentFrame = int(((SDL_GetTicks() / 30) % frameCount));
+void Animation::playAnimation(int dt) {
+	//currentFrame = int(((SDL_GetTicks() / 30) % frameCount));
+	currentFrame = int(((dt)/30 % frameCount));
 	//		std::cout << currentFrame << std::endl;
 	sourceRectangle.x = frameWidth * (currentFrame % framesPerRow);
 	sourceRectangle.y = frameHeight * (currentFrame / framesPerRow);
 }
 
 void Animation::renderAnimation(){
+
+	if (flip) {
+		SDL_RenderCopyEx(renderer, texture,
+			&sourceRectangle, &destinationRectangle,
+			0, 0, SDL_FLIP_HORIZONTAL); // pass in the horizontal flip
+	} else {
 	SDL_RenderCopy(renderer, texture, &sourceRectangle,
 		&destinationRectangle);
+	}
+}
 
+void Animation::setFlip(bool b){
+	flip = b;
 }

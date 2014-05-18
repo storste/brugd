@@ -7,8 +7,9 @@ public:
 	Animation(const char* filename, SDL_Renderer* r, int frameWidth, int frameHeight, int frameCount, int framesPerRow);
 	~Animation();
 	void setPosition(int x, int y);
-	void playAnimation();
+	void playAnimation(int dt);
 	void renderAnimation();
+	void setFlip(bool b);
 private:
 	int currentFrame;
 	SDL_Texture* texture;
@@ -17,7 +18,7 @@ private:
 	SDL_Rect destinationRectangle;
 	int frameWidth;
 	int frameHeight;
-
+	bool flip;
 	int frameCount;
 	int framesPerRow;
 
