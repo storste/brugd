@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
 	Animation a("assets/dude.png", engine->getRenderer(), 130, 150, 27, 7);
 	Animation b("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
 
-	//Sprite s1("assets/dude.bmp", engine.getRenderer());
 	Player s1;
 	s1.addAnimation("run", &a);
 	s1.setAnimation("run");
