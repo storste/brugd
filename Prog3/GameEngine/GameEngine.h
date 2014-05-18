@@ -42,6 +42,5 @@ private:
 	GameEngine::GameEngine(int width = 640, int height = 480);
 	Uint8* currentKeyStates;
 	~GameEngine();
-
 };
 

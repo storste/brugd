@@ -17,6 +17,7 @@ int delay;
 
 void GameEngine::run(){
 
+
 	running = true;
 
 	while (running)
@@ -142,18 +143,9 @@ bool GameEngine::cd(GameObject* a, GameObject* b)
 	if (left1 >= right2)
 	{
 		return(false);
-}
+	}
 
 	return(true);
 }
-
-
-
-//SDL_Renderer* gRenderer;
-//SDL_Surface* createSurface();
-//static SDL_Window* window = nullptr;
-
-
-TTF_Font *gFont = NULL;
 
 
