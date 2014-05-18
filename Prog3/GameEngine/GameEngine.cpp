@@ -10,7 +10,7 @@
 
 
 GameEngine* GameEngine::instance;
-#define FPS 60 
+#define FPS 60
 
 const int tickInterval = 1000 / FPS;
 Uint32 nextTick;
