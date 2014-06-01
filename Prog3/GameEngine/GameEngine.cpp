@@ -17,7 +17,6 @@ int delay;
 
 void GameEngine::run(){
 
-
 	running = true;
 
 	while (running)
@@ -111,7 +110,7 @@ GameEngine::~GameEngine()
 
 }
 
-bool GameEngine::cd(GameObject* a, GameObject* b)
+const bool GameEngine::cd(GameObject* a, GameObject* b)
 {
 	int left1, left2;
 	int right1, right2;

@@ -7,7 +7,7 @@
 
 class Sprite :public GameObject {
 public:
-	Sprite(const char* filename, SDL_Renderer* r);
+	Sprite(const char* filename);
 	Sprite(Animation* a);
 	Sprite();
 	~Sprite();
@@ -18,7 +18,7 @@ public:
 	int getH();
 	int getW();
 	void setName(const char *name);
-	std::string getName();
+	const std::string getName();
 	virtual std::string getName() const{ return m_name; }
 	virtual void update(int dt);
 
@@ -28,7 +28,7 @@ public:
 
 private:
 	SDL_Texture* texture;
-	SDL_Renderer* renderer;
+	
 	int width;
 	int height;
 	int x;

@@ -12,10 +12,9 @@ Sprite::Sprite(){
 
 }
 
-Sprite::Sprite(const char* filename, SDL_Renderer* r)
+Sprite::Sprite(const char* filename) 
 {
-	renderer = r;
-	texture = IMG_LoadTexture(renderer, filename);
+	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
 }
 
 
@@ -35,24 +34,22 @@ int Sprite::getH(){ return height; }
 
 void Sprite::render()
 {
-
 	if (currentAnimation){
 		currentAnimation->renderAnimation();
 	}
+	else {
 
-	else{
+		//if (!renderer)
+		//	std::cout << "No renderer..." << std::endl;
 
-		if (!renderer)
-			std::cout << "No renderer..." << std::endl;
-
-		if (!texture)
-			std::cout << "No texture..." << std::endl;
+		//if (!texture)
+		//	std::cout << "No texture..." << std::endl;
 
 		SDL_Rect dst;
 		SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
 		dst.x = x; dst.y = y;
 
-		SDL_RenderCopyEx(renderer, texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(GameEngine::getInstance()->getRenderer(), texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
 	}
 }
 
@@ -74,10 +71,16 @@ void Sprite::setAnimation(const char *name){
 	currentAnimation = animations[name];
 }
 
-std::string Sprite::getName(){
+const std::string Sprite::getName(){
 	return m_name;
 }
 
-void Sprite::setName(const char * name){ m_name = name; }
+void Sprite::setName(const char * name)
+{
+	m_name = name;
+}
 
-Animation* Sprite::getAnimation(){ return currentAnimation; }
+Animation* Sprite::getAnimation()
+{
+	return currentAnimation;
+}

@@ -5,16 +5,19 @@
 #include <stack>
 #include <array>
 #include "..\GameEngine\GameEngine.h"
-#include "..\GameEngine\Animation.h"
+
+//#include "..\GameEngine\Animation.h"
 //#include "..\GameEngine\Sprite.h"
+
 #include "Player.h"
 //#include "..\GameEngine\InputHandler.h"
 
+// forward declare Animation
+class Animation;
 
 int main(int argc, char *argv[])
 {
-
-	GameEngine* engine = GameEngine::getEngineInstance();
+	GameEngine* engine = GameEngine::getInstance();
 
 	//engine.render_grid_dots();
 	//engine.render_dot();
@@ -30,7 +33,7 @@ int main(int argc, char *argv[])
 	s1.setName("player");
 
 
-	Sprite s2("assets/poteto.bmp", engine->getRenderer());
+	Sprite s2("assets/poteto.bmp");
 	//s2.addAnimation("run", &b);
 	//s2.setAnimation("run");
 	s2.setPosition(10, 20);

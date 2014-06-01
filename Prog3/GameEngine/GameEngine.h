@@ -6,9 +6,12 @@
 #include "GameObject.h"
 
 class GameEngine {
+
 public:
-	static GameEngine* getEngineInstance()	{
-		if (instance == 0)
+
+	static GameEngine* getInstance()
+	{
+		if (instance == nullptr)
 		{
 			instance = new GameEngine();
 		}
@@ -25,12 +28,15 @@ public:
 	void graph();
 	void quit();
 	void run();
-	bool cd(GameObject *a, GameObject *b);
+	const bool cd(GameObject *a, GameObject *b);
 	std::vector<GameObject*> getObjects(){ return objects; };
 
 private:
-	std::vector<GameObject*> objects;
+
 	static GameEngine* instance;
+	
+	std::vector<GameObject*> objects;
+
 	bool init();
 	void handleInput();
 	SDL_Window* window;

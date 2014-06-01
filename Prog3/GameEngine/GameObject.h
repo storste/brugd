@@ -11,6 +11,6 @@ public:
 	virtual int getY() = 0;
 	virtual int getW() = 0;
 	virtual int getH() = 0;
-	virtual std::string getName() = 0;
+	virtual const std::string getName() = 0;
 };
 
