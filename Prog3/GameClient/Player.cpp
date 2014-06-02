@@ -31,16 +31,6 @@ void Player::update(int dt){
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		for (const auto& o : GameEngine::getInstance()->getObjects()){
-
-			if (GameEngine::getInstance()->cd(this, o)){
-				std::cout << "player collided with " << o->getName() << std::endl;
-			}
-		}
-	}
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
-	{
 		Sprite::getAnimation()->setFlip(false);
 		setPosition(getX() + 1, getY());
 	}
@@ -58,9 +48,9 @@ void Player::update(int dt){
 		setPosition(getX(), getY() - 4);
 	}
 
-	for (auto& o : GameEngine::getEngineInstance()->getObjects()){
+	for (auto& o : GameEngine::getInstance()->getObjects()){
 
-		if (GameEngine::getEngineInstance()->cd(this, o)){
+		if (GameEngine::getInstance()->cd(this, o)){
 			std::cout << "player collided with " << o->getName() << std::endl;
 		}
 	}
