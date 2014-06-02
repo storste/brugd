@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	s1.addAnimation("run", &a);
 	s1.setAnimation("run");
 	s1.setPosition(100, 200);
-	s1.setName("player");
+	s1.setName("Player");
 
 
 	Sprite s2("assets/poteto.bmp");

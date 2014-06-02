@@ -126,10 +126,13 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	bottom1 = a->getY() + a->getH();
 	bottom2 = b->getY() + b->getH();
 
+	//std::cout << "CD top1: " << top1 << " top2: " << top2 << std::endl;
+
 	if (bottom1 <= top2)
 	{
 		return(false);
 	}
+
 	if (top1 >= bottom2)
 	{
 		return(false);
@@ -139,6 +142,7 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	{
 		return(false);
 	}
+	
 	if (left1 >= right2)
 	{
 		return(false);
