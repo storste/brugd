@@ -16,6 +16,7 @@ Sprite::Sprite(const char* filename, SDL_Renderer* r)
 {
 	renderer = r;
 	texture = IMG_LoadTexture(renderer, filename);
+	SDL_QueryTexture(texture, NULL, NULL, &width, &height);
 }
 
 
@@ -50,6 +51,7 @@ void Sprite::render()
 
 		SDL_Rect dst;
 		SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
+		SDL_QueryTexture(texture, NULL, NULL, &width, &height);
 
 //		dst.h = 161; dst.w = 158;
 		dst.x = x; dst.y = y;
