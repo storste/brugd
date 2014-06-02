@@ -6,11 +6,10 @@
 #include <stack>
 #include <array>
 #include "GameEngine.h"
-#include "..\GameEngine\InputHandler.h"
+#include "InputHandler.h"
 
-
+#define FPS 60
 GameEngine* GameEngine::instance;
-#define FPS 200
 
 const int tickInterval = 1000 / FPS;
 Uint32 nextTick;
@@ -31,9 +30,7 @@ void GameEngine::run(){
 		delay = nextTick - SDL_GetTicks();
 		if (delay > 0)
 			SDL_Delay(delay);
-
 	}
-
 }
 
 
@@ -69,7 +66,7 @@ void GameEngine::render(){
 	}
 
 	SDL_RenderPresent(renderer);
-	
+
 }
 
 
@@ -113,7 +110,7 @@ GameEngine::~GameEngine()
 
 }
 
-bool GameEngine::cd(GameObject* a, GameObject* b)
+const bool GameEngine::cd(GameObject* a, GameObject* b)
 {
 	int left1, left2;
 	int right1, right2;
@@ -149,14 +146,5 @@ bool GameEngine::cd(GameObject* a, GameObject* b)
 
 	return(true);
 }
-
-
-
-//SDL_Renderer* gRenderer;
-//SDL_Surface* createSurface();
-//static SDL_Window* window = nullptr;
-
-
-TTF_Font *gFont = NULL;
 
 

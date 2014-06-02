@@ -21,6 +21,5 @@ private:
 	bool flip;
 	int frameCount;
 	int framesPerRow;
-
 };
 

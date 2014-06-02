@@ -7,7 +7,6 @@ InputHandler::InputHandler() : keystates(0)
 {
 }
 
-
 InputHandler::~InputHandler()
 {
 }
@@ -21,7 +20,7 @@ void InputHandler::update()
 		switch (event.type)
 		{
 		case SDL_QUIT:
-			GameEngine::getEngineInstance()->quit();
+			GameEngine::getInstance()->quit();
 			break;
 
 		case SDL_KEYDOWN:
@@ -50,18 +49,19 @@ void InputHandler::onKeyUp()
 
 bool InputHandler::isKeyDown(SDL_Scancode key)
 {
-	if (keystates != 0)
-	{
-		if (keystates[key] == 1)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	return (keystates && keystates[key] == 1 ? true : false);
 
-		
-	}
-	return false;
+	//if (keystates != 0)
+	//{
+	//	if (keystates[key] == 1)
+	//	{
+	//		return true;
+	//	}
+	//	else
+	//	{
+	//		return false;
+	//	}
+	//	
+	//}
+	//return false;
 }
