@@ -5,17 +5,19 @@
 #include "../GameEngine/GameEngine.h"
 
 Sprite::Sprite(Animation* a){
-
+	w = a->w();
+	h = a->h();
 }
 
 Sprite::Sprite(){
 
 }
 
-Sprite::Sprite(const char* filename, SDL_Renderer* r)
+Sprite::Sprite(const char* filename) 
 {
-	renderer = r;
-	texture = IMG_LoadTexture(renderer, filename);
+	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
+	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+	std::cout << "setting w & h for sprite" << std::endl;
 }
 
 
@@ -30,48 +32,28 @@ void Sprite::setPosition(int x_pos, int y_pos){
 
 int Sprite::getY(){ return y; }
 int Sprite::getX(){ return x; }
-int Sprite::getW(){ return width; }
-int Sprite::getH(){ return height; }
+int Sprite::getW(){ return w; }
+int Sprite::getH(){ return h; }
 
 void Sprite::render()
 {
-
 	if (currentAnimation){
 		currentAnimation->renderAnimation();
 	}
+	else {
 
-	else{
+		//if (!renderer)
+		//	std::cout << "No renderer..." << std::endl;
 
-		if (!renderer)
-		std::cout << "No renderer..." << std::endl;
-
-		if (!texture)
-		std::cout << "No texture..." << std::endl;
+		//if (!texture)
+		//	std::cout << "No texture..." << std::endl;
 
 		SDL_Rect dst;
 		SDL_QueryTexture(texture, NULL, NULL, &dst.w, &dst.h);
-
-//		dst.h = 161; dst.w = 158;
 		dst.x = x; dst.y = y;
 
-		SDL_RenderCopyEx(renderer, texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
-
+		SDL_RenderCopyEx(GameEngine::getInstance()->getRenderer(), texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
 	}
-
-
-	//SDL_Rect src;
-	//src.h = 32; src.w = 32;
-	//src.x = x * 32;	src.y = y * 32;
-
-	//SDL_Rect dst;
-	//dst.h = 32; dst.w = 32;
-	//dst.x = x; dst.y = y;
-
-	//SDL_RenderCopyEx(renderer, texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
-
-	////SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-	//std::cout << "Rendering dot" << std::endl;
-
 }
 
 void Sprite::update(int dt){
@@ -81,4 +63,31 @@ void Sprite::update(int dt){
 		currentAnimation->setPosition(x, y);
 		currentAnimation->playAnimation(dt);
 	}
+}
+
+void Sprite::addAnimation(std::string name, Animation* a){
+	std::pair<std::string, Animation*> pair = std::make_pair(name, a);
+	animations.insert(pair);
+}
+
+void Sprite::setAnimation(const char *name){
+	currentAnimation = animations[name];
+	
+	w = currentAnimation->w();
+	h = currentAnimation->h();
+	std::cout << "setting w & h for sprite" << std::endl;
+}
+
+const std::string Sprite::getName(){
+	return m_name;
+}
+
+void Sprite::setName(const char * name)
+{
+	m_name = name;
+	}
+
+Animation* Sprite::getAnimation()
+{
+	return currentAnimation;
 }

@@ -6,40 +6,42 @@
 #include <map>
 
 class Sprite :public GameObject {
+
 public:
-	Sprite(const char* filename, SDL_Renderer* r);
+
+	Sprite(const char* filename);
 	Sprite(Animation* a);
 	Sprite();
 	~Sprite();
-	virtual void render();
-	virtual void setPosition(int x, int y);
-	int getY();
-	int getX();
-	int getH();
-	int getW();
-	virtual void setName(std::string name){ m_name = name; }
-	std::string getName(){ return m_name; }
-	virtual std::string getName() const{ return m_name; }
-	virtual void update(int dt);
-	void addAnimation(std::string name, Animation* a){
-		std::pair<std::string, Animation*> pair = std::make_pair(name, a);
-		animations.insert(pair);
-	}
-	void setAnimation(const char* name){
 
-		currentAnimation = animations[name];
-	}
-	Animation* getAnimation(){ return currentAnimation; }
+	virtual void render();
+
+	virtual void setPosition(int x, int y);
+	virtual int getY();
+	virtual int getX();
+	virtual int getH();
+	virtual int getW();
+
+	virtual void setName(const char *name);
+
+	virtual const std::string getName();
+	virtual void update(int dt);
+
+	void addAnimation(std::string name, Animation* a);
+	void setAnimation(const char *name);
+	Animation* getAnimation();
 
 private:
 	SDL_Texture* texture;
-	SDL_Renderer* renderer;
-	int width;
-	int height;
-	int x;
-	int y;
+
 	std::string m_name;
 	std::map<std::string, Animation*> animations;
 	Animation* currentAnimation;
+	int w;
+	int h;
+	int x;
+	int y;
+
+protected:
 };
 

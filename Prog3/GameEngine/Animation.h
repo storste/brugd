@@ -10,6 +10,9 @@ public:
 	void playAnimation(int dt);
 	void renderAnimation();
 	void setFlip(bool b);
+	int w(){ return frameWidth; }
+	int h(){ return frameHeight; }
+
 private:
 	int currentFrame;
 	SDL_Texture* texture;
@@ -21,6 +24,5 @@ private:
 	bool flip;
 	int frameCount;
 	int framesPerRow;
-
 };
 

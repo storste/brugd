@@ -1,15 +1,14 @@
 #pragma once
 #include "..\GameEngine\Sprite.h"
 
-class Player :
-	public Sprite {
+class Player : public Sprite {
+
 public:
-	void Player::update(int dt);
-	Player(const char* filename, SDL_Renderer* r, const char* name);
+	void update(int dt);
+	Player(const char* filename, const char* name);
 	Player();
 	~Player();
-	std::string getName(){ return m_name; }
-	void setName(const char* name){ m_name = name; }
+
 private:
 	std::string m_name;
 };

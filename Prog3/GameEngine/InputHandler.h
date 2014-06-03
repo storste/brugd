@@ -1,12 +1,11 @@
 #pragma once
 #include "SDL.h"
-#include "GameEngine.h"
-
 
 class InputHandler
 {
 public:
 	void update();
+
 	static InputHandler* Instance()
 	{
 		if (instance == 0)
@@ -15,7 +14,9 @@ public:
 		}
 		return instance;
 	}
+
 	bool InputHandler::isKeyDown(SDL_Scancode key);
+
 private:
 	InputHandler();
 	~InputHandler();

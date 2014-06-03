@@ -6,11 +6,10 @@
 #include <stack>
 #include <array>
 #include "GameEngine.h"
-#include "..\GameEngine\InputHandler.h"
+#include "InputHandler.h"
 
-
+#define FPS 60
 GameEngine* GameEngine::instance;
-#define FPS 200
 
 const int tickInterval = 1000 / FPS;
 Uint32 nextTick;
@@ -31,9 +30,7 @@ void GameEngine::run(){
 		delay = nextTick - SDL_GetTicks();
 		if (delay > 0)
 			SDL_Delay(delay);
-
 	}
-
 }
 
 
@@ -54,7 +51,6 @@ void GameEngine::update(int dt)
 	}
 }
 
-
 void GameEngine::addDrawable(GameObject* d){
 	objects.push_back(d);
 }
@@ -64,12 +60,11 @@ void GameEngine::render(){
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
 
-	for (auto& o : objects){
+	for (const auto& o : objects){
 		o->render();
 	}
 
 	SDL_RenderPresent(renderer);
-	
 }
 
 
@@ -91,6 +86,7 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	}
+
 	int imgFlags = IMG_INIT_PNG;
 	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
@@ -113,7 +109,7 @@ GameEngine::~GameEngine()
 
 }
 
-bool GameEngine::cd(GameObject* a, GameObject* b)
+const bool GameEngine::cd(GameObject* a, GameObject* b)
 {
 	int left1, left2;
 	int right1, right2;
@@ -129,34 +125,30 @@ bool GameEngine::cd(GameObject* a, GameObject* b)
 	bottom1 = a->getY() + a->getH();
 	bottom2 = b->getY() + b->getH();
 
+	//std::cout << "w: " << a->getW() << " h: " << a->getH() << std::endl;
+	//std::cout << "w: " << b->getW() << " h: " << b->getH() << std::endl;
+
 	if (bottom1 <= top2)
 	{
-		return(false);
+		return false;
 	}
+
 	if (top1 >= bottom2)
 	{
-		return(false);
+		return false ;
 	}
 
 	if (right1 <= left2)
 	{
-		return(false);
+		return false;
 	}
+	
 	if (left1 >= right2)
 	{
-		return(false);
+		return false;
 	}
 
-	return(true);
+	return true;
 }
-
-
-
-//SDL_Renderer* gRenderer;
-//SDL_Surface* createSurface();
-//static SDL_Window* window = nullptr;
-
-
-TTF_Font *gFont = NULL;
 
 
