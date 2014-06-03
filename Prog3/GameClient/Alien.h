@@ -9,10 +9,10 @@ class Alien :
 	public Sprite
 {
 public:
-	Alien();
+	Alien(const char* filename, const char* name) ;
 	~Alien();
 	Direction dir;
-	void update();
+	void update(int dt);
 	
 };
 

@@ -60,7 +60,6 @@ void Player::update(int dt){
 
 		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
 			std::cout << "testing collision for bullet and obj " << o->getName() << std::endl;
-
 		}
 
 		//if (this != o){

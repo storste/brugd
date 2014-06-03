@@ -10,6 +10,7 @@
 //#include "..\GameEngine\Sprite.h"
 
 #include "Player.h"
+#include "Alien.h"
 //#include "..\GameEngine\InputHandler.h"
 
 // forward declare Animation
@@ -32,6 +33,8 @@ int main(int argc, char *argv[])
 	s1.setName("Player");
 
 
+	Alien a1("assets/poteto.bmp", "Alien");
+
 	Sprite s2("assets/poteto.bmp");
 	//s2.addAnimation("run", &b);
 	//s2.setAnimation("run");
@@ -41,10 +44,10 @@ int main(int argc, char *argv[])
 	//std::cout << s1.getName() << std::endl;
 
 	engine->addDrawable(&s2);
+	engine->addDrawable(&a1);
 	engine->addDrawable(&s1);
 
-
-	std::cout << "w: " << s1.getW() << " h: " << s1.getH() << std::endl;
+	//std::cout << "w: " << s1.getW() << " h: " << s1.getH() << std::endl;
 
 
 	engine->run();
