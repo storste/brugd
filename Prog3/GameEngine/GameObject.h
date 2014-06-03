@@ -5,8 +5,8 @@ class GameObject {
 public:
 	GameObject();
 	~GameObject();
-	virtual void render();
-	virtual void update(int dt);
+	virtual void render() = 0;
+	virtual void update(int dt) = 0;
 	virtual int getX() = 0;
 	virtual int getY() = 0;
 	virtual int getW() = 0;

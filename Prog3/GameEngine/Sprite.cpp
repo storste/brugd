@@ -5,7 +5,8 @@
 #include "../GameEngine/GameEngine.h"
 
 Sprite::Sprite(Animation* a){
-
+	w = a->w();
+	h = a->h();
 }
 
 Sprite::Sprite(){
@@ -15,6 +16,8 @@ Sprite::Sprite(){
 Sprite::Sprite(const char* filename) 
 {
 	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
+	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+	std::cout << "setting w & h for sprite" << std::endl;
 }
 
 
@@ -29,8 +32,8 @@ void Sprite::setPosition(int x_pos, int y_pos){
 
 int Sprite::getY(){ return y; }
 int Sprite::getX(){ return x; }
-int Sprite::getW(){ return width; }
-int Sprite::getH(){ return height; }
+int Sprite::getW(){ return w; }
+int Sprite::getH(){ return h; }
 
 void Sprite::render()
 {
@@ -69,6 +72,10 @@ void Sprite::addAnimation(std::string name, Animation* a){
 
 void Sprite::setAnimation(const char *name){
 	currentAnimation = animations[name];
+	
+	w = currentAnimation->w();
+	h = currentAnimation->h();
+	std::cout << "setting w & h for sprite" << std::endl;
 }
 
 const std::string Sprite::getName(){

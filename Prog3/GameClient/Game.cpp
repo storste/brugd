@@ -15,13 +15,12 @@
 // forward declare Animation
 class Animation;
 
+// forward declare Image
+class Image;
+
 int main(int argc, char *argv[])
 {
 	GameEngine* engine = GameEngine::getInstance();
-
-	//engine.render_grid_dots();
-	//engine.render_dot();
-
 
 	Animation a("assets/dude.png", engine->getRenderer(), 130, 150, 27, 7);
 	Animation b("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
@@ -39,27 +38,17 @@ int main(int argc, char *argv[])
 	s2.setPosition(10, 20);
 	s2.setName("Sprite");
 
-	//Sprite s2("../GameEngine/golddot.png", engine.getRenderer());
-	//s2.setPosition(200, 300);
-
-	//Player p1("../../animation/assets/dude.bmp", engine.getRenderer(), "Player 1");
-	//Player p2("../GameEngine/golddot.png", engine.getRenderer(), "Player 2");
-
-
-	//std::cout << p1.getName() << std::endl;
+	//std::cout << s1.getName() << std::endl;
 
 	engine->addDrawable(&s2);
 	engine->addDrawable(&s1);
 
 
+	std::cout << "w: " << s1.getW() << " h: " << s1.getH() << std::endl;
+
+
 	engine->run();
 
-	//engine.render();
-	//std::string tmp;
-	//std::cin >> tmp;
-
-
-	//engine.graph();
 
 	return (0);
 }

@@ -51,7 +51,6 @@ void GameEngine::update(int dt)
 	}
 }
 
-
 void GameEngine::addDrawable(GameObject* d){
 	objects.push_back(d);
 }
@@ -61,12 +60,11 @@ void GameEngine::render(){
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
 
-	for (auto& o : objects){
+	for (const auto& o : objects){
 		o->render();
 	}
 
 	SDL_RenderPresent(renderer);
-
 }
 
 
@@ -88,6 +86,7 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 
 		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	}
+
 	int imgFlags = IMG_INIT_PNG;
 	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
@@ -126,29 +125,30 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	bottom1 = a->getY() + a->getH();
 	bottom2 = b->getY() + b->getH();
 
-	//std::cout << "CD top1: " << top1 << " top2: " << top2 << std::endl;
+	//std::cout << "w: " << a->getW() << " h: " << a->getH() << std::endl;
+	//std::cout << "w: " << b->getW() << " h: " << b->getH() << std::endl;
 
 	if (bottom1 <= top2)
 	{
-		return(false);
+		return false;
 	}
 
 	if (top1 >= bottom2)
 	{
-		return(false);
+		return false ;
 	}
 
 	if (right1 <= left2)
 	{
-		return(false);
+		return false;
 	}
 	
 	if (left1 >= right2)
 	{
-		return(false);
+		return false;
 	}
 
-	return(true);
+	return true;
 }
 
 

@@ -6,20 +6,25 @@
 #include <map>
 
 class Sprite :public GameObject {
+
 public:
+
 	Sprite(const char* filename);
 	Sprite(Animation* a);
 	Sprite();
 	~Sprite();
+
 	virtual void render();
+
 	virtual void setPosition(int x, int y);
-	int getY();
-	int getX();
-	int getH();
-	int getW();
-	void setName(const char *name);
-	const std::string getName();
-	virtual std::string getName() const{ return m_name; }
+	virtual int getY();
+	virtual int getX();
+	virtual int getH();
+	virtual int getW();
+
+	virtual void setName(const char *name);
+
+	virtual const std::string getName();
 	virtual void update(int dt);
 
 	void addAnimation(std::string name, Animation* a);
@@ -28,13 +33,15 @@ public:
 
 private:
 	SDL_Texture* texture;
-	
-	int width;
-	int height;
-	int x;
-	int y;
+
 	std::string m_name;
 	std::map<std::string, Animation*> animations;
 	Animation* currentAnimation;
+	int w;
+	int h;
+	int x;
+	int y;
+
+protected:
 };
 

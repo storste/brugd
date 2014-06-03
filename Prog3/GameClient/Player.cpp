@@ -15,15 +15,15 @@ Player::~Player()
 {
 }
 
-const std::string Player::getName()
-{
-	return m_name;
-}
-
-void Player::setName(const char* name)
-{
-	m_name = name;
-}
+//const std::string Player::getName()
+//{
+//	return m_name;
+//}
+//
+//void Player::setName(const char* name)
+//{
+//	m_name = name;
+//}
 
 void Player::update(int dt){
 
@@ -58,12 +58,18 @@ void Player::update(int dt){
 
 	for (const auto& o : GameEngine::getInstance()->getObjects()){
 
-		if (this != o)
-			std::cout << "Running CD for " << this->getName() << " and " << o->getName() << std::endl;
+		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
+			std::cout << "testing collision for bullet and obj " << o->getName() << std::endl;
 
-		if (GameEngine::getInstance()->cd(this, o) && this != o){
-			std::cout << "player collided with " << o->getName() << std::endl;
 		}
+
+		//if (this != o){
+		//	std::cout << "Running CD for " << this->getName() << " and " << o->getName() << std::endl;
+		//	if (GameEngine::getInstance()->cd(this, o)){
+		//		std::cout << "player collided with " << o->getName() << std::endl;
+		//	}
+		//}
+
 	}
 }
 
