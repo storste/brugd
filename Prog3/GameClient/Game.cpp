@@ -8,7 +8,7 @@
 #include "..\GameEngine\Animation.h"
 //#include "..\GameEngine\Sprite.h"
 #include "Player.h"
-#include "..\GameEngine\InputHandler.h"
+//#include "..\GameEngine\InputHandler.h"
 
 
 int main(int argc, char *argv[])
@@ -22,6 +22,8 @@ int main(int argc, char *argv[])
 
 	Animation a("assets/dude.png", engine->getRenderer(), 130, 150, 27, 7);
 	Animation b("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
+
+
 
 	Player s1;
 	s1.addAnimation("run", &a);
