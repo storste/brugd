@@ -2,11 +2,11 @@
 #include <SDL_image.h>
 #include <iostream>
 #include "Sprite.h"
-#include "../GameEngine/GameEngine.h"
+#include "GameEngine.h"
 
 Sprite::Sprite(Animation* a){
-	w = a->w();
-	h = a->h();
+	w = a->getW();
+	h = a->getH();
 }
 
 Sprite::Sprite(){
@@ -73,9 +73,8 @@ void Sprite::addAnimation(std::string name, Animation* a){
 void Sprite::setAnimation(const char *name){
 	currentAnimation = animations[name];
 	
-	w = currentAnimation->w();
-	h = currentAnimation->h();
-	std::cout << "setting w & h for sprite" << std::endl;
+	w = currentAnimation->getW();
+	h = currentAnimation->getH();
 }
 
 const std::string Sprite::getName(){

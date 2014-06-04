@@ -51,8 +51,13 @@ void GameEngine::update(int dt)
 	}
 }
 
-void GameEngine::addDrawable(GameObject* d){
+void GameEngine::addGameObject(GameObject* d){
 	objects.push_back(d);
+}
+
+void GameEngine::removeGameObject(GameObject* d){
+	//objects.push_back(d);
+	objects.erase(std::remove(objects.begin(), objects.end(), d), objects.end());
 }
 
 void GameEngine::render(){
@@ -124,10 +129,7 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	top2 = b->getY();
 	bottom1 = a->getY() + a->getH();
 	bottom2 = b->getY() + b->getH();
-
-	//std::cout << "w: " << a->getW() << " h: " << a->getH() << std::endl;
-	//std::cout << "w: " << b->getW() << " h: " << b->getH() << std::endl;
-
+	
 	if (bottom1 <= top2)
 	{
 		return false;

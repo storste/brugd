@@ -23,15 +23,14 @@ int main(int argc, char *argv[])
 {
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation a("assets/dude.png", engine->getRenderer(), 130, 150, 27, 7);
-	Animation b("assets/dude.bmp", engine->getRenderer(), 130, 150, 27, 7);
+	Animation a("assets/dude.png", 130, 150, 27, 7);
+	Animation b("assets/dude.bmp", 130, 150, 27, 7);
 
 	Player s1;
 	s1.addAnimation("run", &a);
 	s1.setAnimation("run");
 	s1.setPosition(100, 200);
 	s1.setName("Player");
-
 
 	Alien a1("assets/poteto.bmp", "Alien");
 
@@ -43,15 +42,13 @@ int main(int argc, char *argv[])
 
 	//std::cout << s1.getName() << std::endl;
 
-	engine->addDrawable(&s2);
-	engine->addDrawable(&a1);
-	engine->addDrawable(&s1);
+	engine->addGameObject(&s2);
+	engine->addGameObject(&a1);
+	engine->addGameObject(&s1);
 
 	//std::cout << "w: " << s1.getW() << " h: " << s1.getH() << std::endl;
 
-
 	engine->run();
-
 
 	return (0);
 }

@@ -7,6 +7,7 @@ Alien::Alien(const char* filename, const char* name) : Sprite(filename)
 	std::cout << "creating alien" << std::endl;
 	dir = left;
 	setPosition(300, 0);
+	setName(name);
 }
 
 

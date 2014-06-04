@@ -59,7 +59,8 @@ void Player::update(int dt){
 	for (const auto& o : GameEngine::getInstance()->getObjects()){
 
 		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
-			std::cout << "testing collision for bullet and obj " << o->getName() << std::endl;
+			std::cout << "Collision between " << this->getName() << " and " << o->getName() << std::endl;
+			GameEngine::getInstance()->removeGameObject(o);
 		}
 
 		//if (this != o){
