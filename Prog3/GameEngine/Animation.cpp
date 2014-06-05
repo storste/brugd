@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include "GameEngine.h"
 #include <SDL_image.h>
 
 void Animation::setPosition(int x, int y){
@@ -6,23 +7,18 @@ void Animation::setPosition(int x, int y){
 	destinationRectangle.y = y;
 }
 
-Animation::Animation(const char* filename, SDL_Renderer* r, int frameWidth, int frameHeight, int frameCount, int framesPerRow) :flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow)
+Animation::Animation(const char* filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow) :flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow)
 {
-	renderer = r;
-	texture = IMG_LoadTexture(renderer, filename);
+	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
 
 	sourceRectangle.w = frameWidth;
 	sourceRectangle.h = frameHeight;
-
 
 	destinationRectangle.x = sourceRectangle.x = 0;
 	destinationRectangle.y = sourceRectangle.y = 0;
 	destinationRectangle.w = sourceRectangle.w;
 	destinationRectangle.h = sourceRectangle.h;
-
-
 }
-
 
 Animation::~Animation()
 {
@@ -42,12 +38,12 @@ void Animation::renderAnimation(int x, int y){
 	destinationRectangle.y = y;
 
 	if (flip) {
-		SDL_RenderCopyEx(renderer, texture,
+		SDL_RenderCopyEx(GameEngine::getInstance()->getRenderer(), texture,
 			&sourceRectangle, &destinationRectangle,
 			0, 0, SDL_FLIP_HORIZONTAL); // pass in the horizontal flip
 	}
 	else {
-		SDL_RenderCopy(renderer, texture, &sourceRectangle,
+		SDL_RenderCopy(GameEngine::getInstance()->getRenderer(), texture, &sourceRectangle,
 			&destinationRectangle);
 	}
 }

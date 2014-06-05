@@ -20,7 +20,8 @@ public:
 
 	SDL_Renderer* getRenderer(){ return renderer; }
 
-	void addDrawable(GameObject* d);
+	void addGameObject(GameObject* d);
+	void removeGameObject(GameObject* d);
 	void render();
 	void update(int dt);
 	void handleEvents();
@@ -34,7 +35,7 @@ public:
 private:
 
 	static GameEngine* instance;
-	
+
 	std::vector<GameObject*> objects;
 
 	bool init();

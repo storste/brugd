@@ -46,13 +46,28 @@ void GameEngine::handleEvents()
 
 void GameEngine::update(int dt)
 {
+	//for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
+	//{
+	//	if ((*itr)->is_visible() == false){
+
+	//		//delete (*itr);
+	//		//itr = objects.erase(itr);
+	//	}
+	//	else
+	//		++itr;
+	//}
+
 	for (auto& o : objects){
 		o->update(dt);
 	}
 }
 
-void GameEngine::addDrawable(GameObject* d){
+void GameEngine::addGameObject(GameObject* d){
 	objects.push_back(d);
+}
+
+void GameEngine::removeGameObject(GameObject* d){
+	d->set_visible();
 }
 
 void GameEngine::render(){
@@ -125,9 +140,6 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	bottom1 = a->getY() + a->getH();
 	bottom2 = b->getY() + b->getH();
 
-	//std::cout << "w: " << a->getW() << " h: " << a->getH() << std::endl;
-	//std::cout << "w: " << b->getW() << " h: " << b->getH() << std::endl;
-
 	if (bottom1 <= top2)
 	{
 		return false;
@@ -135,14 +147,14 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 
 	if (top1 >= bottom2)
 	{
-		return false ;
+		return false;
 	}
 
 	if (right1 <= left2)
 	{
 		return false;
 	}
-	
+
 	if (left1 >= right2)
 	{
 		return false;
