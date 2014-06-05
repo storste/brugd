@@ -13,6 +13,7 @@ public:
 	~Alien();
 	Direction dir;
 	void update(int dt);
-	
+private:
+	Uint32 ticks;
 };
 

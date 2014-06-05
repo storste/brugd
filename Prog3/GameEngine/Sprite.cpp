@@ -18,6 +18,7 @@ Sprite::Sprite(const char* filename)
 	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
 	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 	std::cout << "setting w & h for sprite" << std::endl;
+	animationTick = 0;
 }
 
 
@@ -38,7 +39,7 @@ int Sprite::getH(){ return h; }
 void Sprite::render()
 {
 	if (currentAnimation){
-		currentAnimation->renderAnimation();
+		currentAnimation->renderAnimation(x,y);
 	}
 	else {
 
@@ -56,12 +57,13 @@ void Sprite::render()
 	}
 }
 
-void Sprite::update(int dt){
+void Sprite::update(){
 
 	if (currentAnimation){
-
+		std::cout << animationTick << std::endl;
 		currentAnimation->setPosition(x, y);
-		currentAnimation->playAnimation(dt);
+		currentAnimation->playAnimation(animationTick);
+		animationTick++;
 	}
 }
 

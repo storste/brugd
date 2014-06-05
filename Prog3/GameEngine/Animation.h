@@ -8,7 +8,7 @@ public:
 	~Animation();
 	void setPosition(int x, int y);
 	void playAnimation(int dt);
-	void renderAnimation();
+	void renderAnimation(int x, int y);
 	void setFlip(bool b);
 	int w(){ return frameWidth; }
 	int h(){ return frameHeight; }

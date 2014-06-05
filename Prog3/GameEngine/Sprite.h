@@ -25,7 +25,7 @@ public:
 	virtual void setName(const char *name);
 
 	virtual const std::string getName();
-	virtual void update(int dt);
+	virtual void update();
 
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(const char *name);
@@ -41,6 +41,7 @@ private:
 	int h;
 	int x;
 	int y;
+	int animationTick;
 
 protected:
 };

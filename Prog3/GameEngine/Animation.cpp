@@ -30,13 +30,16 @@ Animation::~Animation()
 
 void Animation::playAnimation(int dt) {
 	//currentFrame = int(((SDL_GetTicks() / 30) % frameCount));
-	currentFrame = int(((dt) / 30 % frameCount));
+	currentFrame = int(((dt) % frameCount));
 	//		std::cout << currentFrame << std::endl;
 	sourceRectangle.x = frameWidth * (currentFrame % framesPerRow);
 	sourceRectangle.y = frameHeight * (currentFrame / framesPerRow);
 }
 
-void Animation::renderAnimation(){
+void Animation::renderAnimation(int x, int y){
+
+	destinationRectangle.x = x;
+	destinationRectangle.y = y;
 
 	if (flip) {
 		SDL_RenderCopyEx(renderer, texture,
