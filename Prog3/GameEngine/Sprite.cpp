@@ -7,10 +7,11 @@
 Sprite::Sprite(Animation* a){
 	w = a->getW();
 	h = a->getH();
+	
 }
 
 Sprite::Sprite(){
-
+	
 }
 
 Sprite::Sprite(const char* filename) 

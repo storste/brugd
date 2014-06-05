@@ -9,6 +9,7 @@ Player::Player(const char* filename, const char* name) :Sprite(filename)
 }
 
 Player::Player(){
+	
 }
 
 Player::~Player()
@@ -60,7 +61,9 @@ void Player::update(int dt){
 
 		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
 			std::cout << "Collision between " << this->getName() << " and " << o->getName() << std::endl;
+
 			GameEngine::getInstance()->removeGameObject(o);
+			
 		}
 
 		//if (this != o){

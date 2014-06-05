@@ -46,6 +46,17 @@ void GameEngine::handleEvents()
 
 void GameEngine::update(int dt)
 {
+	//for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
+	//{
+	//	if ((*itr)->is_visible() == false){
+
+	//		//delete (*itr);
+	//		//itr = objects.erase(itr);
+	//	}
+	//	else
+	//		++itr;
+	//}
+
 	for (auto& o : objects){
 		o->update(dt);
 	}
@@ -56,8 +67,7 @@ void GameEngine::addGameObject(GameObject* d){
 }
 
 void GameEngine::removeGameObject(GameObject* d){
-	//objects.push_back(d);
-	objects.erase(std::remove(objects.begin(), objects.end(), d), objects.end());
+	d->set_visible();
 }
 
 void GameEngine::render(){
@@ -129,7 +139,7 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	top2 = b->getY();
 	bottom1 = a->getY() + a->getH();
 	bottom2 = b->getY() + b->getH();
-	
+
 	if (bottom1 <= top2)
 	{
 		return false;
@@ -137,14 +147,14 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 
 	if (top1 >= bottom2)
 	{
-		return false ;
+		return false;
 	}
 
 	if (right1 <= left2)
 	{
 		return false;
 	}
-	
+
 	if (left1 >= right2)
 	{
 		return false;

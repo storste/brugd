@@ -30,6 +30,8 @@ public:
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(const char *name);
 	Animation* getAnimation();
+	bool is_visible(){ return _is_visible; }
+	void set_visible() { _is_visible = false; }
 
 private:
 	SDL_Texture* texture;
@@ -41,6 +43,7 @@ private:
 	int h;
 	int x;
 	int y;
+	bool _is_visible;
 
 protected:
 };
