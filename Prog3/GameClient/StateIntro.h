@@ -2,12 +2,13 @@
 #include "..\GameEngine\GameState.h"
 #include "..\GameEngine\GameEngine.h"
 
-class IntroState :
+class StateIntro :
 	public GameState
 {
 public:
-	IntroState();
-	~IntroState();
+	StateIntro();
+	~StateIntro();
+
 	virtual void handleEvents();
 	virtual void update(int ticks);
 	virtual void render();
@@ -21,8 +22,5 @@ public:
 		d->set_visible();
 	}
 	virtual std::vector<GameObject*> getObjects(){ return objects; };
-
-
-
 };
 

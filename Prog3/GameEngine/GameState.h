@@ -15,7 +15,5 @@ public:
 	virtual void addGameObject(GameObject* d) = 0;
 	virtual void removeGameObject(GameObject* d) = 0;
 	virtual std::vector<GameObject*> getObjects() = 0;
-
-
 };
 

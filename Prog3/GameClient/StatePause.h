@@ -2,12 +2,11 @@
 #include "..\GameEngine\GameState.h"
 #include "..\GameEngine\GameEngine.h"
 
-class MainState :
-	public GameState
-{
+class StatePause :
+	public GameState {
 public:
-	MainState();
-	~MainState();
+	StatePause();
+	~StatePause();
 	virtual void handleEvents();
 	virtual void update(int ticks);
 	virtual void render();
@@ -21,8 +20,6 @@ public:
 		d->set_visible();
 	}
 	virtual std::vector<GameObject*> getObjects(){ return objects; };
-
-
 
 };
 

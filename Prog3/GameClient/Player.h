@@ -10,6 +10,6 @@ public:
 	~Player();
 
 private:
-	std::string m_name;
+	
 };
 

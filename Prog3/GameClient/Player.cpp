@@ -16,18 +16,7 @@ Player::~Player()
 {
 }
 
-//const std::string Player::getName()
-//{
-//	return m_name;
-//}
-//
-//void Player::setName(const char* name)
-//{
-//	m_name = name;
-//}
-
 void Player::update(int dt){
-	std::cout << "Player: Update" << std::endl;
 
 	Sprite::update();
 
@@ -61,7 +50,7 @@ void Player::update(int dt){
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->currentState->getObjects()){
 
 		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
-			std::cout << "Collision between " << this->getName() << " and " << o->getName() << std::endl;
+			std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
 			GameEngine::getInstance()->removeGameObject(o);
 			

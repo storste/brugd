@@ -1,37 +1,40 @@
-#include "IntroState.h"
 #include <iostream>
 #include "..\GameEngine\GameEngine.h"
+#include "StatePause.h"
 
 
-IntroState::IntroState()
+StatePause::StatePause()
 {
-	std::cout << "Intro state constructor" << std::endl;
+	std::cout << "StatePause: Constructor" << std::endl;
 }
 
-IntroState::~IntroState()
+StatePause::~StatePause()
 {
-	std::cout << "Intro state destructor" << std::endl;
+	std::cout << "StatePause: Destructor" << std::endl;
 }
 
-void IntroState::handleEvents(){
-	//std::cout << "Intro state handle events" << std::endl;
+void StatePause::handleEvents(){
 	InputHandler::Instance()->update();
 }
 
-void IntroState::update(int dt){
+void StatePause::update(int dt){
 	for (auto& o : objects){
 		o->update(dt);
 	}
 
-	//if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
 	{
 		GameEngine::getInstance()->getStateManager()->set_next_state(STATE_MAIN);
 	}
 
+	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	{
+		GameEngine::getInstance()->quit();
+	}
+
 }
 
-void IntroState::render(){
+void StatePause::render(){
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 

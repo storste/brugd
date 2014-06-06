@@ -8,6 +8,7 @@ enum States
 	STATE_NULL,
 	STATE_INTRO,
 	STATE_MAIN,
+	STATE_PAUSE,
 	STATE_EXIT
 };
 

@@ -50,18 +50,4 @@ void InputHandler::onKeyUp()
 bool InputHandler::isKeyDown(SDL_Scancode key)
 {
 	return (keystates && keystates[key] == 1 ? true : false);
-
-	//if (keystates != 0)
-	//{
-	//	if (keystates[key] == 1)
-	//	{
-	//		return true;
-	//	}
-	//	else
-	//	{
-	//		return false;
-	//	}
-	//	
-	//}
-	//return false;
 }

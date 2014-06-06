@@ -9,8 +9,9 @@
 #include "Player.h"
 #include "Alien.h"
 
-#include "MainState.h"
-#include "IntroState.h"
+#include "StateMain.h"
+#include "StateIntro.h"
+#include "StatePause.h"
 
 // forward declare Animation
 class Animation;
@@ -30,6 +31,8 @@ int main(int argc, char *argv[])
 	
 	Sprite intro_background("assets/intro.png");
 	intro_background.setPosition(0, 0);
+	Sprite pause_background("assets/pause.png");
+	pause_background.setPosition(0, 0);
 
 	Player s1;
 	s1.addAnimation("run", &a);
@@ -63,16 +66,19 @@ int main(int argc, char *argv[])
 
 	//std::cout << s1.getName() << std::endl;
 
-	GameState *mainState = new MainState();
-	GameState *introState = new IntroState();
+	GameState *mainState = new StateMain();
+	GameState *introState = new StateIntro();
+	GameState *pauseState = new StatePause();
 
 	mainState->addGameObject(&s2);
 	mainState->addGameObject(&a1);
 	mainState->addGameObject(&s1);
 	introState->addGameObject(&intro_background);
+	pauseState->addGameObject(&pause_background);
 
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
 	engine->getStateManager()->addGameState(STATE_INTRO, introState);
+	engine->getStateManager()->addGameState(STATE_PAUSE, pauseState);
 
 	engine->getStateManager()->setCurrentState(introState);
 	engine->getStateManager()->stateID = STATE_INTRO;
@@ -85,7 +91,7 @@ int main(int argc, char *argv[])
 	//}
 
 
-
+	// run game
 	engine->run();
 
 

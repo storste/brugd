@@ -21,10 +21,9 @@ void StateManager::changeState(){
 	{
 		if (nextState != STATE_EXIT)
 		{
-			delete currentState;
+			//delete currentState;
 		}
 
-		//Change the state
 		switch (nextState)
 		{
 			case STATE_MAIN:
@@ -34,6 +33,10 @@ void StateManager::changeState(){
 			case STATE_INTRO:
 				std::cout << "StateManager: Change to Intro State" << std::endl;
 				currentState = _gameStates[STATE_INTRO];
+				break;
+			case STATE_PAUSE:
+				std::cout << "StateManager: Change to Pause State" << std::endl;
+				currentState = _gameStates[STATE_PAUSE];
 				break;
 		}
 

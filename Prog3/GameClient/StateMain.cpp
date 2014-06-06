@@ -1,32 +1,35 @@
-#include "MainState.h"
+#include "StateMain.h"
 #include <iostream>
 #include "..\GameEngine\GameEngine.h"
 
-MainState::MainState()
+StateMain::StateMain()
 {
 	std::cout << "Main state Constructor" << std::endl;
 }
 
-MainState::~MainState()
+StateMain::~StateMain()
 {
 	std::cout << "Main state destructor" << std::endl;
 
 }
 
-void MainState::handleEvents(){
-	//std::cout << "Main state handle events" << std::endl;
+void StateMain::handleEvents(){
 	GameEngine::getInstance()->getInputHandler()->update();
 }
 
-void MainState::update(int dt){
-	//std::cout << "Main state update" << std::endl;
+void StateMain::update(int dt){
 	for (auto& o : objects){
-		//std::cout << "Update: " << o->getName() << std::endl;
 		o->update(dt);
 	}
+
+	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
+	{
+		GameEngine::getInstance()->getStateManager()->set_next_state(STATE_PAUSE);
+	}
+
 }
 
-void MainState::render(){
+void StateMain::render(){
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
