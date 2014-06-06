@@ -1,16 +1,18 @@
 #include "StateManager.h"
-#include "..\GameClient\MainState.h"
-#include "..\GameClient\IntroState.h"
+//#include "..\GameClient\MainState.h"
+//#include "..\GameClient\IntroState.h"
 #include <iostream>
+#include <assert.h>
 
 StateManager::StateManager()
 {
-	std::cout << "Creating state manager" << std::endl;
+	std::cout << "StateManager: Constructor" << std::endl;
 }
 
 
 StateManager::~StateManager()
 {
+	std::cout << "StateManager: Destructor" << std::endl;
 }
 
 void StateManager::changeState(){
@@ -26,18 +28,16 @@ void StateManager::changeState(){
 		switch (nextState)
 		{
 			case STATE_MAIN:
-				std::cout << "changing to main state" << std::endl;
-				currentState = _gameStates["stateMain"];
+				std::cout << "StateManager: Change to Main State" << std::endl;				
+				currentState = _gameStates[STATE_MAIN];
 				break;
 			case STATE_INTRO:
-				std::cout << "changing to intro state" << std::endl;
-				currentState = _gameStates["stateIntro"];
+				std::cout << "StateManager: Change to Intro State" << std::endl;
+				currentState = _gameStates[STATE_INTRO];
 				break;
-
 		}
-		stateID = nextState;
 
+		stateID = nextState;
 		nextState = STATE_NULL;
 	}
-
 }

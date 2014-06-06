@@ -1,7 +1,7 @@
+#include <iostream>
 #include "Player.h"
 #include "../GameEngine/GameEngine.h"
-#include "../GameEngine/InputHandler.h"
-#include <iostream>
+
 
 Player::Player(const char* filename, const char* name) :Sprite(filename)
 {
@@ -27,6 +27,7 @@ Player::~Player()
 //}
 
 void Player::update(int dt){
+	std::cout << "Player: Update" << std::endl;
 
 	Sprite::update();
 

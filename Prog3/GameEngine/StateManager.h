@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include <map>
+#include <assert.h>
 
 enum States
 {
@@ -17,14 +18,15 @@ public:
 	StateManager();
 	~StateManager();
 
-	void addGameState(std::string _stateName, GameState* state){
-		std::pair<std::string, GameState*> pair = std::make_pair(_stateName, state);
+	void addGameState(int _stateName, GameState* state){
+		std::pair<int, GameState*> pair = std::make_pair(_stateName, state);
 		_gameStates.insert(pair);
 	};
 
-	std::map<std::string, GameState*> _gameStates;
+	std::map<int, GameState*> _gameStates;
 
 	void setCurrentState(GameState *state){ currentState = state; }
+
 	void changeState();
 	GameState *currentState;
 	void set_next_state(int newState){ nextState = newState; }

@@ -6,13 +6,8 @@
 #include <array>
 #include "..\GameEngine\GameEngine.h"
 
-//#include "..\GameEngine\Animation.h"
-//#include "..\GameEngine\Sprite.h"
-
 #include "Player.h"
 #include "Alien.h"
-//#include "..\GameEngine\InputHandler.h"
-
 
 #include "MainState.h"
 #include "IntroState.h"
@@ -32,6 +27,9 @@ int main(int argc, char *argv[])
 
 	Animation a("assets/dude.png", 130, 150, 27, 7);
 	Animation b("assets/dude.bmp", 130, 150, 27, 7);
+	
+	Sprite intro_background("assets/intro.png");
+	intro_background.setPosition(0, 0);
 
 	Player s1;
 	s1.addAnimation("run", &a);
@@ -48,20 +46,20 @@ int main(int argc, char *argv[])
 		alienArray[i]->setPosition((i * 80), 0);
 	}
 	
-	//Alien a1("assets/alien.jpg", "Alien");
-	//a1.addAnimation("run", &b);
-	//a1.setAnimation("run");
+	Alien a1("assets/alien.jpg", "Alien");
+	a1.addAnimation("run", &b);
+	a1.setAnimation("run");
 
 	//Alien a2("assets/alien.jpg", "Alien");
 	//a2.addAnimation("run", &b);
 	//a2.setAnimation("run");
 	//a2.setPosition(40, 0);
 
-	//Sprite s2("assets/alien.jpg");
-	//s2.addAnimation("run", &b);
-	//s2.setAnimation("run");
-	//s2.setPosition(10, 20);
-	//s2.setName("Sprite");
+	Sprite s2("assets/alien.jpg");
+	s2.addAnimation("run", &b);
+	s2.setAnimation("run");
+	s2.setPosition(10, 20);
+	s2.setName("Sprite");
 
 	//std::cout << s1.getName() << std::endl;
 
@@ -71,19 +69,20 @@ int main(int argc, char *argv[])
 	mainState->addGameObject(&s2);
 	mainState->addGameObject(&a1);
 	mainState->addGameObject(&s1);
+	introState->addGameObject(&intro_background);
 
-	engine->getStateManager()->addGameState("MainState", mainState);
-	engine->getStateManager()->addGameState("IntroState", introState);
+	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
+	engine->getStateManager()->addGameState(STATE_INTRO, introState);
 
 	engine->getStateManager()->setCurrentState(introState);
 	engine->getStateManager()->stateID = STATE_INTRO;
 
 	//engine->addDrawable(&s2);
-	engine->addDrawable(&s1);
+	//engine->addDrawable(&s1);
 
-	for (int i = 0; i < 5; i++) {
-		engine->addDrawable(alienArray[i]);
-	}
+	//for (int i = 0; i < 5; i++) {
+	//	engine->addDrawable(alienArray[i]);
+	//}
 
 
 

@@ -5,6 +5,7 @@
 #include <vector>
 #include "GameObject.h"
 #include "StateManager.h"
+#include "InputHandler.h"
 
 class GameEngine {
 
@@ -36,14 +37,16 @@ public:
 	void quit();
 	void run();
 	const bool cd(GameObject *a, GameObject *b);
-	std::vector<GameObject*> getObjects(){ return objects; };
+	std::vector<GameObject*> getObjects(){ return objects; }
+	InputHandler* getInputHandler(){ return InputHandler::Instance(); }
 
-	
 
 private:
 
 	static GameEngine* instance;
 	StateManager* _stateManager;
+	//InputHandler* _inputHandler;
+
 	std::vector<GameObject*> objects;
 
 	bool init();

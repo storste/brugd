@@ -1,7 +1,7 @@
 #include "IntroState.h"
 #include <iostream>
 #include "..\GameEngine\GameEngine.h"
-#include "..\GameEngine\InputHandler.h"
+
 
 IntroState::IntroState()
 {
@@ -23,7 +23,8 @@ void IntroState::update(int dt){
 		o->update(dt);
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	//if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
 	{
 		GameEngine::getInstance()->getStateManager()->set_next_state(STATE_MAIN);
 	}

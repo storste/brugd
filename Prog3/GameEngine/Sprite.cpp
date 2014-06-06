@@ -6,8 +6,7 @@
 
 Sprite::Sprite(Animation* a){
 	w = a->getW();
-	h = a->getH();
-	
+	h = a->getH();	
 }
 
 Sprite::Sprite(){
@@ -18,7 +17,7 @@ Sprite::Sprite(const char* filename)
 {
 	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
 	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
-	std::cout << "setting w & h for sprite" << std::endl;
+
 	animationTick = 0;
 }
 

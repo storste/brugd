@@ -1,7 +1,6 @@
 #include "MainState.h"
 #include <iostream>
 #include "..\GameEngine\GameEngine.h"
-#include "..\GameEngine\InputHandler.h"
 
 MainState::MainState()
 {
@@ -16,12 +15,13 @@ MainState::~MainState()
 
 void MainState::handleEvents(){
 	//std::cout << "Main state handle events" << std::endl;
-
-	InputHandler::Instance()->update();
+	GameEngine::getInstance()->getInputHandler()->update();
 }
 
 void MainState::update(int dt){
+	//std::cout << "Main state update" << std::endl;
 	for (auto& o : objects){
+		//std::cout << "Update: " << o->getName() << std::endl;
 		o->update(dt);
 	}
 }

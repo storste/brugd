@@ -26,6 +26,7 @@ public:
 
 	virtual const std::string getName();
 	virtual void update();
+	virtual void update(int dt){}
 
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(const char *name);
