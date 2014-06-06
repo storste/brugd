@@ -57,7 +57,7 @@ void Player::update(int dt){
 		GameEngine::getInstance()->quit();
 	}
 
-	for (const auto& o : GameEngine::getInstance()->getObjects()){
+	for (const auto& o : GameEngine::getInstance()->getStateManager()->currentState->getObjects()){
 
 		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
 			std::cout << "Collision between " << this->getName() << " and " << o->getName() << std::endl;
@@ -65,14 +65,6 @@ void Player::update(int dt){
 			GameEngine::getInstance()->removeGameObject(o);
 			
 		}
-
-		//if (this != o){
-		//	std::cout << "Running CD for " << this->getName() << " and " << o->getName() << std::endl;
-		//	if (GameEngine::getInstance()->cd(this, o)){
-		//		std::cout << "player collided with " << o->getName() << std::endl;
-		//	}
-		//}
-
 	}
 }
 

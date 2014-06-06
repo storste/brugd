@@ -13,11 +13,18 @@
 #include "Alien.h"
 //#include "..\GameEngine\InputHandler.h"
 
+
+#include "MainState.h"
+#include "IntroState.h"
+
 // forward declare Animation
 class Animation;
 
 // forward declare Image
 class Image;
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -42,9 +49,19 @@ int main(int argc, char *argv[])
 
 	//std::cout << s1.getName() << std::endl;
 
-	engine->addGameObject(&s2);
-	engine->addGameObject(&a1);
-	engine->addGameObject(&s1);
+	GameState *mainState = new MainState();
+	GameState *introState = new IntroState();
+
+	mainState->addGameObject(&s2);
+	mainState->addGameObject(&a1);
+	mainState->addGameObject(&s1);
+
+	engine->getStateManager()->addGameState("MainState", mainState);
+	engine->getStateManager()->addGameState("IntroState", introState);
+
+	engine->getStateManager()->setCurrentState(introState);
+	engine->getStateManager()->stateID = STATE_INTRO;
+
 
 	//std::cout << "w: " << s1.getW() << " h: " << s1.getH() << std::endl;
 

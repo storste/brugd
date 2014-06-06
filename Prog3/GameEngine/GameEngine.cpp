@@ -7,6 +7,7 @@
 #include <array>
 #include "GameEngine.h"
 #include "InputHandler.h"
+#include "StateManager.h"
 
 #define FPS 60
 GameEngine* GameEngine::instance;
@@ -17,15 +18,18 @@ int delay;
 
 void GameEngine::run(){
 
+	std::cout << "GameEngine: Run" << std::endl;
+
 	running = true;
 
-	while (running)
+	while (running && getStateManager()->stateID != STATE_EXIT)
 	{
 		nextTick = SDL_GetTicks() + tickInterval;
 
-		handleEvents();
-		update(nextTick);
-		render();
+		_stateManager->currentState->handleEvents();
+		_stateManager->currentState->update(nextTick);
+		_stateManager->changeState();
+		_stateManager->currentState->render();
 
 		delay = nextTick - SDL_GetTicks();
 		if (delay > 0)
@@ -36,6 +40,8 @@ void GameEngine::run(){
 
 void GameEngine::quit()
 {
+	std::cout << "GameEngine: Quit" << std::endl;
+
 	running = false;
 }
 
@@ -85,7 +91,8 @@ void GameEngine::render(){
 
 GameEngine::GameEngine(int width, int height) : screen_width(width), screen_height(height)
 {
-	std::cout << "Running engine constructor" << std::endl;
+	std::cout << "GameEngine: Constructor" << std::endl;
+
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
@@ -110,18 +117,22 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 	else{
 		std::cout << "SDL_image inititalized" << std::endl;
 	}
+
+	_stateManager = new StateManager();
+
 }
 
 GameEngine::~GameEngine()
 {
 	SDL_DestroyRenderer(renderer);
-	std::cout << "Running engine destructor" << std::endl;
+	std::cout << "GameEngine: Destructor" << std::endl;
 	//Quit TTF subsystems
 	if (ttf_init)
 		TTF_Quit();
 	//Quit SDL subsystems
 	SDL_Quit();
 
+	delete _stateManager;
 }
 
 const bool GameEngine::cd(GameObject* a, GameObject* b)

@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <vector>
 #include "GameObject.h"
+#include "StateManager.h"
 
 class GameEngine {
 
@@ -20,6 +21,11 @@ public:
 
 	SDL_Renderer* getRenderer(){ return renderer; }
 
+	StateManager* getStateManager(){
+		return _stateManager;
+	}
+
+
 	void addGameObject(GameObject* d);
 	void removeGameObject(GameObject* d);
 	void render();
@@ -32,10 +38,12 @@ public:
 	const bool cd(GameObject *a, GameObject *b);
 	std::vector<GameObject*> getObjects(){ return objects; };
 
+	
+
 private:
 
 	static GameEngine* instance;
-
+	StateManager* _stateManager;
 	std::vector<GameObject*> objects;
 
 	bool init();
