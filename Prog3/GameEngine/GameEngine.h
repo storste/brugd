@@ -29,9 +29,9 @@ public:
 
 	void addGameObject(GameObject* d);
 	void removeGameObject(GameObject* d);
-	void render();
-	void update(int dt);
-	void handleEvents();
+	void Render();
+	void Update(int dt);
+	void HandleEvents();
 	Uint8* getKeyStates();
 	void graph();
 	void quit();
@@ -39,7 +39,7 @@ public:
 	const bool cd(GameObject *a, GameObject *b);
 	std::vector<GameObject*> getObjects(){ return objects; }
 	InputHandler* getInputHandler(){ return InputHandler::Instance(); }
-
+	void setResolution(int w, int h);
 
 private:
 

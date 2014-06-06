@@ -3,8 +3,7 @@
 #include <map>
 #include <assert.h>
 
-enum States
-{
+enum States {
 	STATE_NULL,
 	STATE_INTRO,
 	STATE_MAIN,
@@ -13,8 +12,7 @@ enum States
 };
 
 
-class StateManager
-{
+class StateManager {
 public:
 	StateManager();
 	~StateManager();
@@ -26,13 +24,17 @@ public:
 
 	std::map<int, GameState*> _gameStates;
 
-	void setCurrentState(GameState *state){ currentState = state; }
+	void setCurrentState(GameState *state){ _currentState = state; }
+	GameState* getCurrentState() const { return _currentState; }
 
-	void changeState();
-	GameState *currentState;
+	//void changeState();
+
 	void set_next_state(int newState){ nextState = newState; }
 
 	int stateID = STATE_NULL;
 	int nextState = STATE_NULL;
+
+private:
+	GameState * _currentState;
 };
 

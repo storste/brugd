@@ -12,7 +12,7 @@ public:
 	Alien(const char* filename, const char* name) ;
 	~Alien();
 	Direction dir;
-	void update(int dt);
+	void Update(int dt);
 private:
 	Uint32 ticks;
 };

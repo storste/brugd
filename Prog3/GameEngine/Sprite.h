@@ -10,14 +10,15 @@ class Sprite :public GameObject {
 public:
 
 	Sprite(const char* filename);
+	Sprite(const char* filename, const char * name);
 	Sprite(Animation* a);
 	Sprite();
 	~Sprite();
 
-	virtual void render();
+	virtual void Render();
 
-	virtual void update();
-	virtual void update(int dt){}
+	virtual void Update();
+	virtual void Update(int dt){}
 
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(const char *name);

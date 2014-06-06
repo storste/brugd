@@ -98,6 +98,7 @@
     <Image Include="Assets\dude.bmp" />
     <Image Include="Assets\dude.png" />
     <Image Include="Assets\intro.png" />
+    <Image Include="Assets\main.png" />
     <Image Include="Assets\megaman.bmp" />
     <Image Include="Assets\pause.png" />
     <Image Include="Assets\poteto.bmp" />

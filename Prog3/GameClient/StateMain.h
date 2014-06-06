@@ -8,9 +8,9 @@ class StateMain :
 public:
 	StateMain();
 	~StateMain();
-	virtual void handleEvents();
-	virtual void update(int ticks);
-	virtual void render();
+	virtual void HandleEvents();
+	virtual void Update(int ticks);
+	virtual void Render();
 	virtual void CheckTransition();
 
 	std::vector<GameObject*> objects;

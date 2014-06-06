@@ -7,9 +7,9 @@ class StatePause :
 public:
 	StatePause();
 	~StatePause();
-	virtual void handleEvents();
-	virtual void update(int ticks);
-	virtual void render();
+	virtual void HandleEvents();
+	virtual void Update(int ticks);
+	virtual void Render();
 	virtual void CheckTransition();
 
 	std::vector<GameObject*> objects;
@@ -20,6 +20,7 @@ public:
 	virtual void removeGameObject(GameObject* d){
 		d->set_visible();
 	}
+
 	virtual std::vector<GameObject*> getObjects(){ return objects; };
 
 };

@@ -6,19 +6,23 @@
 
 Sprite::Sprite(Animation* a){
 	_w = a->getW();
-	_h = a->getH();	
+	_h = a->getH();
 }
 
 Sprite::Sprite(){
-	
+
+}
+Sprite::Sprite(const char* filename, const char * name) :Sprite(filename){
+	_name = name;
 }
 
-Sprite::Sprite(const char* filename) 
+Sprite::Sprite(const char* filename)
 {
 	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
 	SDL_QueryTexture(texture, NULL, NULL, &_w, &_h);
 
 	animationTick = 0;
+	_collidable = true;
 }
 
 
@@ -26,10 +30,10 @@ Sprite::~Sprite()
 {
 }
 
-void Sprite::render()
+void Sprite::Render()
 {
 	if (currentAnimation){
-		currentAnimation->renderAnimation(_x,_y);
+		currentAnimation->renderAnimation(_x, _y);
 	}
 	else {
 
@@ -41,10 +45,10 @@ void Sprite::render()
 	}
 }
 
-void Sprite::update(){
+void Sprite::Update(){
 
 	if (currentAnimation){
-		std::cout << animationTick << std::endl;
+		//std::cout << animationTick << std::endl;
 		currentAnimation->setPosition(_x, _y);
 		currentAnimation->playAnimation(animationTick);
 		animationTick++;
@@ -58,7 +62,7 @@ void Sprite::addAnimation(std::string name, Animation* a){
 
 void Sprite::setAnimation(const char *name){
 	currentAnimation = animations[name];
-	
+
 	_w = currentAnimation->getW();
 	_h = currentAnimation->getH();
 }

@@ -4,7 +4,7 @@
 class Player : public Sprite {
 
 public:
-	void update(int dt);
+	void Update(int dt);
 	Player(const char* filename, const char* name);
 	Player();
 	~Player();

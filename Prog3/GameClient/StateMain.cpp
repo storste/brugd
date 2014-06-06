@@ -18,29 +18,29 @@ void StateMain::CheckTransition(){
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
 	{
 //		GameEngine::getInstance()->getStateManager()->set_next_state(STATE_PAUSE);
-		GameEngine::getInstance()->getStateManager()->currentState = GameEngine::getInstance()->getStateManager()->_gameStates[STATE_PAUSE];
+		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->_gameStates[STATE_PAUSE]);
 	}
 
 }
 
 
-void StateMain::handleEvents(){
-	GameEngine::getInstance()->getInputHandler()->update();
+void StateMain::HandleEvents(){
+	GameEngine::getInstance()->getInputHandler()->Update();
 }
 
-void StateMain::update(int dt){
+void StateMain::Update(int dt){
 	for (auto& o : objects){
-		o->update(dt);
+		o->Update(dt);
 	}
 
 }
 
-void StateMain::render(){
+void StateMain::Render(){
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
 	for (const auto& o : objects){
-		o->render();
+		o->Render();
 	}
 
 	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());

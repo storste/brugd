@@ -8,9 +8,9 @@ public:
 
 	virtual ~GameState(){}
 
-	virtual void handleEvents() = 0;
-	virtual void update(int ticks) = 0;
-	virtual void render() = 0;
+	virtual void HandleEvents() = 0;
+	virtual void Update(int ticks) = 0;
+	virtual void Render() = 0;
 	virtual void CheckTransition() = 0;
 
 	virtual void addGameObject(GameObject* d) = 0;

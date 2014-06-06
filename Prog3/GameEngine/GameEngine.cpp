@@ -16,6 +16,25 @@ const int tickInterval = 1000 / FPS;
 Uint32 nextTick;
 int delay;
 
+void GameEngine::setResolution(int w, int h){
+
+	std::cout << "Changing resolution to " << w << ":" << h << std::endl;
+
+	// funkar inte eftersom texturerna är laddade till den gamla rendern, behöver ladda in alla texturer igen... suck
+	
+	//SDL_DestroyRenderer(renderer);
+	//SDL_DestroyWindow(window);
+
+	//window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN);
+	//if (window == NULL)
+	//{
+	//	printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+	//}
+
+	//renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+}
+
 void GameEngine::run(){
 
 	std::cout << "GameEngine: Run" << std::endl;
@@ -26,10 +45,10 @@ void GameEngine::run(){
 	{
 		nextTick = SDL_GetTicks() + tickInterval;
 
-		_stateManager->currentState->handleEvents();
-		_stateManager->currentState->update(nextTick);
-		_stateManager->currentState->CheckTransition();
-		_stateManager->currentState->render();
+		_stateManager->getCurrentState()->HandleEvents();
+		_stateManager->getCurrentState()->Update(nextTick);
+		_stateManager->getCurrentState()->CheckTransition();
+		_stateManager->getCurrentState()->Render();
 
 		delay = nextTick - SDL_GetTicks();
 		if (delay > 0)
@@ -45,12 +64,12 @@ void GameEngine::quit()
 	running = false;
 }
 
-void GameEngine::handleEvents()
+void GameEngine::HandleEvents()
 {
-	InputHandler::Instance()->update();
+	InputHandler::Instance()->Update();
 }
 
-void GameEngine::update(int dt)
+void GameEngine::Update(int dt)
 {
 	//for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
 	//{
@@ -64,7 +83,7 @@ void GameEngine::update(int dt)
 	//}
 
 	for (auto& o : objects){
-		o->update(dt);
+		o->Update(dt);
 	}
 }
 
@@ -76,13 +95,13 @@ void GameEngine::removeGameObject(GameObject* d){
 	d->set_visible();
 }
 
-void GameEngine::render(){
+void GameEngine::Render(){
 
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
 
 	for (const auto& o : objects){
-		o->render();
+		o->Render();
 	}
 
 	SDL_RenderPresent(renderer);

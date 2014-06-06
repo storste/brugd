@@ -84,5 +84,8 @@
     <Image Include="Assets\skrapan.bmp">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\main.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
 </Project>

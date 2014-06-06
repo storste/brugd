@@ -11,7 +11,7 @@ InputHandler::~InputHandler()
 {
 }
 
-void InputHandler::update()
+void InputHandler::Update()
 {
 	SDL_Event event;
 

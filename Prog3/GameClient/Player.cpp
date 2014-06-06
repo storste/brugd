@@ -16,9 +16,9 @@ Player::~Player()
 {
 }
 
-void Player::update(int dt){
+void Player::Update(int dt){
 
-	Sprite::update();
+	Sprite::Update();
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
@@ -47,12 +47,12 @@ void Player::update(int dt){
 		GameEngine::getInstance()->quit();
 	}
 
-	for (const auto& o : GameEngine::getInstance()->getStateManager()->currentState->getObjects()){
+	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
-		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
+		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
 			std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
-			GameEngine::getInstance()->removeGameObject(o);
+			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
 			
 		}
 	}

@@ -3,6 +3,7 @@
 
 Alien::Alien(const char* filename, const char* name) : Sprite(filename)
 {
+	_name = name;
 	dir = right;
 	setPosition(0, 0);
 }
@@ -12,10 +13,10 @@ Alien::~Alien()
 {
 }
 
-void Alien::update(int dt){
+void Alien::Update(int dt){
 
 	if ((SDL_GetTicks() - ticks) > 500) {
-		Sprite::update();
+		Sprite::Update();
 		std::cout << getX() << std::endl;
 
 
