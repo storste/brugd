@@ -11,6 +11,7 @@ public:
 	virtual void handleEvents();
 	virtual void update(int ticks);
 	virtual void render();
+	virtual void CheckTransition();
 
 	std::vector<GameObject*> objects;
 

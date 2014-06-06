@@ -11,6 +11,7 @@ public:
 	virtual void handleEvents() = 0;
 	virtual void update(int ticks) = 0;
 	virtual void render() = 0;
+	virtual void CheckTransition() = 0;
 
 	virtual void addGameObject(GameObject* d) = 0;
 	virtual void removeGameObject(GameObject* d) = 0;

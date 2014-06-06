@@ -51,6 +51,7 @@
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>..\SDL2\lib\x86;</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -70,11 +71,17 @@
   <ItemGroup>
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="StateIntro.cpp" />
+    <ClCompile Include="StateMain.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="StatePause.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
+    <ClInclude Include="StateIntro.h" />
+    <ClInclude Include="StateMain.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="StatePause.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine\Engine.vcxproj">
@@ -87,7 +94,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\animate.bmp" />
+    <Image Include="Assets\dude.bmp" />
     <Image Include="Assets\dude.png" />
+    <Image Include="Assets\intro.png" />
+    <Image Include="Assets\megaman.bmp" />
+    <Image Include="Assets\pause.png" />
+    <Image Include="Assets\poteto.bmp" />
+    <Image Include="Assets\runningSprite.bmp" />
+    <Image Include="Assets\skrapan.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

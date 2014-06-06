@@ -13,19 +13,26 @@ StatePause::~StatePause()
 	std::cout << "StatePause: Destructor" << std::endl;
 }
 
+void StatePause::CheckTransition(){
+
+	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
+	{
+		//GameEngine::getInstance()->getStateManager()->set_next_state(STATE_MAIN);
+		GameEngine::getInstance()->getStateManager()->currentState = GameEngine::getInstance()->getStateManager()->_gameStates[STATE_MAIN];
+	}
+}
+
+
 void StatePause::handleEvents(){
 	InputHandler::Instance()->update();
 }
 
 void StatePause::update(int dt){
-	for (auto& o : objects){
+
+	for (const auto& o : objects){
 		o->update(dt);
 	}
 
-	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
-	{
-		GameEngine::getInstance()->getStateManager()->set_next_state(STATE_MAIN);
-	}
 
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
@@ -35,6 +42,7 @@ void StatePause::update(int dt){
 }
 
 void StatePause::render(){
+
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 

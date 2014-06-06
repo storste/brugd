@@ -9,12 +9,14 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Assets">
       <UniqueIdentifier>{07ade5c8-d13e-4e1a-95f6-41258502b4bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{ffad94f8-24bb-4803-92ee-2f9c3d08b91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{53a48c96-0098-4a6e-b71e-d8da6a08ad7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +29,15 @@
     <ClCompile Include="Alien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StateIntro.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMain.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StatePause.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -35,9 +46,42 @@
     <ClInclude Include="Alien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StateIntro.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMain.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StatePause.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\dude.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\animate.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\dude.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\intro.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\megaman.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\pause.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\poteto.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\runningSprite.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\skrapan.bmp">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>

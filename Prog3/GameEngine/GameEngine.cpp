@@ -22,13 +22,13 @@ void GameEngine::run(){
 
 	running = true;
 
-	while (running && getStateManager()->stateID != STATE_EXIT)
+	while (running)
 	{
 		nextTick = SDL_GetTicks() + tickInterval;
 
 		_stateManager->currentState->handleEvents();
 		_stateManager->currentState->update(nextTick);
-		_stateManager->changeState();
+		_stateManager->currentState->CheckTransition();
 		_stateManager->currentState->render();
 
 		delay = nextTick - SDL_GetTicks();
