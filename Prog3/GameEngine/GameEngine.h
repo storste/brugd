@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <vector>
+#include <list>
 #include "GameObject.h"
 #include "StateManager.h"
 #include "InputHandler.h"
@@ -27,32 +28,36 @@ public:
 	}
 
 
-	void addGameObject(GameObject* d);
-	void removeGameObject(GameObject* d);
-	void Render();
-	void Update(int dt);
-	void HandleEvents();
-	Uint8* getKeyStates();
-	void graph();
+	//void addGameObject(GameObject* d);
+	//void removeGameObject(GameObject* d);
+	//void Render();
+	//void Update(int dt);
+	//void HandleEvents();
+	//Uint8* getKeyStates();
+
 	void quit();
 	void run();
+
 	const bool cd(GameObject *a, GameObject *b);
-	std::vector<GameObject*> getObjects(){ return objects; }
+
+	//std::vector<GameObject*> getObjects(){ return objects; }
 	InputHandler* getInputHandler(){ return InputHandler::Instance(); }
 	void setResolution(int w, int h);
-
+	TTF_Font*			font = nullptr;
+	int score;
 private:
 
 	static GameEngine* instance;
 	StateManager* _stateManager;
 	//InputHandler* _inputHandler;
 
-	std::vector<GameObject*> objects;
+	//std::vector<GameObject*> objects;
 
 	bool init();
 	void handleInput();
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	
 	bool ttf_init;
 	int screen_height;
 	int screen_width;

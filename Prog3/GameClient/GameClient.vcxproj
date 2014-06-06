@@ -71,6 +71,8 @@
   <ItemGroup>
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="StateEnd.cpp" />
     <ClCompile Include="StateIntro.cpp" />
     <ClCompile Include="StateMain.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -78,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
+    <ClInclude Include="Missile.h" />
+    <ClInclude Include="StateEnd.h" />
     <ClInclude Include="StateIntro.h" />
     <ClInclude Include="StateMain.h" />
     <ClInclude Include="Player.h" />
@@ -95,11 +99,13 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\animate.bmp" />
+    <Image Include="Assets\bomb.png" />
     <Image Include="Assets\dude.bmp" />
     <Image Include="Assets\dude.png" />
     <Image Include="Assets\intro.png" />
     <Image Include="Assets\main.png" />
     <Image Include="Assets\megaman.bmp" />
+    <Image Include="Assets\missile.png" />
     <Image Include="Assets\pause.png" />
     <Image Include="Assets\poteto.bmp" />
     <Image Include="Assets\runningSprite.bmp" />

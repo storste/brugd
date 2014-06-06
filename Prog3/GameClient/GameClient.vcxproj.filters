@@ -38,6 +38,12 @@
     <ClCompile Include="StatePause.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEnd.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -53,6 +59,12 @@
       <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="StatePause.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEnd.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>
@@ -85,6 +97,12 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\main.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\missile.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\bomb.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>

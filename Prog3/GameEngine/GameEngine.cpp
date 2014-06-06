@@ -21,7 +21,7 @@ void GameEngine::setResolution(int w, int h){
 	std::cout << "Changing resolution to " << w << ":" << h << std::endl;
 
 	// funkar inte eftersom texturerna är laddade till den gamla rendern, behöver ladda in alla texturer igen... suck
-	
+
 	//SDL_DestroyRenderer(renderer);
 	//SDL_DestroyWindow(window);
 
@@ -64,48 +64,48 @@ void GameEngine::quit()
 	running = false;
 }
 
-void GameEngine::HandleEvents()
-{
-	InputHandler::Instance()->Update();
-}
-
-void GameEngine::Update(int dt)
-{
-	//for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
-	//{
-	//	if ((*itr)->is_visible() == false){
-
-	//		//delete (*itr);
-	//		//itr = objects.erase(itr);
-	//	}
-	//	else
-	//		++itr;
-	//}
-
-	for (auto& o : objects){
-		o->Update(dt);
-	}
-}
-
-void GameEngine::addGameObject(GameObject* d){
-	objects.push_back(d);
-}
-
-void GameEngine::removeGameObject(GameObject* d){
-	d->set_visible();
-}
-
-void GameEngine::Render(){
-
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(renderer);
-
-	for (const auto& o : objects){
-		o->Render();
-	}
-
-	SDL_RenderPresent(renderer);
-}
+//void GameEngine::HandleEvents()
+//{
+//	InputHandler::Instance()->Update();
+//}
+//
+//void GameEngine::Update(int dt)
+//{
+//	//for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
+//	//{
+//	//	if ((*itr)->is_visible() == false){
+//
+//	//		//delete (*itr);
+//	//		//itr = objects.erase(itr);
+//	//	}
+//	//	else
+//	//		++itr;
+//	//}
+//
+//	for (auto& o : objects){
+//		o->Update(dt);
+//	}
+//}
+//
+//void GameEngine::addGameObject(GameObject* d){
+//	objects.push_back(d);
+//}
+//
+//void GameEngine::removeGameObject(GameObject* d){
+//	d->set_visible();
+//}
+//
+//void GameEngine::Render(){
+//
+//	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+//	SDL_RenderClear(renderer);
+//
+//	for (const auto& o : objects){
+//		o->Render();
+//	}
+//
+//	SDL_RenderPresent(renderer);
+//}
 
 
 GameEngine::GameEngine(int width, int height) : screen_width(width), screen_height(height)
@@ -137,6 +137,10 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 		std::cout << "SDL_image inititalized" << std::endl;
 	}
 
+	if ((TTF_Init() < 0)) { std::cout << "could not initialize sdl_ttf" << std::endl; exit(1); }
+	font = TTF_OpenFont("assets/cour.ttf", 28);
+	if (font == NULL) { std::cout << "could not load font" << std::endl; exit(1); }
+
 	_stateManager = new StateManager();
 
 }
@@ -144,11 +148,15 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 GameEngine::~GameEngine()
 {
 	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 	std::cout << "GameEngine: Destructor" << std::endl;
+
 	//Quit TTF subsystems
 	if (ttf_init)
 		TTF_Quit();
-	//Quit SDL subsystems
+
+	IMG_Quit();
+
 	SDL_Quit();
 
 	delete _stateManager;

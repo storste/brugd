@@ -12,7 +12,8 @@ public:
 	virtual void Render();
 	virtual void CheckTransition();
 
-	std::vector<GameObject*> objects;
+	
+
 	virtual void addGameObject(GameObject* d){
 		objects.push_back(d);
 	}
@@ -21,7 +22,9 @@ public:
 		d->set_visible();
 	}
 
-	virtual std::vector<GameObject*> getObjects(){ return objects; };
+	virtual std::list<GameObject*> getObjects(){ return objects; };
 
+private:
+	std::list<GameObject*> objects;
 };
 

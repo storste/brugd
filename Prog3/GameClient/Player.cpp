@@ -5,20 +5,23 @@
 
 Player::Player(const char* filename, const char* name) :Sprite(filename)
 {
-	setName(name);
+	_name = name;
 }
 
-Player::Player(){
-	
-}
+Player::Player(){}
 
-Player::~Player()
-{
+Player::~Player(){
+	std::cout << "Player: Destructor" << std::endl;
 }
 
 void Player::Update(int dt){
 
 	Sprite::Update();
+
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+	{
+		Shoot();
+	}
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
@@ -42,10 +45,7 @@ void Player::Update(int dt){
 		setPosition(getX(), getY() - 4);
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
-	{
-		GameEngine::getInstance()->quit();
-	}
+	
 
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 

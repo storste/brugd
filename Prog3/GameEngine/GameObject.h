@@ -14,7 +14,7 @@ public:
 	int getX() const { return _x; }
 	int getW() const { return _w; }
 	int getH() const { return _h; }
-	
+
 	void setPosition(int x, int y) { _x = x; _y = y; }
 
 	std::string getName() const { return _name; }
@@ -22,14 +22,14 @@ public:
 
 	bool is_visible() const { return _visible; }
 	void set_visible() { _visible = false; }
-	
+
 	bool is_collidable() const { return _collidable; }
 	void toggle_collidable() { _collidable = !_collidable; }
 
 protected:
 	std::string _name;
 	int _x, _y, _w, _h;
-	bool _visible;
+	bool _visible = true;
 	bool _collidable = false;
 
 private:

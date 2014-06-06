@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include <vector>
+#include <list>
 
 class GameState
 {
@@ -15,6 +15,6 @@ public:
 
 	virtual void addGameObject(GameObject* d) = 0;
 	virtual void removeGameObject(GameObject* d) = 0;
-	virtual std::vector<GameObject*> getObjects() = 0;
+	virtual std::list<GameObject*> getObjects() = 0;
 };
 

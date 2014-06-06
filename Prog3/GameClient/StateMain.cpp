@@ -17,8 +17,12 @@ void StateMain::CheckTransition(){
 
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
 	{
-//		GameEngine::getInstance()->getStateManager()->set_next_state(STATE_PAUSE);
-		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->_gameStates[STATE_PAUSE]);
+		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_PAUSE));
+	}
+
+	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	{		
+		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_END));
 	}
 
 }
@@ -29,10 +33,21 @@ void StateMain::HandleEvents(){
 }
 
 void StateMain::Update(int dt){
+
+	for (std::list<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
+	{
+		if ((*itr)->is_visible() == false){
+			std::cout << (*itr)->getName() << " is not visible" << std::endl;
+			delete (*itr);
+			itr = objects.erase(itr);
+		}
+		else
+			++itr;
+	}
+
 	for (auto& o : objects){
 		o->Update(dt);
 	}
-
 }
 
 void StateMain::Render(){
@@ -43,5 +58,27 @@ void StateMain::Render(){
 		o->Render();
 	}
 
+	RenderScore();
+
 	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());
+}
+
+
+void StateMain::RenderScore(){
+	GameEngine* world = GameEngine::getInstance();
+	//std::string score_text = "score: " + std::to_string(score) + "dots: " + std::to_string(dots.size());
+	std::string score_text = "score: " + std::to_string(world->score);
+	SDL_Color textColor = { 255, 255, 255, 0 };
+	SDL_Surface* textSurface = TTF_RenderText_Solid(world->font, score_text.c_str(), textColor);
+	SDL_Texture* text = SDL_CreateTextureFromSurface(world->getRenderer(), textSurface);
+	int text_width = textSurface->w;
+	int text_height = textSurface->h;
+	SDL_FreeSurface(textSurface);
+	SDL_Rect clearQuad = { 20, 50 - 30, text_width + 30, text_height };
+	SDL_Rect renderQuad = { 20, 50 - 30, text_width, text_height };
+	SDL_SetRenderDrawColor(world->getRenderer(), 0, 0, 0, 0);
+	SDL_RenderFillRect(world->getRenderer(), &clearQuad);
+
+	SDL_RenderCopy(world->getRenderer(), text, NULL, &renderQuad);
+	SDL_DestroyTexture(text);
 }

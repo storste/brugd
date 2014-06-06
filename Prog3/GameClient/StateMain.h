@@ -1,27 +1,31 @@
 #pragma once
 #include "..\GameEngine\GameState.h"
 #include "..\GameEngine\GameEngine.h"
+#include <iostream>
 
 class StateMain :
-	public GameState
-{
+	public GameState {
 public:
 	StateMain();
 	~StateMain();
-	virtual void HandleEvents();
-	virtual void Update(int ticks);
-	virtual void Render();
-	virtual void CheckTransition();
+	void HandleEvents();
+	void Update(int ticks);
+	void Render();
+	void CheckTransition();
 
-	std::vector<GameObject*> objects;
-
-	virtual void addGameObject(GameObject* d){
+	void addGameObject(GameObject* d){
 		objects.push_back(d);
 	}
 
-	virtual void removeGameObject(GameObject* d){
+	void removeGameObject(GameObject* d){
 		d->set_visible();
 	}
-	virtual std::vector<GameObject*> getObjects(){ return objects; };
+
+	std::list<GameObject*> getObjects(){ return objects; };
+	
+	void StateMain::RenderScore();
+
+private:
+	std::list<GameObject*> objects;
 };
 

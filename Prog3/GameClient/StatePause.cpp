@@ -18,7 +18,7 @@ void StatePause::CheckTransition(){
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
 	{
 		//GameEngine::getInstance()->getStateManager()->set_next_state(STATE_MAIN);
-		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->_gameStates[STATE_MAIN]);
+		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_MAIN));
 	}
 
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_SPACE))

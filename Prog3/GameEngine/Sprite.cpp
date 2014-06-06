@@ -7,13 +7,16 @@
 Sprite::Sprite(Animation* a){
 	_w = a->getW();
 	_h = a->getH();
+	_visible = true;
 }
 
 Sprite::Sprite(){
-
+	_visible = true;
 }
+
 Sprite::Sprite(const char* filename, const char * name) :Sprite(filename){
 	_name = name;
+	_visible = true;
 }
 
 Sprite::Sprite(const char* filename)
@@ -23,11 +26,7 @@ Sprite::Sprite(const char* filename)
 
 	animationTick = 0;
 	_collidable = true;
-}
-
-
-Sprite::~Sprite()
-{
+	_visible = true;
 }
 
 void Sprite::Render()

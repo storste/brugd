@@ -1,40 +1,40 @@
 #pragma once
 #include "GameState.h"
 #include <map>
-#include <assert.h>
 
-enum States {
+enum State {
 	STATE_NULL,
 	STATE_INTRO,
 	STATE_MAIN,
 	STATE_PAUSE,
+	STATE_END,
 	STATE_EXIT
 };
 
-
 class StateManager {
+
 public:
 	StateManager();
 	~StateManager();
 
-	void addGameState(int _stateName, GameState* state){
-		std::pair<int, GameState*> pair = std::make_pair(_stateName, state);
+	void addGameState(State stateID, GameState* state){
+		std::pair<State, GameState*> pair = std::make_pair(stateID, state);
 		_gameStates.insert(pair);
 	};
 
-	std::map<int, GameState*> _gameStates;
-
 	void setCurrentState(GameState *state){ _currentState = state; }
-	GameState* getCurrentState() const { return _currentState; }
+
+	GameState* getCurrentState() { return _currentState; }
+	GameState* getState(State stateID) { return _gameStates[stateID]; }
 
 	//void changeState();
+	//void set_next_state(int newState){ nextState = newState; }
 
-	void set_next_state(int newState){ nextState = newState; }
-
-	int stateID = STATE_NULL;
-	int nextState = STATE_NULL;
+	//int stateID = STATE_NULL;
+	//int nextState = STATE_NULL;
 
 private:
-	GameState * _currentState;
+	GameState* _currentState;
+	std::map<State, GameState*> _gameStates;
 };
 
