@@ -39,13 +39,29 @@ int main(int argc, char *argv[])
 	s1.setPosition(100, 200);
 	s1.setName("Player");
 
-	Alien a1("assets/poteto.bmp", "Alien");
+	Alien* alienArray [5];
 
-	Sprite s2("assets/poteto.bmp");
+	for (int i = 0; i < 5; i++) {
+		alienArray[i] = new Alien("assets/alien.jpg", "Alien");
+		alienArray[i]->addAnimation("run", &b);
+		alienArray[i]->setAnimation("run");
+		alienArray[i]->setPosition((i * 80), 0);
+	}
+	
+	//Alien a1("assets/alien.jpg", "Alien");
+	//a1.addAnimation("run", &b);
+	//a1.setAnimation("run");
+
+	//Alien a2("assets/alien.jpg", "Alien");
+	//a2.addAnimation("run", &b);
+	//a2.setAnimation("run");
+	//a2.setPosition(40, 0);
+
+	//Sprite s2("assets/alien.jpg");
 	//s2.addAnimation("run", &b);
 	//s2.setAnimation("run");
-	s2.setPosition(10, 20);
-	s2.setName("Sprite");
+	//s2.setPosition(10, 20);
+	//s2.setName("Sprite");
 
 	//std::cout << s1.getName() << std::endl;
 
@@ -62,10 +78,17 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->setCurrentState(introState);
 	engine->getStateManager()->stateID = STATE_INTRO;
 
+	//engine->addDrawable(&s2);
+	engine->addDrawable(&s1);
 
-	//std::cout << "w: " << s1.getW() << " h: " << s1.getH() << std::endl;
+	for (int i = 0; i < 5; i++) {
+		engine->addDrawable(alienArray[i]);
+	}
+
+
 
 	engine->run();
+
 
 	return (0);
 }
