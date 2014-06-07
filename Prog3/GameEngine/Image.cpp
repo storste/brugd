@@ -2,44 +2,44 @@
 #include <SDL.h>
 #include <iostream>
 #include <string>
-#include "imageOld.h"
+#include "Image.h"
 
 //Konstruktor
-ImageOld::ImageOld(SDL_Surface* i) : theImageOld(i){ 
-	if (theImageOld)
-		theImageOld->refcount++;
-	std::cout << "def konstru: " << theImageOld->refcount << std::endl;
+Image::Image(SDL_Surface* i) : theImage(i){ 
+	if (theImage)
+		theImage->refcount++;
+	std::cout << "def konstru: " << theImage->refcount << std::endl;
 }
 //Konstruktor 2
-ImageOld::ImageOld(std::string p, bool b) : path(p), isAlpha(b){
-	theImageOld = SDL_LoadBMP(path.c_str());
-	//if (theImageOld)
-	//	theImageOld->refcount++;
-	std::cout << "sec konstru: " << theImageOld->refcount << std::endl;
+Image::Image(std::string p, bool b) : path(p), isAlpha(b){
+	theImage = SDL_LoadBMP(path.c_str());
+	//if (theImage)
+	//	theImage->refcount++;
+	std::cout << "sec konstru: " << theImage->refcount << std::endl;
 }
 //Copy konstruktor
-ImageOld::ImageOld(const ImageOld& other) :theImageOld(other.theImageOld){
-	if (theImageOld)
-		theImageOld->refcount++;
-	std::cout << "copy konstru: " << theImageOld->refcount << std::endl;
+Image::Image(const Image& other) :theImage(other.theImage){
+	if (theImage)
+		theImage->refcount++;
+	std::cout << "copy konstru: " << theImage->refcount << std::endl;
 }
 //Tilldelningsoperator
-const ImageOld& ImageOld::operator=(const ImageOld& other){
-	if (theImageOld != other.theImageOld){
-		if (theImageOld)
-			SDL_FreeSurface(theImageOld);
-		theImageOld = other.theImageOld;
-		theImageOld->refcount++;
-		std::cout << "tilldel: " << theImageOld->refcount << std::endl;
+const Image& Image::operator=(const Image& other){
+	if (theImage != other.theImage){
+		if (theImage)
+			SDL_FreeSurface(theImage);
+		theImage = other.theImage;
+		theImage->refcount++;
+		std::cout << "tilldel: " << theImage->refcount << std::endl;
 	}
 	return *this;
 }
 //Detruktor
-ImageOld::~ImageOld(){
-	if (theImageOld){
-		SDL_FreeSurface(theImageOld);
-		std::cout << "Ref--: " << theImageOld->refcount << std::endl;
-		if (theImageOld->refcount == 0)
-			std::cout << "delete: " << theImageOld->refcount << std::endl;
+Image::~Image(){
+	if (theImage){
+		SDL_FreeSurface(theImage);
+		std::cout << "Ref--: " << theImage->refcount << std::endl;
+		if (theImage->refcount == 0)
+			std::cout << "delete: " << theImage->refcount << std::endl;
 	}
 }
