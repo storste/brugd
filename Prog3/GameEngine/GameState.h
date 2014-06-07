@@ -1,10 +1,14 @@
 #pragma once
-#include "GameObject.h"
 #include <list>
 
-class GameState
-{
+// forward declarations
+class GameObject;
+class GameEngine;
+
+class GameState {
 public:
+
+	GameState() {}
 
 	virtual ~GameState(){}
 
@@ -16,5 +20,8 @@ public:
 	virtual void addGameObject(GameObject* d) = 0;
 	virtual void removeGameObject(GameObject* d) = 0;
 	virtual std::list<GameObject*> getObjects() = 0;
+
+protected:
+	GameEngine* world = nullptr;
 };
 

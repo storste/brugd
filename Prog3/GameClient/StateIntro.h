@@ -1,30 +1,26 @@
 #pragma once
 #include "..\GameEngine\GameState.h"
-#include "..\GameEngine\GameEngine.h"
+
+// forward declaration
+class GameObject;
 
 class StateIntro :
-	public GameState
-{
+	public GameState {
 public:
 	StateIntro();
 	~StateIntro();
 
-	virtual void HandleEvents();
-	virtual void Update(int ticks);
-	virtual void Render();
-	virtual void CheckTransition();
+	void HandleEvents() override;
+	void Update(int ticks) override;
+	void Render() override;
+	void CheckTransition() override;
 
-	
-	virtual void addGameObject(GameObject* d){
-		objects.push_back(d);
-	}
+	void addGameObject(GameObject* d) override;
+	void removeGameObject(GameObject* d) override;
+	std::list<GameObject*> getObjects() override;
 
-	virtual void removeGameObject(GameObject* d){
-		d->set_visible();
-	}
-
-	virtual std::list<GameObject*> getObjects(){ return objects; };
 private:
 	std::list<GameObject*> objects;
+
 };
 

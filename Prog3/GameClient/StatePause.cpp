@@ -1,7 +1,7 @@
+#pragma once
 #include <iostream>
 #include "..\GameEngine\GameEngine.h"
 #include "StatePause.h"
-
 
 StatePause::StatePause()
 {

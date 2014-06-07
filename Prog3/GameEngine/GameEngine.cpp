@@ -9,31 +9,7 @@
 #include "InputHandler.h"
 #include "StateManager.h"
 
-#define FPS 60
-GameEngine* GameEngine::instance;
-
-const int tickInterval = 1000 / FPS;
-Uint32 nextTick;
-int delay;
-
-void GameEngine::setResolution(int w, int h){
-
-	std::cout << "Changing resolution to " << w << ":" << h << std::endl;
-
-	// funkar inte eftersom texturerna är laddade till den gamla rendern, behöver ladda in alla texturer igen... suck
-
-	//SDL_DestroyRenderer(renderer);
-	//SDL_DestroyWindow(window);
-
-	//window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN);
-	//if (window == NULL)
-	//{
-	//	printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-	//}
-
-	//renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-}
+GameEngine* GameEngine::_instance;
 
 void GameEngine::run(){
 
@@ -97,14 +73,14 @@ void GameEngine::quit()
 //
 //void GameEngine::Render(){
 //
-//	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-//	SDL_RenderClear(renderer);
+//	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+//	SDL_RenderClear(_renderer);
 //
 //	for (const auto& o : objects){
 //		o->Render();
 //	}
 //
-//	SDL_RenderPresent(renderer);
+//	SDL_RenderPresent(_renderer);
 //}
 
 
@@ -119,13 +95,13 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 	else
 	{
 		std::cout << "SDL inititalized" << std::endl;
-		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, screen_height, SDL_WINDOW_SHOWN);
-		if (window == NULL)
+		_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, screen_height, SDL_WINDOW_SHOWN);
+		if (_window == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
 
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+		_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
 	}
 
 	int imgFlags = IMG_INIT_PNG;
@@ -147,8 +123,8 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 
 GameEngine::~GameEngine()
 {
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(_renderer);
+	SDL_DestroyWindow(_window);
 	std::cout << "GameEngine: Destructor" << std::endl;
 
 	//Quit TTF subsystems
@@ -201,4 +177,23 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	return true;
 }
 
+
+void GameEngine::setResolution(int w, int h){
+
+	std::cout << "Changing resolution to " << w << ":" << h << std::endl;
+
+	// funkar inte eftersom texturerna är laddade till den gamla rendern, behöver ladda in alla texturer igen... suck
+
+	//SDL_DestroyRenderer(_renderer);
+	//SDL_DestroyWindow(_window);
+
+	//_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN);
+	//if (_window == NULL)
+	//{
+	//	printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+	//}
+
+	//_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+
+}
 

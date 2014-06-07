@@ -14,16 +14,20 @@ public:
 
 	static GameEngine* getInstance()
 	{
-		if (instance == nullptr)
+		if (_instance == nullptr)
 		{
-			instance = new GameEngine();
+			_instance = new GameEngine();
 		}
-		return instance;
+		return _instance;
 	}
 
-	SDL_Renderer* getRenderer(){ return renderer; }
+	SDL_Renderer* getRenderer()
+	{
+		return _renderer;
+	}
 
-	StateManager* getStateManager(){
+	StateManager* getStateManager()
+	{
 		return _stateManager;
 	}
 
@@ -43,27 +47,29 @@ public:
 	//std::vector<GameObject*> getObjects(){ return objects; }
 	InputHandler* getInputHandler(){ return InputHandler::Instance(); }
 	void setResolution(int w, int h);
-	TTF_Font*			font = nullptr;
+	TTF_Font* font = nullptr;
 	int score;
+
 private:
 
-	static GameEngine* instance;
-	StateManager* _stateManager;
+	GameEngine::GameEngine(int width = 640, int height = 480);
+	~GameEngine();
+
+	static GameEngine*	_instance;
+	StateManager*		_stateManager;
 	//InputHandler* _inputHandler;
 
-	//std::vector<GameObject*> objects;
+	const int FPS = 60;
+	const int tickInterval = 1000 / FPS;
+	Uint32 nextTick = 0;
+	int delay = 0;
 
-	bool init();
-	void handleInput();
-	SDL_Window* window;
-	SDL_Renderer* renderer;
-	
-	bool ttf_init;
-	int screen_height;
-	int screen_width;
-	bool running;
-	GameEngine::GameEngine(int width = 640, int height = 480);
-	Uint8* currentKeyStates;
-	~GameEngine();
+	SDL_Window* _window = nullptr;
+	SDL_Renderer* _renderer = nullptr;
+
+	bool ttf_init = false;
+	int screen_height = 640;
+	int screen_width = 480;
+	bool running = false;
 };
 

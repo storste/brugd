@@ -1,9 +1,11 @@
+#pragma once
 #include "StateMain.h"
 #include <iostream>
 #include "..\GameEngine\GameEngine.h"
 
 StateMain::StateMain()
 {
+	world = GameEngine::getInstance(); 
 	std::cout << "Main state Constructor" << std::endl;
 }
 
@@ -15,21 +17,20 @@ StateMain::~StateMain()
 
 void StateMain::CheckTransition(){
 
-	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
+	if (world->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
 	{
-		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_PAUSE));
+		world->getStateManager()->setCurrentState(world->getStateManager()->getState(STATE_PAUSE));
 	}
 
-	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	if (world->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{		
-		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_END));
+		world->getStateManager()->setCurrentState(world->getStateManager()->getState(STATE_END));
 	}
 
 }
 
-
 void StateMain::HandleEvents(){
-	GameEngine::getInstance()->getInputHandler()->Update();
+	world->getInputHandler()->Update();
 }
 
 void StateMain::Update(int dt){
@@ -51,8 +52,8 @@ void StateMain::Update(int dt){
 }
 
 void StateMain::Render(){
-	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
+	SDL_SetRenderDrawColor(world->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(world->getRenderer());
 
 	for (const auto& o : objects){
 		o->Render();
@@ -60,13 +61,12 @@ void StateMain::Render(){
 
 	RenderScore();
 
-	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());
+	SDL_RenderPresent(world->getRenderer());
 }
 
 
 void StateMain::RenderScore(){
-	GameEngine* world = GameEngine::getInstance();
-	//std::string score_text = "score: " + std::to_string(score) + "dots: " + std::to_string(dots.size());
+	
 	std::string score_text = "score: " + std::to_string(world->score);
 	SDL_Color textColor = { 255, 255, 255, 0 };
 	SDL_Surface* textSurface = TTF_RenderText_Solid(world->font, score_text.c_str(), textColor);

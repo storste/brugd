@@ -43,7 +43,7 @@ void StateEnd::Render(){
 
 	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());
 
-	SDL_Delay(3000);
+	//SDL_Delay(3000);
 	GameEngine::getInstance()->quit();
 
 }
