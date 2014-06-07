@@ -13,13 +13,14 @@ StateIntro::~StateIntro() {
 
 void StateIntro::CheckTransition(){
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
-	{
-		//GameEngine::getInstance()->getStateManager()->set_next_state(STATE_MAIN);
+	{		
 		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_MAIN));
 	}
 }
 
-void StateIntro::HandleEvents() { InputHandler::Instance()->Update(); }
+void StateIntro::HandleEvents() {
+	InputHandler::Instance()->Update();
+}
 
 void StateIntro::Update(int dt){
 	for (const auto& o : _objects) {

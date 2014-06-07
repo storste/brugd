@@ -14,6 +14,9 @@ InputHandler::~InputHandler()
 
 void InputHandler::Update()
 {
+
+	//std::cout << "InputHandler: Update" << std::endl;
+
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event))
@@ -49,6 +52,6 @@ void InputHandler::onKeyUp()
 }
 
 bool InputHandler::isKeyDown(SDL_Scancode key)
-{
+{	
 	return (keystates && keystates[key] == 1 ? true : false);
 }

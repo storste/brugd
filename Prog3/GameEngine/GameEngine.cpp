@@ -19,6 +19,8 @@ void GameEngine::run(){
 
 	while (running)
 	{
+		//std::cout << "GameEngine: tick " << nextTick << std::endl;
+
 		nextTick = SDL_GetTicks() + tickInterval;
 
 		_stateManager->getCurrentState()->HandleEvents();
@@ -27,8 +29,10 @@ void GameEngine::run(){
 		_stateManager->getCurrentState()->Render();
 
 		delay = nextTick - SDL_GetTicks();
-		if (delay > 0)
+		if (delay > 0){
 			SDL_Delay(delay);
+		}
+			
 	}
 }
 
