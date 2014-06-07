@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "GameObject.h"
 #include "Animation.h"
+#include "Image.h"
 #include <string>
 #include <map>
 
@@ -15,6 +16,7 @@ public:
 
 	Sprite(const char* filename);
 	Sprite(const char* filename, const char * name);
+	Sprite(Image* i, const char * name);
 	Sprite(Animation* a);
 	Sprite();
 
@@ -32,6 +34,7 @@ public:
 	Animation* getAnimation();
 
 private:
+	Image* image;
 	SDL_Texture* texture;
 
 	std::map<std::string, Animation*> animations;

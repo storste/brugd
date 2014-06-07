@@ -82,7 +82,7 @@ void Player::update(int dt){
 void Player::Shoot(){
 
 	printf("Shooting missile from position %d:%d\n", _x, _y);
-
+	//Image missileImage("assets/missile.png", true);
 	Sprite* missile = new Missile("assets/missile.png", "a");
 	missile->setPosition(_x, _y - 20);
 	missile->toggle_collidable();

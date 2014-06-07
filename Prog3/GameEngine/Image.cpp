@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "Image.h"
+#include <SDL_image.h>
 
 //Konstruktor
 Image::Image(SDL_Surface* i) : theImage(i){ 
@@ -12,7 +13,7 @@ Image::Image(SDL_Surface* i) : theImage(i){
 }
 //Konstruktor 2
 Image::Image(std::string p, bool b) : path(p), isAlpha(b){
-	theImage = SDL_LoadBMP(path.c_str());
+	theImage = IMG_Load(path.c_str());
 	//if (theImage)
 	//	theImage->refcount++;
 	std::cout << "sec konstru: " << theImage->refcount << std::endl;

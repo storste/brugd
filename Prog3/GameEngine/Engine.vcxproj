@@ -74,7 +74,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameState.h" />
-    <ClInclude Include="Image.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Sprite.h" />
