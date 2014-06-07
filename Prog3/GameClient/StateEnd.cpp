@@ -14,7 +14,7 @@ StateEnd::~StateEnd()
 }
 
 void StateEnd::checkTransition(){
-	
+
 }
 
 void StateEnd::update(int dt){
