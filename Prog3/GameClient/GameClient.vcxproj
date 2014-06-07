@@ -70,10 +70,14 @@
   <ItemGroup>
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="IntroState.cpp" />
+    <ClCompile Include="MainState.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
+    <ClInclude Include="IntroState.h" />
+    <ClInclude Include="MainState.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
