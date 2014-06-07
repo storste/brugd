@@ -6,12 +6,12 @@
 class Player : public Sprite {
 
 public:
-	void Update(int dt);
+	void update(int dt);
 	Player(const char* filename, const char* name);
 	Player();
 	~Player();
 
-	void Shoot(){
+	void shoot(){
 
 		printf("Shooting missile from position %d:%d\n", _x, _y);
 

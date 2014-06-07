@@ -34,7 +34,7 @@ void StatePause::HandleEvents(){
 void StatePause::Update(int dt){
 
 	for (const auto& o : _objects){
-		o->Update(dt);
+		o->update(dt);
 	}
 
 
@@ -51,7 +51,7 @@ void StatePause::Render(){
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
 	for (const auto& o : _objects){
-		o->Render();
+		o->render();
 	}
 
 	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());

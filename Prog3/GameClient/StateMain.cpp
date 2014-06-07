@@ -29,11 +29,11 @@ void StateMain::CheckTransition(){
 
 }
 
-void StateMain::HandleEvents(){
+void StateMain::handleEvents(){
 	_world->getInputHandler()->Update();
 }
 
-void StateMain::Update(int dt){
+void StateMain::update(int dt){
 
 	for (std::list<GameObject*>::iterator itr = _objects.begin(); itr != _objects.end();)
 	{
@@ -53,21 +53,21 @@ void StateMain::Update(int dt){
 	}
 }
 
-void StateMain::Render(){
+void StateMain::render(){
 	SDL_SetRenderDrawColor(_world->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(_world->getRenderer());
 
 	for (const auto& o : _objects){
-		o->Render();
+		o->render();
 	}
 
-	RenderScore();
+	renderScore();
 
 	SDL_RenderPresent(_world->getRenderer());
 }
 
 
-void StateMain::RenderScore(){
+void StateMain::renderScore(){
 
 	std::string score_text = "score: " + std::to_string(_world->score);
 	SDL_Color textColor = { 255, 255, 255, 0 };

@@ -11,29 +11,29 @@ StateIntro::~StateIntro() {
 	std::cout << "Intro state destructor" << std::endl;
 }
 
-void StateIntro::CheckTransition(){
+void StateIntro::checkTransition(){
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
 	{		
 		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_MAIN));
 	}
 }
 
-void StateIntro::HandleEvents() {
+void StateIntro::handleEvents() {
 	InputHandler::Instance()->Update();
 }
 
-void StateIntro::Update(int dt){
+void StateIntro::update(int dt){
 	for (const auto& o : _objects) {
-		o->Update(dt);
+		o->update(dt);
 	}
 }
 
-void StateIntro::Render(){
+void StateIntro::render(){
 
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
-	for (const auto& o : _objects) { o->Render(); }
+	for (const auto& o : _objects) { o->render(); }
 
 	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());
 }

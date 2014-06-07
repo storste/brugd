@@ -7,8 +7,8 @@ public:
 	GameObject() = default;
 	virtual ~GameObject() = default;
 
-	virtual void Render() = 0;
-	virtual void Update(int dt) = 0;
+	virtual void render() = 0;
+	virtual void update(int dt) = 0;
 
 	int getY() const { return _y; }
 	int getX() const { return _x; }

@@ -33,7 +33,7 @@ void StateEnd::Render(){
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
 	for (const auto& o : _objects){
-		o->Render();
+		o->render();
 	}
 
 	RenderScore();

@@ -29,7 +29,7 @@ Sprite::Sprite(const char* filename)
 	_visible = true;
 }
 
-void Sprite::Render()
+void Sprite::render()
 {
 	if (currentAnimation){
 		currentAnimation->renderAnimation(_x, _y);
@@ -44,7 +44,7 @@ void Sprite::Render()
 	}
 }
 
-void Sprite::Update(){
+void Sprite::update(){
 
 	if (currentAnimation){
 		//std::cout << animationTick << std::endl;

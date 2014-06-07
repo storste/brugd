@@ -10,10 +10,10 @@ public:
 	StateIntro();
 	~StateIntro();
 
-	void HandleEvents() override;
-	void Update(int ticks) override;
-	void Render() override;
-	void CheckTransition() override;
+	void handleEvents() override;
+	void update(int ticks) override;
+	void render() override;
+	void checkTransition() override;
 
 private:
 

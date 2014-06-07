@@ -15,13 +15,13 @@ Player::~Player(){
 	std::cout << "Player: Destructor" << std::endl;
 }
 
-void Player::Update(int dt){
+void Player::update(int dt){
 
-	Sprite::Update();
+	Sprite::update();
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
 {
-		Shoot();
+		shoot();
 }
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))

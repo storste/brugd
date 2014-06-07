@@ -16,10 +16,10 @@ public:
 
 	virtual ~Sprite() = default;
 
-	virtual void Render();
+	virtual void render();
 
-	virtual void Update();
-	virtual void Update(int dt){}
+	virtual void update();
+	virtual void update(int dt){}
 
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(const char *name);
