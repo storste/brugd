@@ -24,8 +24,7 @@ void Player::update(int dt){
 	{
 		Shoot();
 	}
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
 		Sprite::setAnimation("run");
 		Sprite::getAnimation()->setFlip(false);
@@ -53,7 +52,7 @@ void Player::update(int dt){
 
 	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
-		GameEngine::getInstance()->quit();
+		//GameEngine::getInstance()->quit();
 	}
 
 	else {

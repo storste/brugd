@@ -10,6 +10,8 @@ public:
 	~Missile();
 
 	void Update(int dt){
+
+		std::cout << "Missile: update" << std::endl;
 		setPosition(getX(), _y - 2);
 
 		if (_y == 0 - _h)

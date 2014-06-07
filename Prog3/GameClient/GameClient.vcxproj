@@ -69,6 +69,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Alien.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -79,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="StateEnd.h" />
@@ -97,7 +99,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\animate.bmp" />
+    <Image Include="Assets\bomb.png" />
+    <Image Include="Assets\dude.bmp" />
     <Image Include="Assets\dude.png" />
+    <Image Include="Assets\intro.png" />
+    <Image Include="Assets\main.png" />
+    <Image Include="Assets\megaman.bmp" />
+    <Image Include="Assets\missile.png" />
+    <Image Include="Assets\pause.png" />
+    <Image Include="Assets\poteto.bmp" />
+    <Image Include="Assets\runningSprite.bmp" />
+    <Image Include="Assets\skrapan.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\cour.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

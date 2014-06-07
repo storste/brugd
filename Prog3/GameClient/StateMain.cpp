@@ -45,7 +45,6 @@ void StateMain::update(int dt){
 		else{
 			++itr;
 		}
-
 	}
 
 	for (auto& o : _objects){
@@ -65,7 +64,6 @@ void StateMain::render(){
 
 	SDL_RenderPresent(_world->getRenderer());
 }
-
 
 void StateMain::RenderScore(){
 
