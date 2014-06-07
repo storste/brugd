@@ -1,20 +1,11 @@
 #include "Alien.h"
 #include <iostream>
 
-Alien::Alien(const char* filename, const char* name) : Sprite(filename)
+Alien::Alien(Image* image, std::string name) : Sprite(image, name)
 {
-	_name = name;
 	dir = right;
 	setPosition(0, 0);
 }
-
-Alien::Alien(Image* image, const char* name) : Sprite(image,name)
-{
-	_name = name;
-	dir = right;
-	setPosition(0, 0);
-}
-
 
 Alien::~Alien()
 {
@@ -22,13 +13,6 @@ Alien::~Alien()
 }
 
 void Alien::update(int dt){
-
-	//if (flag == true) {
-
-	//	setPosition(_x, _y + 40);
-	//	dir = (dir == left ? right : left);
-	//	flag = false;
-	//}
 
 	if ((SDL_GetTicks() - ticks) > 500) {
 		Sprite::update();

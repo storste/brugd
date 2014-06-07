@@ -1,10 +1,11 @@
 #pragma once
 #include "SDL.h"
+#include <string>
 
 class Animation
 {
 public:
-	Animation(const char* filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset);
+	Animation(std::string filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset);
 	~Animation();
 	void setPosition(int x, int y);
 	void playAnimation(int dt);

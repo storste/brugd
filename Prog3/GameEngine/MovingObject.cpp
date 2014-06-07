@@ -1,7 +1,7 @@
 #include "MovingObject.h"
 #include <iostream>
 
-MovingObject::MovingObject(const char* filename, MovementDirection d, int v) : Sprite(filename), dir(d), velocity(v)
+MovingObject::MovingObject(std::string filename, MovementDirection d, int v) : Sprite(filename), dir(d), velocity(v)
 {
 }
 

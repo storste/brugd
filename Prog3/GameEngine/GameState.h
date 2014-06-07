@@ -2,6 +2,7 @@
 #include <list>
 #include <iostream>
 #include "GameObject.h"
+//#include "GameEngine.h"
 
 // forward declarations
 //class GameObject;
@@ -10,17 +11,24 @@ class GameEngine;
 class GameState {
 public:
 
-	GameState() { std::cout << "GameState: Constructor" << std::endl; }
+	GameState()  {
+		std::cout << "GameState: Constructor" << std::endl;
+		//_world = GameEngine::getInstance();
+	} 
 
 	virtual ~GameState(){}
 
-	virtual void HandleEvents() = 0;
-	virtual void update(int ticks) = 0;
-	virtual void render() = 0;
-	virtual void CheckTransition() = 0;
+	virtual void update(int ticks)
+	{
+		for (const auto& o : m_objects){
+			o->update(ticks);
+		}
+	}
+
+	virtual void checkTransition() = 0;
 
 	void addGameObject(GameObject* d){
-		_objects.push_back(d);
+		m_objects.push_back(d);
 	}
 
 	void removeGameObject(GameObject* d){
@@ -28,11 +36,11 @@ public:
 	}
 
 	std::list<GameObject*> getObjects(){
-		return _objects;
+		return m_objects;
 	};
 
 protected:
-	GameEngine* _world = nullptr;
-	std::list<GameObject*> _objects;
+	GameEngine* m_world = nullptr;
+	std::list<GameObject*> m_objects;
 };
 

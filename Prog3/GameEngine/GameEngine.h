@@ -5,48 +5,29 @@
 #include <vector>
 #include <list>
 #include "GameObject.h"
-#include "StateManager.h"
 #include "InputHandler.h"
+#include "StateManager.h"
 
 class GameEngine {
 
 public:
 
-	static GameEngine* getInstance()
-	{
-		if (_instance == nullptr)
-		{
-			_instance = new GameEngine();
-		}
-		return _instance;
-	}
+	static GameEngine* getInstance();
 
-	SDL_Renderer* getRenderer()
-	{
-		return _renderer;
-	}
+	SDL_Renderer* getRenderer();
+	StateManager* getStateManager();
 
-	StateManager* getStateManager()
-	{
-		return _stateManager;
-	}
-
-
-	//void addGameObject(GameObject* d);
-	//void removeGameObject(GameObject* d);
-	//void render();
-	//void update(int dt);
-	//void HandleEvents();
-	//Uint8* getKeyStates();
+	void render();
+	void renderScore();
+	void handleEvents();
 
 	void quit();
 	void run();
 
 	const bool cd(GameObject *a, GameObject *b);
 
-	//std::vector<GameObject*> getObjects(){ return objects; }
 	InputHandler* getInputHandler(){ return InputHandler::Instance(); }
-	void setResolution(int w, int h);
+	
 	TTF_Font* font = nullptr;
 	int score;
 
@@ -55,11 +36,10 @@ private:
 	GameEngine::GameEngine(int width = 640, int height = 480);
 	~GameEngine();
 
-	static GameEngine*	_instance;
 	StateManager*		_stateManager;
 	//InputHandler* _inputHandler;
 
-	const int FPS = 1;
+	const int FPS = 60;
 	const int tickInterval = 1000 / FPS;
 	Uint32 nextTick = 0;
 	int delay = 0;

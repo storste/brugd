@@ -13,46 +13,17 @@ StatePause::~StatePause()
 	std::cout << "StatePause: Destructor" << std::endl;
 }
 
-void StatePause::CheckTransition(){
+void StatePause::checkTransition(){
 
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
 	{		
-		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_MAIN));
+		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState("STATE_MAIN"));
 	}
-
-	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_SPACE))
-	{	
-		GameEngine::getInstance()->setResolution(800, 600);
-	}
-}
-
-
-void StatePause::HandleEvents(){
-	InputHandler::Instance()->update();
-}
-
-void StatePause::update(int dt){
-
-	for (const auto& o : _objects){
-		o->update(dt);
-	}
-
 
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
-		GameEngine::getInstance()->quit();
+		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState("STATE_END"));
 	}
-
 }
 
-void StatePause::render(){
 
-	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
-
-	for (const auto& o : _objects){
-		o->render();
-	}
-
-	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());
-}

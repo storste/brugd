@@ -1,12 +1,7 @@
 #include "Missile.h"
 #include <iostream>
 
-Missile::Missile(const char* filename, const char* name) :Sprite(filename)
-{
-	printf("Creating missile\n");
-}
-
-Missile::Missile(Image* image, const char* name) : Sprite(image,name)
+Missile::Missile(Image* image, std::string name) : Sprite(image, name)
 {
 	printf("Creating missile\n");
 }
@@ -18,26 +13,24 @@ Missile::~Missile()
 
 void Missile::update(int dt){
 
-	//std::cout << "Missile: update" << std::endl;
 	setPosition(getX(), _y - 2);
 	if (_y == 0 - _h)
-		_visible = false;
+		m_visible = false;
 
 	for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
 		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
-	
-			std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
+			std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 			
 			o->doCollission();
 			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
-			DoCollission();
+			doCollission();
 		}
 	}
 }
 
-void Missile::DoCollission(){
+void Missile::doCollission(){
 	GameEngine::getInstance()->score++;
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(this);
 }
