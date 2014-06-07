@@ -21,13 +21,13 @@ void StateEnd::CheckTransition(){
 
 
 void StateEnd::HandleEvents(){
-	InputHandler::Instance()->Update();
+	InputHandler::Instance()->update();
 }
 
-void StateEnd::Update(int dt){
+void StateEnd::update(int dt){
 }
 
-void StateEnd::Render(){
+void StateEnd::render(){
 
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());

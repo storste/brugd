@@ -11,15 +11,15 @@ StateIntro::~StateIntro() {
 	std::cout << "Intro state destructor" << std::endl;
 }
 
-void StateIntro::checkTransition(){
+void StateIntro::CheckTransition(){
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
 	{		
 		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState(STATE_MAIN));
 	}
 }
 
-void StateIntro::handleEvents() {
-	InputHandler::Instance()->Update();
+void StateIntro::HandleEvents() {
+	InputHandler::Instance()->update();
 }
 
 void StateIntro::update(int dt){

@@ -14,10 +14,10 @@ public:
 
 	virtual ~GameState(){}
 
-	virtual void handleEvents() = 0;
+	virtual void HandleEvents() = 0;
 	virtual void update(int ticks) = 0;
 	virtual void render() = 0;
-	virtual void checkTransition() = 0;
+	virtual void CheckTransition() = 0;
 
 	void addGameObject(GameObject* d){
 		_objects.push_back(d);

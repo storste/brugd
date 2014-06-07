@@ -8,10 +8,10 @@ public:
 	StatePause();
 	~StatePause();
 
-	void handleEvents() override;
+	void HandleEvents() override;
 	void update(int ticks) override;
 	void render() override;
-	void checkTransition() override;
+	void CheckTransition() override;
 
 private:
 	

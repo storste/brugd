@@ -9,10 +9,10 @@ public:
 	StateMain();
 	~StateMain();
 
-	void handleEvents() override;
+	void HandleEvents() override;
 	void update(int ticks) override;
 	void render() override;
-	void checkTransition() override;
+	void CheckTransition() override;
 
 	void StateMain::RenderScore();
 

@@ -28,10 +28,10 @@ void StatePause::CheckTransition(){
 
 
 void StatePause::HandleEvents(){
-	InputHandler::Instance()->Update();
+	InputHandler::Instance()->update();
 }
 
-void StatePause::Update(int dt){
+void StatePause::update(int dt){
 
 	for (const auto& o : _objects){
 		o->update(dt);
@@ -45,7 +45,7 @@ void StatePause::Update(int dt){
 
 }
 
-void StatePause::Render(){
+void StatePause::render(){
 
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());

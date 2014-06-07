@@ -8,10 +8,10 @@ public:
 	StateEnd();
 	~StateEnd();
 
-	void handleEvents() override;
+	void HandleEvents() override;
 	void update(int ticks) override;
 	void render() override;
-	void checkTransition() override;
+	void CheckTransition() override;
 
 
 	void RenderScore();

@@ -29,8 +29,8 @@ void StateMain::CheckTransition(){
 
 }
 
-void StateMain::handleEvents(){
-	_world->getInputHandler()->Update();
+void StateMain::HandleEvents(){
+	_world->getInputHandler()->update();
 }
 
 void StateMain::update(int dt){
@@ -49,7 +49,7 @@ void StateMain::update(int dt){
 	}
 
 	for (auto& o : _objects){
-		o->Update(dt);
+		o->update(dt);
 	}
 }
 
@@ -61,13 +61,13 @@ void StateMain::render(){
 		o->render();
 	}
 
-	renderScore();
+	RenderScore();
 
 	SDL_RenderPresent(_world->getRenderer());
 }
 
 
-void StateMain::renderScore(){
+void StateMain::RenderScore(){
 
 	std::string score_text = "score: " + std::to_string(_world->score);
 	SDL_Color textColor = { 255, 255, 255, 0 };

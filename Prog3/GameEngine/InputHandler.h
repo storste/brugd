@@ -15,7 +15,7 @@ public:
 	}
 
 	bool InputHandler::isKeyDown(SDL_Scancode key);
-	void Update();
+	void update();
 
 private:
 	InputHandler();
