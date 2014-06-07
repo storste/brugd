@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Player.h"
 #include "Bullet.h"
+#include "Alien.h"
 #include "../GameEngine/GameEngine.h"
 
 
-Player::Player(const char* filename, const char* name) :Sprite(filename)
+Player::Player(const char* filename, const char* name) :Sprite(filename), timeSinceLastShot(SDL_GetTicks())
 {
 	_name = name;
 }
@@ -21,7 +22,11 @@ void Player::update(int dt){
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
 	{
-		Shoot();
+		if (SDL_GetTicks() - timeSinceLastShot > 1000)
+		{
+			Shoot();
+			timeSinceLastShot = SDL_GetTicks();
+		}
 	}
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
@@ -29,40 +34,41 @@ void Player::update(int dt){
 		Sprite::setAnimation("run");
 		Sprite::getAnimation()->setFlip(false);
 		setPosition(getX() + 1, getY());
-		Sprite::update();
 	}
 
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
 		Sprite::setAnimation("run");
 		Sprite::getAnimation()->setFlip(true);
 		setPosition(getX() - 1, getY());
-		Sprite::update();
+
 	}
 
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
 	{
 		setPosition(getX(), getY() + 1);
 	}
 
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
 	{
 		setPosition(getX(), getY() - 1);
 	}
 
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		GameEngine::getInstance()->quit();
 	}
 
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-	{
-	}
+	//if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+	//{
+	//	keyPressed = false;
+	//}
 
-	else {
-		Sprite::setAnimation("idle");
-		Sprite::update();
-	}
+
+	//else {
+	//	Sprite::setAnimation("idle");
+	//	Sprite::update();
+	//}
 
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
@@ -79,7 +85,7 @@ void Player::Shoot(){
 
 	printf("Shooting missile from position %d:%d\n", _x, _y);
 
-	Sprite* missile = new Missile("assets/missile.png", "Missile");
+	Sprite* missile = new Missile("assets/missile.png", "a");
 	missile->setPosition(_x, _y - 20);
 	missile->toggle_collidable();
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);

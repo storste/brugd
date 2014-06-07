@@ -9,9 +9,8 @@ public:
 	Missile(const char* filename, const char* name);
 	~Missile();
 
-	void Update(int dt){
+	void update(int dt){
 		setPosition(getX(), _y - 2);
-
 		if (_y == 0 - _h)
 			_visible = false;
 

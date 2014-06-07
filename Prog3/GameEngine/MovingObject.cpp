@@ -1,5 +1,5 @@
 #include "MovingObject.h"
-
+#include <iostream>
 
 MovingObject::MovingObject(const char* filename, MovementDirection d, int v) : Sprite(filename), dir(d), velocity(v)
 {
@@ -10,7 +10,8 @@ MovingObject::~MovingObject()
 {
 }
 
-void MovingObject::update() {
+void MovingObject::update(int dt) {
+	std::cout << getX() << std::endl;
 	switch (dir)
 	{
 	case N:

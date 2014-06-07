@@ -14,6 +14,6 @@ public:
 	void Shoot();
 
 private:
-	
+	int timeSinceLastShot;
 };
 

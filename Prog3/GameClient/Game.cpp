@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
 	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
 	Animation b("assets/dude.bmp", 130, 150, 27, 7, 0);
-
+	Animation c("assets/bullet.png", 12, 25, 1, 1, 0);
 	Sprite* player = new Player();
 	player->addAnimation("run", &a);
 	player->setAnimation("run");
@@ -40,6 +40,9 @@ int main(int argc, char *argv[])
 	Sprite* alien = new Alien ("assets/alien.jpg", "Alien");
 	alien->addAnimation("run", &b);
 	alien->setAnimation("run");
+
+	Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
+	test->setPosition(0, 0);
 
 	//Alien a2("assets/alien.jpg", "Alien");
 	//a2.addAnimation("run", &b);
@@ -66,12 +69,13 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->addGameState(STATE_PAUSE, pauseState);
 
 	GameState *mainState = new StateMain();
-	Sprite main_background("assets/main.png", "Main background");
+	Sprite main_background("assets/Orion_Nebula.jpg", "Main background");
 	main_background.setPosition(0, 0);
 	main_background.toggle_collidable();
 	mainState->addGameObject(&main_background);
-	mainState->addGameObject(alien);
+	//mainState->addGameObject(alien);
 	mainState->addGameObject(player);
+	mainState->addGameObject(test);
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
 
 	GameState *endState = new StateEnd();

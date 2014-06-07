@@ -16,8 +16,6 @@ void Alien::update(int dt){
 
 	if ((SDL_GetTicks() - ticks) > 500) {
 		Sprite::update();
-		std::cout << getX() << std::endl;
-
 
 		if (dir == right && getX() < 560)
 		{

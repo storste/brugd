@@ -1,6 +1,7 @@
 #pragma once
 #include "InputHandler.h"
 #include "GameEngine.h"
+#include "SDL.h"
 
 InputHandler* InputHandler::instance;
 
@@ -14,11 +15,9 @@ InputHandler::~InputHandler()
 
 void InputHandler::update()
 {
-
 	//std::cout << "InputHandler: update" << std::endl;
 
 	SDL_Event event;
-
 	while (SDL_PollEvent(&event))
 	{
 		switch (event.type)

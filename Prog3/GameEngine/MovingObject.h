@@ -11,7 +11,7 @@ class MovingObject :
 public:
 	MovingObject(const char* filename, MovementDirection dir, int velocity);
 	~MovingObject();
-	void MovingObject::update();
+	void MovingObject::update(int dt);
 private:
 	int velocity;
 	MovementDirection dir;
