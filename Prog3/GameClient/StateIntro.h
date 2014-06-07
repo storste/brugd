@@ -15,12 +15,7 @@ public:
 	void Render() override;
 	void CheckTransition() override;
 
-	void addGameObject(GameObject* d) override;
-	void removeGameObject(GameObject* d) override;
-	std::list<GameObject*> getObjects() override;
-
 private:
-	std::list<GameObject*> objects;
 
 };
 

@@ -6,8 +6,8 @@
 #include <stack>
 #include <array>
 #include "GameEngine.h"
-#include "InputHandler.h"
-#include "StateManager.h"
+//#include "InputHandler.h"
+//#include "StateManager.h"
 
 GameEngine* GameEngine::_instance;
 

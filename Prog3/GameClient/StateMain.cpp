@@ -5,7 +5,7 @@
 
 StateMain::StateMain()
 {
-	world = GameEngine::getInstance(); 
+	_world = GameEngine::getInstance();
 	std::cout << "Main state Constructor" << std::endl;
 }
 
@@ -17,68 +17,70 @@ StateMain::~StateMain()
 
 void StateMain::CheckTransition(){
 
-	if (world->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
+	if (_world->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
 	{
-		world->getStateManager()->setCurrentState(world->getStateManager()->getState(STATE_PAUSE));
+		_world->getStateManager()->setCurrentState(_world->getStateManager()->getState(STATE_PAUSE));
 	}
 
-	if (world->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
-	{		
-		world->getStateManager()->setCurrentState(world->getStateManager()->getState(STATE_END));
+	if (_world->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	{
+		_world->getStateManager()->setCurrentState(_world->getStateManager()->getState(STATE_END));
 	}
 
 }
 
 void StateMain::HandleEvents(){
-	world->getInputHandler()->Update();
+	_world->getInputHandler()->Update();
 }
 
 void StateMain::Update(int dt){
 
-	for (std::list<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
+	for (std::list<GameObject*>::iterator itr = _objects.begin(); itr != _objects.end();)
 	{
 		if ((*itr)->is_visible() == false){
 			std::cout << (*itr)->getName() << " is not visible" << std::endl;
 			delete (*itr);
-			itr = objects.erase(itr);
+			itr = _objects.erase(itr);
 		}
-		else
+		else{
 			++itr;
+		}
+
 	}
 
-	for (auto& o : objects){
+	for (auto& o : _objects){
 		o->Update(dt);
 	}
 }
 
 void StateMain::Render(){
-	SDL_SetRenderDrawColor(world->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(world->getRenderer());
+	SDL_SetRenderDrawColor(_world->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(_world->getRenderer());
 
-	for (const auto& o : objects){
+	for (const auto& o : _objects){
 		o->Render();
 	}
 
 	RenderScore();
 
-	SDL_RenderPresent(world->getRenderer());
+	SDL_RenderPresent(_world->getRenderer());
 }
 
 
 void StateMain::RenderScore(){
-	
-	std::string score_text = "score: " + std::to_string(world->score);
+
+	std::string score_text = "score: " + std::to_string(_world->score);
 	SDL_Color textColor = { 255, 255, 255, 0 };
-	SDL_Surface* textSurface = TTF_RenderText_Solid(world->font, score_text.c_str(), textColor);
-	SDL_Texture* text = SDL_CreateTextureFromSurface(world->getRenderer(), textSurface);
+	SDL_Surface* textSurface = TTF_RenderText_Solid(_world->font, score_text.c_str(), textColor);
+	SDL_Texture* text = SDL_CreateTextureFromSurface(_world->getRenderer(), textSurface);
 	int text_width = textSurface->w;
 	int text_height = textSurface->h;
 	SDL_FreeSurface(textSurface);
 	SDL_Rect clearQuad = { 20, 50 - 30, text_width + 30, text_height };
 	SDL_Rect renderQuad = { 20, 50 - 30, text_width, text_height };
-	SDL_SetRenderDrawColor(world->getRenderer(), 0, 0, 0, 0);
-	SDL_RenderFillRect(world->getRenderer(), &clearQuad);
+	SDL_SetRenderDrawColor(_world->getRenderer(), 0, 0, 0, 0);
+	SDL_RenderFillRect(_world->getRenderer(), &clearQuad);
 
-	SDL_RenderCopy(world->getRenderer(), text, NULL, &renderQuad);
+	SDL_RenderCopy(_world->getRenderer(), text, NULL, &renderQuad);
 	SDL_DestroyTexture(text);
 }

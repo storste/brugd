@@ -25,9 +25,6 @@ void StateEnd::HandleEvents(){
 }
 
 void StateEnd::Update(int dt){
-
-	
-
 }
 
 void StateEnd::Render(){
@@ -35,7 +32,7 @@ void StateEnd::Render(){
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
-	for (const auto& o : objects){
+	for (const auto& o : _objects){
 		o->Render();
 	}
 

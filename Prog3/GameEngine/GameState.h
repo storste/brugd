@@ -1,14 +1,16 @@
 #pragma once
 #include <list>
+#include <iostream>
+#include "GameObject.h"
 
 // forward declarations
-class GameObject;
+//class GameObject;
 class GameEngine;
 
 class GameState {
 public:
 
-	GameState() {}
+	GameState() { std::cout << "GameState: Constructor" << std::endl; }
 
 	virtual ~GameState(){}
 
@@ -17,11 +19,20 @@ public:
 	virtual void Render() = 0;
 	virtual void CheckTransition() = 0;
 
-	virtual void addGameObject(GameObject* d) = 0;
-	virtual void removeGameObject(GameObject* d) = 0;
-	virtual std::list<GameObject*> getObjects() = 0;
+	void addGameObject(GameObject* d){
+		_objects.push_back(d);
+	}
+
+	void removeGameObject(GameObject* d){
+		d->set_visible();
+	}
+
+	std::list<GameObject*> getObjects(){
+		return _objects;
+	};
 
 protected:
-	GameEngine* world = nullptr;
+	GameEngine* _world = nullptr;
+	std::list<GameObject*> _objects;
 };
 

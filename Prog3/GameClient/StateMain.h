@@ -8,24 +8,15 @@ class StateMain :
 public:
 	StateMain();
 	~StateMain();
-	void HandleEvents();
-	void Update(int ticks);
-	void Render();
-	void CheckTransition();
 
-	void addGameObject(GameObject* d){
-		objects.push_back(d);
-	}
+	void HandleEvents() override;
+	void Update(int ticks) override;
+	void Render() override;
+	void CheckTransition() override;
 
-	void removeGameObject(GameObject* d){
-		d->set_visible();
-	}
-
-	std::list<GameObject*> getObjects(){ return objects; };
-	
 	void StateMain::RenderScore();
 
 private:
-	std::list<GameObject*> objects;
+
 };
 

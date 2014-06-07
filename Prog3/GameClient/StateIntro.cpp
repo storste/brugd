@@ -4,7 +4,7 @@
 
 StateIntro::StateIntro() {
 	std::cout << "Intro state constructor" << std::endl;
-	world = GameEngine::getInstance();
+	_world = GameEngine::getInstance();
 }
 
 StateIntro::~StateIntro() {
@@ -22,7 +22,7 @@ void StateIntro::CheckTransition(){
 void StateIntro::HandleEvents() { InputHandler::Instance()->Update(); }
 
 void StateIntro::Update(int dt){
-	for (const auto& o : objects) {
+	for (const auto& o : _objects) {
 		o->Update(dt);
 	}
 }
@@ -32,19 +32,7 @@ void StateIntro::Render(){
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
-	for (const auto& o : objects) { o->Render(); }
+	for (const auto& o : _objects) { o->Render(); }
 
 	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());
 }
-
-void StateIntro::addGameObject(GameObject* d) {
-	objects.push_back(d);
-}
-
-void StateIntro::removeGameObject(GameObject* d) {
-	d->set_visible();
-}
-
-std::list<GameObject*> StateIntro::getObjects() {
-	return objects;
-};

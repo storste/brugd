@@ -106,4 +106,7 @@
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\cour.ttf" />
+  </ItemGroup>
 </Project>
