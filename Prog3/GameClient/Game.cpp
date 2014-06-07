@@ -11,6 +11,7 @@
 
 #include "Player.h"
 #include "Alien.h"
+#include "Bullet.h"
 //#include "..\GameEngine\InputHandler.h"
 
 // forward declare Animation
@@ -23,13 +24,15 @@ int main(int argc, char *argv[])
 {
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation a("assets/dude.png", engine->getRenderer(), 130, 150, 27, 7);
-	Animation b("assets/alien.jpg", engine->getRenderer(), 40, 38, 2, 2);
+	Animation a("assets/usagitsukino.png", 32, 48, 4, 4, 96);
+	Animation aa("assets/usagitsukino.png", 32, 48, 1, 1, 144);
+	Animation b("assets/alien.jpg", 40, 38, 2, 2, 0);
 
 	Player s1;
 	s1.addAnimation("run", &a);
-	s1.setAnimation("run");
-	s1.setPosition(100, 200);
+	s1.addAnimation("idle", &aa);
+	s1.setAnimation("idle");
+	s1.setPosition(0, 430);
 	s1.setName("Player");
 
 	Alien* alienArray [5];
@@ -59,13 +62,11 @@ int main(int argc, char *argv[])
 	//std::cout << s1.getName() << std::endl;
 
 	//engine->addDrawable(&s2);
-	engine->addDrawable(&s1);
+	engine->addGameObject(&s1);
 
 	for (int i = 0; i < 5; i++) {
-		engine->addDrawable(alienArray[i]);
+		engine->addGameObject(alienArray[i]);
 	}
-
-
 
 	engine->run();
 

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Bullet.h"
 #include "../GameEngine/GameEngine.h"
 #include "../GameEngine/InputHandler.h"
 #include <iostream>
@@ -28,33 +29,44 @@ Player::~Player()
 
 void Player::update(int dt){
 
-	Sprite::update();
-
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
+		Sprite::setAnimation("run");
 		Sprite::getAnimation()->setFlip(false);
 		setPosition(getX() + 1, getY());
+		Sprite::update();
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
+		Sprite::setAnimation("run");
 		Sprite::getAnimation()->setFlip(true);
-		setPosition(getX() - 2, getY());
+		setPosition(getX() - 1, getY());
+		Sprite::update();
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
 	{
-		setPosition(getX(), getY() + 3);
+		setPosition(getX(), getY() + 1);
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
 	{
-		setPosition(getX(), getY() - 4);
+		setPosition(getX(), getY() - 1);
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		GameEngine::getInstance()->quit();
+	}
+
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+	{
+	}
+
+	else {
+		Sprite::setAnimation("idle");
+		Sprite::update();
 	}
 
 	for (const auto& o : GameEngine::getInstance()->getObjects()){

@@ -74,6 +74,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +83,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

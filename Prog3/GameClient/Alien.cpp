@@ -9,7 +9,6 @@ Alien::Alien(const char* filename, const char* name) : Sprite(filename)
 	setPosition(0, 0);
 }
 
-
 Alien::~Alien()
 {
 }

@@ -4,7 +4,7 @@
 class Animation
 {
 public:
-	Animation(const char* filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow);
+	Animation(const char* filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset);
 	~Animation();
 	void setPosition(int x, int y);
 	void playAnimation(int dt);
@@ -24,5 +24,6 @@ private:
 	bool flip;
 	int frameCount;
 	int framesPerRow;
+	int yOffset;
 };
 
