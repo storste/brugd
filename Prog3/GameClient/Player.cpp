@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Player.h"
-#include "Bullet.h"
-#include "Alien.h"
 #include "../GameEngine/GameEngine.h"
 
 
@@ -24,9 +22,9 @@ void Player::update(int dt){
 	{
 		if (SDL_GetTicks() - timeSinceLastShot > 1000)
 		{
-			Shoot();
+		Shoot();
 			timeSinceLastShot = SDL_GetTicks();
-		}
+	}
 	}
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
@@ -56,7 +54,7 @@ void Player::update(int dt){
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
-		GameEngine::getInstance()->quit();
+		//GameEngine::getInstance()->quit();
 	}
 
 	//if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
