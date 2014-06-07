@@ -8,6 +8,14 @@ Alien::Alien(const char* filename, const char* name) : Sprite(filename)
 	setPosition(0, 0);
 }
 
+Alien::Alien(Image* image, const char* name) : Sprite(image,name)
+{
+	_name = name;
+	dir = right;
+	setPosition(0, 0);
+}
+
+
 Alien::~Alien()
 {
 	std::cout << "aLIEN : I AAAAM DESTRUCTOR - WARAWRARARWARWA" << std::endl;
@@ -76,4 +84,8 @@ void Alien::update(int dt){
 	//	std::cout << "Alien @ " << getX() << ":" << getY() << std::endl;
 
 
+}
+
+void Alien::doCollission(){
+	std::cout << "Alien: doCollission()" << std::endl;
 }

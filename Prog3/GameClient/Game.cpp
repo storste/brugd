@@ -41,9 +41,25 @@ int main(int argc, char *argv[])
 		alienArray[i]->setPosition((i * 80), 0);
 	}
 	
-	Sprite* alien = new Alien ("assets/alien.jpg", "Alien");
-	alien->addAnimation("alien", &alien_anim);
-	alien->setAnimation("alien");
+	Image pic("assets/alien.jpg", true);
+	Sprite* alien = new Alien(&pic, "Alien2");
+	alien->toggle_collidable();
+	//alien.addAnimation("alien", &alien_anim);
+	//alien.setAnimation("alien");
+
+	//Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
+	//test->setPosition(0, 0);
+
+	//Alien a2("assets/alien.jpg", "Alien");
+	//a2.addAnimation("run", &b);
+	//a2.setAnimation("run");
+	//a2.setPosition(40, 0);
+
+	//Sprite s2("assets/alien.jpg");
+	//s2.addAnimation("run", &b);
+	//s2.setAnimation("run");
+	//s2.setPosition(10, 20);
+	//s2.setName("Sprite");
 
 	// set up game states
 	GameState *introState = new StateIntro();

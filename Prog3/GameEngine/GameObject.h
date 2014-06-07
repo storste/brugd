@@ -10,6 +10,7 @@ public:
 
 	virtual void render() = 0;
 	virtual void update(int dt) = 0;
+	virtual void doCollission() = 0;
 
 	int getY() const { return _y; }
 	int getX() const { return _x; }

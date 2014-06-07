@@ -50,25 +50,66 @@
     <ClInclude Include="Alien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateIntro.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="StatePause.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StateMain.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StatePause.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="StateIntro.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StateEnd.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Missile.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\dude.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\intro.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\main.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\megaman.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\missile.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\pause.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\poteto.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\runningSprite.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\skrapan.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\animate.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\bomb.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\dude.bmp">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\alien.jpg">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\cour.ttf">
+      <Filter>Assets</Filter>
+    </Font>
   </ItemGroup>
 </Project>

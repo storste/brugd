@@ -7,9 +7,10 @@ class Missile :
 	public Sprite {
 public:
 	Missile(const char* filename, const char* name);
+	Missile(Image* image, const char* name);
 	~Missile();
 
-	void update(int dt){
+	void update(int dt);
 
 		//std::cout << "Missile: update" << std::endl;
 		setPosition(getX(), _y - 7);

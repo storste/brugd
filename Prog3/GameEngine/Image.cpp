@@ -1,38 +1,28 @@
-#include <SDL.h>
+#pragma once
 #include <iostream>
 #include <string>
+#include <SDL.h>
+#include <SDL_image.h>
+#include "Image.h"
 
-class Image{
-public:
-	Image(SDL_Surface* i = 0);
-	Image(std::string p, bool b);
-	Image(const Image& other); 
-	const Image& operator=(const Image& other); 
-	SDL_Surface* getSurface() const { return theImage; }
-	~Image(); 
-private:
-	SDL_Surface* theImage;
-	bool isAlpha;
-	std::string path;
-};
 //Konstruktor
 Image::Image(SDL_Surface* i) : theImage(i){ 
 	if (theImage)
 		theImage->refcount++;
-	std::cout << "def konstru: " << theImage->refcount;
+	std::cout << "def konstru: " << theImage->refcount << std::endl;
 }
 //Konstruktor 2
 Image::Image(std::string p, bool b) : path(p), isAlpha(b){
-	theImage = SDL_LoadBMP(path.c_str());
+	theImage = IMG_Load(path.c_str());
 	//if (theImage)
 	//	theImage->refcount++;
-	std::cout << "sec konstru: " << theImage->refcount;
+	std::cout << "sec konstru: " << theImage->refcount << std::endl;
 }
 //Copy konstruktor
 Image::Image(const Image& other) :theImage(other.theImage){
 	if (theImage)
 		theImage->refcount++;
-	std::cout << "copy konstru: " << theImage->refcount;
+	std::cout << "copy konstru: " << theImage->refcount << std::endl;
 }
 //Tilldelningsoperator
 const Image& Image::operator=(const Image& other){
@@ -41,7 +31,7 @@ const Image& Image::operator=(const Image& other){
 			SDL_FreeSurface(theImage);
 		theImage = other.theImage;
 		theImage->refcount++;
-		std::cout << "tilldel: " << theImage->refcount;
+		std::cout << "tilldel: " << theImage->refcount << std::endl;
 	}
 	return *this;
 }
@@ -49,7 +39,8 @@ const Image& Image::operator=(const Image& other){
 Image::~Image(){
 	if (theImage){
 		SDL_FreeSurface(theImage);
+		std::cout << "Ref--: " << theImage->refcount << std::endl;
 		if (theImage->refcount == 0)
-			std::cout << "delete: " << theImage->refcount;
+			std::cout << "delete: " << theImage->refcount << std::endl;
 	}
 }
