@@ -2,34 +2,39 @@
 #include "GameState.h"
 #include <map>
 
-enum States
-{
+enum State {
 	STATE_NULL,
 	STATE_INTRO,
 	STATE_MAIN,
+	STATE_PAUSE,
+	STATE_END,
 	STATE_EXIT
 };
 
+class StateManager {
 
-class StateManager
-{
 public:
 	StateManager();
 	~StateManager();
 
-	void addGameState(std::string _stateName, GameState* state){
-		std::pair<std::string, GameState*> pair = std::make_pair(_stateName, state);
+	void addGameState(State stateID, GameState* state){
+		std::pair<State, GameState*> pair = std::make_pair(stateID, state);
 		_gameStates.insert(pair);
 	};
 
-	std::map<std::string, GameState*> _gameStates;
+	void setCurrentState(GameState *state){ _currentState = state; }
 
-	void setCurrentState(GameState *state){ currentState = state; }
-	void changeState();
-	GameState *currentState;
-	void set_next_state(int newState){ nextState = newState; }
+	GameState* getCurrentState() { return _currentState; }
+	GameState* getState(State stateID) { return _gameStates[stateID]; }
 
-	int stateID = STATE_NULL;
-	int nextState = STATE_NULL;
+	//void changeState();
+	//void set_next_state(int newState){ nextState = newState; }
+
+	//int stateID = STATE_NULL;
+	//int nextState = STATE_NULL;
+
+private:
+	GameState* _currentState;
+	std::map<State, GameState*> _gameStates;
 };
 

@@ -3,8 +3,10 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <vector>
+#include <list>
 #include "GameObject.h"
 #include "StateManager.h"
+#include "InputHandler.h"
 
 class GameEngine {
 
@@ -12,50 +14,62 @@ public:
 
 	static GameEngine* getInstance()
 	{
-		if (instance == nullptr)
+		if (_instance == nullptr)
 		{
-			instance = new GameEngine();
+			_instance = new GameEngine();
 		}
-		return instance;
+		return _instance;
 	}
 
-	SDL_Renderer* getRenderer(){ return renderer; }
+	SDL_Renderer* getRenderer()
+	{
+		return _renderer;
+	}
 
-	StateManager* getStateManager(){
+	StateManager* getStateManager()
+	{
 		return _stateManager;
 	}
 
 
-	void addGameObject(GameObject* d);
-	void removeGameObject(GameObject* d);
-	void render();
-	void update(int dt);
-	void handleEvents();
-	Uint8* getKeyStates();
-	void graph();
+	//void addGameObject(GameObject* d);
+	//void removeGameObject(GameObject* d);
+	//void Render();
+	//void Update(int dt);
+	//void HandleEvents();
+	//Uint8* getKeyStates();
+
 	void quit();
 	void run();
-	const bool cd(GameObject *a, GameObject *b);
-	std::vector<GameObject*> getObjects(){ return objects; };
 
-	
+	const bool cd(GameObject *a, GameObject *b);
+
+	//std::vector<GameObject*> getObjects(){ return objects; }
+	InputHandler* getInputHandler(){ return InputHandler::Instance(); }
+	void setResolution(int w, int h);
+	TTF_Font* font = nullptr;
+	int score;
 
 private:
 
-	static GameEngine* instance;
-	StateManager* _stateManager;
-	std::vector<GameObject*> objects;
-
-	bool init();
-	void handleInput();
-	SDL_Window* window;
-	SDL_Renderer* renderer;
-	bool ttf_init;
-	int screen_height;
-	int screen_width;
-	bool running;
 	GameEngine::GameEngine(int width = 640, int height = 480);
-	Uint8* currentKeyStates;
 	~GameEngine();
+
+	static GameEngine*	_instance;
+	StateManager*		_stateManager;
+	//InputHandler* _inputHandler;
+
+	const int FPS = 60;
+	const int tickInterval = 1000 / FPS;
+	Uint32 nextTick = 0;
+	int delay = 0;
+
+	SDL_Window* _window = nullptr;
+	SDL_Renderer* _renderer = nullptr;
+
+	bool ttf_init = false;
+	int screen_height = 640;
+	int screen_width = 480;
+	bool running = false;
 };
 

@@ -1,68 +1,77 @@
-#include "Player.h"
-#include "../GameEngine/GameEngine.h"
-#include "../GameEngine/InputHandler.h"
 #include <iostream>
+#include "Player.h"
+#include "Bullet.h"
+#include "../GameEngine/GameEngine.h"
+
 
 Player::Player(const char* filename, const char* name) :Sprite(filename)
 {
-	setName(name);
+	_name = name;
 }
 
-Player::Player(){
+Player::Player(){}
 	
+Player::~Player(){
+	std::cout << "Player: Destructor" << std::endl;
 }
 
-Player::~Player()
+void Player::Update(int dt){
+
+	Sprite::Update();
+
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
 {
+		Shoot();
 }
-
-//const std::string Player::getName()
-//{
-//	return m_name;
-//}
-//
-//void Player::setName(const char* name)
-//{
-//	m_name = name;
-//}
-
-void Player::update(int dt){
-
-	Sprite::update();
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
+		Sprite::setAnimation("run");
 		Sprite::getAnimation()->setFlip(false);
 		setPosition(getX() + 1, getY());
+		Sprite::update();
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
+		Sprite::setAnimation("run");
 		Sprite::getAnimation()->setFlip(true);
-		setPosition(getX() - 2, getY());
+		setPosition(getX() - 1, getY());
+		Sprite::update();
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
 	{
-		setPosition(getX(), getY() + 3);
+		setPosition(getX(), getY() + 1);
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
 	{
-		setPosition(getX(), getY() - 4);
+		setPosition(getX(), getY() - 1);
 	}
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		GameEngine::getInstance()->quit();
 	}
 
-	for (const auto& o : GameEngine::getInstance()->getStateManager()->currentState->getObjects()){
+	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+	{
+	}
 
-		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
-			std::cout << "Collision between " << this->getName() << " and " << o->getName() << std::endl;
+	else {
+		Sprite::setAnimation("idle");
+		Sprite::update();
+	}
 
-			GameEngine::getInstance()->removeGameObject(o);
+	for (const auto& o : GameEngine::getInstance()->getObjects()){
+
+	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
+
+		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
+			std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
+
+			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
 			
 		}
 	}

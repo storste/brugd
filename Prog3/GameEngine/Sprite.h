@@ -10,40 +10,27 @@ class Sprite :public GameObject {
 public:
 
 	Sprite(const char* filename);
+	Sprite(const char* filename, const char * name);
 	Sprite(Animation* a);
 	Sprite();
-	~Sprite();
 
-	virtual void render();
+	virtual ~Sprite() = default;
 
-	virtual void setPosition(int x, int y);
-	virtual int getY();
-	virtual int getX();
-	virtual int getH();
-	virtual int getW();
+	virtual void Render();
 
-	virtual void setName(const char *name);
-
-	virtual const std::string getName();
-	virtual void update();
+	virtual void Update();
+	virtual void Update(int dt){}
 
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(const char *name);
 	Animation* getAnimation();
-	bool is_visible(){ return _is_visible; }
-	void set_visible() { _is_visible = false; }
 
 private:
 	SDL_Texture* texture;
 
-	std::string m_name;
 	std::map<std::string, Animation*> animations;
 	Animation* currentAnimation;
-	int w;
-	int h;
-	int x;
-	int y;
-	bool _is_visible;
+
 	int animationTick;
 
 protected:

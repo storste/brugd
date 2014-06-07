@@ -1,3 +1,4 @@
+#pragma once
 #include "Animation.h"
 #include "GameEngine.h"
 #include <SDL_image.h>
@@ -7,7 +8,7 @@ void Animation::setPosition(int x, int y){
 	destinationRectangle.y = y;
 }
 
-Animation::Animation(const char* filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow) :flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow)
+Animation::Animation(const char* filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset) :flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow), yOffset(yOffset)
 {
 	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
 
@@ -29,7 +30,7 @@ void Animation::playAnimation(int dt) {
 	currentFrame = int(((dt) % frameCount));
 	//		std::cout << currentFrame << std::endl;
 	sourceRectangle.x = frameWidth * (currentFrame % framesPerRow);
-	sourceRectangle.y = frameHeight * (currentFrame / framesPerRow);
+	sourceRectangle.y = yOffset + frameHeight * (currentFrame / framesPerRow);
 }
 
 void Animation::renderAnimation(int x, int y){
