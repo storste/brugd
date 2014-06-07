@@ -13,6 +13,8 @@ public:
 	~Alien();
 	Direction dir;
 	void update(int dt);
+	void doCollission();
+
 private:
 	Uint32 ticks;
 };

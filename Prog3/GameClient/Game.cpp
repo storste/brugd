@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 	main_background.setPosition(0, 0);
 	main_background.toggle_collidable();
 	mainState->addGameObject(&main_background);
-	//mainState->addGameObject(alien);
+	mainState->addGameObject(alien);
 	mainState->addGameObject(player);
 	//mainState->addGameObject(test);
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);

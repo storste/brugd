@@ -20,6 +20,8 @@ public:
 		_x = x; _y = y;
 	}
 
+	virtual void doCollission() = 0;
+
 	std::string getName() const { return _name; }
 	void setName(const char *name) { _name = name; }
 

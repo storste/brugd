@@ -9,6 +9,10 @@ class Sprite :public GameObject {
 
 public:
 
+	Sprite* getSprite(){
+		return new Sprite();
+	}
+
 	Sprite(const char* filename);
 	Sprite(const char* filename, const char * name);
 	Sprite(Animation* a);
@@ -20,6 +24,8 @@ public:
 
 	virtual void update();
 	virtual void update(int dt){}
+
+	virtual void doCollission(){ std::cout << "Sprite: doCollission()" << std::endl; };
 
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(const char *name);

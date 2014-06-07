@@ -118,7 +118,7 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 	}
 
 	if ((TTF_Init() < 0)) { std::cout << "could not initialize sdl_ttf" << std::endl; exit(1); }
-	font = TTF_OpenFont("assets/cour.ttf", 28);
+	font = TTF_OpenFont("assets/comic.ttf", 28);
 	if (font == NULL) { std::cout << "could not load font" << std::endl; exit(1); }
 
 	_stateManager = new StateManager();

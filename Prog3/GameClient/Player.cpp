@@ -74,7 +74,7 @@ void Player::update(int dt){
 			std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
 			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
-
+			
 		}
 	}
 }

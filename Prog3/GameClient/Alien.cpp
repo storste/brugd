@@ -61,3 +61,7 @@ void Alien::update(int dt){
 
 
 }
+
+void Alien::doCollission(){
+	std::cout << "Alien: doCollission()" << std::endl;
+}
