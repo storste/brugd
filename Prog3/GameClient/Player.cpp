@@ -88,3 +88,4 @@ void Player::Shoot(){
 	missile->toggle_collidable();
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
 }
+

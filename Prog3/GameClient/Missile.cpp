@@ -26,6 +26,7 @@ void Missile::update(int dt){
 	for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
 		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
+	
 			std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
 			

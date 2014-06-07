@@ -1,9 +1,9 @@
 #pragma once
-#include <SDL.h>
 #include <iostream>
 #include <string>
-#include "Image.h"
+#include <SDL.h>
 #include <SDL_image.h>
+#include "Image.h"
 
 //Konstruktor
 Image::Image(SDL_Surface* i) : theImage(i){ 

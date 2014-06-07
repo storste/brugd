@@ -10,6 +10,7 @@ public:
 
 	virtual void render() = 0;
 	virtual void update(int dt) = 0;
+	virtual void doCollission() = 0;
 
 	int getY() const { return _y; }
 	int getX() const { return _x; }
@@ -19,8 +20,6 @@ public:
 	void setPosition(int x, int y) {
 		_x = x; _y = y;
 	}
-
-	virtual void doCollission() = 0;
 
 	std::string getName() const { return _name; }
 	void setName(const char *name) { _name = name; }

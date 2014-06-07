@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameClient", "GameClient\GameClient.vcxproj", "{F3DAD36E-5CEF-4158-B1F9-96EAAC32D193}"
 EndProject
@@ -10,15 +10,20 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Intel_SSA|Win32 = Intel_SSA|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F3DAD36E-5CEF-4158-B1F9-96EAAC32D193}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F3DAD36E-5CEF-4158-B1F9-96EAAC32D193}.Debug|Win32.Build.0 = Debug|Win32
+		{F3DAD36E-5CEF-4158-B1F9-96EAAC32D193}.Intel_SSA|Win32.ActiveCfg = Intel_SSA|Win32
+		{F3DAD36E-5CEF-4158-B1F9-96EAAC32D193}.Intel_SSA|Win32.Build.0 = Intel_SSA|Win32
 		{F3DAD36E-5CEF-4158-B1F9-96EAAC32D193}.Release|Win32.ActiveCfg = Release|Win32
 		{F3DAD36E-5CEF-4158-B1F9-96EAAC32D193}.Release|Win32.Build.0 = Release|Win32
 		{631E2AD9-37C2-42FF-A681-08FDD707CCA7}.Debug|Win32.ActiveCfg = Debug|Win32
 		{631E2AD9-37C2-42FF-A681-08FDD707CCA7}.Debug|Win32.Build.0 = Debug|Win32
+		{631E2AD9-37C2-42FF-A681-08FDD707CCA7}.Intel_SSA|Win32.ActiveCfg = Intel_SSA|Win32
+		{631E2AD9-37C2-42FF-A681-08FDD707CCA7}.Intel_SSA|Win32.Build.0 = Intel_SSA|Win32
 		{631E2AD9-37C2-42FF-A681-08FDD707CCA7}.Release|Win32.ActiveCfg = Release|Win32
 		{631E2AD9-37C2-42FF-A681-08FDD707CCA7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection

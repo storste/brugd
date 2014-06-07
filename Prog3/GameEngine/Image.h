@@ -4,7 +4,6 @@
 #include <string>
 #include <SDL_image.h>
 
-
 class Image{
 public:
 	Image(SDL_Surface* i = 0);

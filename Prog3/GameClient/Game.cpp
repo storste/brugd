@@ -37,9 +37,10 @@ int main(int argc, char *argv[])
 	//}
 	
 	Image pic("assets/alien.jpg", true);
-	Sprite alien(&pic, "Alien");
-	alien.addAnimation("alien", &alien_anim);
-	alien.setAnimation("alien");
+	Sprite* alien = new Alien(&pic, "Alien2");
+	alien->toggle_collidable();
+	//alien.addAnimation("alien", &alien_anim);
+	//alien.setAnimation("alien");
 
 	//Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
 	//test->setPosition(0, 0);
@@ -73,7 +74,7 @@ int main(int argc, char *argv[])
 	main_background.setPosition(0, 0);
 	main_background.toggle_collidable();
 	mainState->addGameObject(&main_background);
-	mainState->addGameObject(&alien);
+	mainState->addGameObject(alien);
 	mainState->addGameObject(player);
 	//mainState->addGameObject(test);
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);

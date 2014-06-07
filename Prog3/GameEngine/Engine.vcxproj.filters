@@ -35,7 +35,7 @@
     <ClInclude Include="MovingObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Prog3\Spel\brugd\Prog3\Ny mapp\Image.h">
+    <ClInclude Include="Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
