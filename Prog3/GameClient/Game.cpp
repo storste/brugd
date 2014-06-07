@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
 	alien->addAnimation("alien", &alien_anim);
 	alien->setAnimation("alien");
 
-	Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
-	test->setPosition(0, 0);
+	//Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
+	//test->setPosition(0, 0);
 
 	//Alien a2("assets/alien.jpg", "Alien");
 	//a2.addAnimation("run", &b);
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 	mainState->addGameObject(&main_background);
 	//mainState->addGameObject(alien);
 	mainState->addGameObject(player);
-	mainState->addGameObject(test);
+	//mainState->addGameObject(test);
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
 
 	GameState *endState = new StateEnd();
