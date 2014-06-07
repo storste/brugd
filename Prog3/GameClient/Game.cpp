@@ -1,4 +1,6 @@
 #include "..\GameEngine\GameEngine.h"
+#include "..\GameEngine\MovingObject.h"
+
 
 #include "Player.h"
 #include "Alien.h"
@@ -18,41 +20,30 @@ int main(int argc, char *argv[])
 	GameEngine* engine = GameEngine::getInstance();
 
 	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
-	Animation b("assets/dude.bmp", 130, 150, 27, 7, 0);
-	Animation alien_anim("assets/alien.jpg", 40,38,2,2,0);
+	Animation alien_anim("assets/alien.png", 40,38,2,2,0);
+	Animation tank("assets/tank.png" ,70, 56, 7, 7, 0);
+	Animation idle_tank("assets/tank.png", 70, 56, 1, 1, 58);
 
-	Sprite* player = new Player();
-	player->addAnimation("run", &a);
+
+	Sprite* player = new Player;
+	player->addAnimation("run", &tank);
+	player->addAnimation("idle", &idle_tank);
 	player->setAnimation("run");
-	player->setPosition(100, 200);
+	player->setPosition(320, 430);
 	player->setName("Player");
 
-	//Alien* alienArray[5];
+	Alien* alienArray[5];
 
-	//for (int i = 0; i < 5; i++) {
-	//	alienArray[i] = new Alien("assets/alien.jpg", "Alien");
-	//	alienArray[i]->addAnimation("run", &b);
-	//	alienArray[i]->setAnimation("run");
-	//	alienArray[i]->setPosition((i * 80), 0);
-	//}
+	for (int i = 0; i < 5; i++) {
+		alienArray[i] = new Alien("assets/alien.jpg", "Alien");
+		alienArray[i]->addAnimation("run", &alien_anim);
+		alienArray[i]->setAnimation("run");
+		alienArray[i]->setPosition((i * 80), 0);
+	}
 	
 	Sprite* alien = new Alien ("assets/alien.jpg", "Alien");
 	alien->addAnimation("alien", &alien_anim);
 	alien->setAnimation("alien");
-
-	Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
-	test->setPosition(0, 0);
-
-	//Alien a2("assets/alien.jpg", "Alien");
-	//a2.addAnimation("run", &b);
-	//a2.setAnimation("run");
-	//a2.setPosition(40, 0);
-
-	//Sprite s2("assets/alien.jpg");
-	//s2.addAnimation("run", &b);
-	//s2.setAnimation("run");
-	//s2.setPosition(10, 20);
-	//s2.setName("Sprite");
 
 	// set up game states
 	GameState *introState = new StateIntro();
@@ -72,9 +63,10 @@ int main(int argc, char *argv[])
 	main_background.setPosition(0, 0);
 	main_background.toggle_collidable();
 	mainState->addGameObject(&main_background);
-	//mainState->addGameObject(alien);
+	for (int i = 4; i > -1; i--) {
+		mainState->addGameObject(alienArray[i]);
+	}
 	mainState->addGameObject(player);
-	mainState->addGameObject(test);
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
 
 	GameState *endState = new StateEnd();

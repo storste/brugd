@@ -12,8 +12,8 @@ public:
 	void update(int dt){
 
 		//std::cout << "Missile: update" << std::endl;
-		setPosition(getX(), _y - 2);
-		if (_y == 0 - _h)
+		setPosition(getX(), _y - 7);
+		if (_y < 0 - _h)
 			_visible = false;
 
 		for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
@@ -21,7 +21,7 @@ public:
 			if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
 				std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
-				//GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
+				GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
 				DoCollission();
 			}
 		}

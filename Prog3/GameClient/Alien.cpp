@@ -10,9 +10,17 @@ Alien::Alien(const char* filename, const char* name) : Sprite(filename)
 
 Alien::~Alien()
 {
+	std::cout << "aLIEN : I AAAAM DESTRUCTOR - WARAWRARARWARWA" << std::endl;
 }
 
 void Alien::update(int dt){
+
+	//if (flag == true) {
+
+	//	setPosition(_x, _y + 40);
+	//	dir = (dir == left ? right : left);
+	//	flag = false;
+	//}
 
 	if ((SDL_GetTicks() - ticks) > 500) {
 		Sprite::update();
@@ -24,8 +32,16 @@ void Alien::update(int dt){
 		}
 		else if (dir == right && getX() > 559)
 		{
-			setPosition(getX(), getY() + 40);
-			dir = left;
+			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+			{
+				if (a->getName() == "Alien"){
+					static_cast<Alien*>(a)->setPosition(a->getX(), a->getY() + 40);
+					static_cast<Alien*>(a)->dir = left;
+				}
+			}
+
+			//setPosition(getX() + 40, getY() );
+			//dir = left;
 			ticks = SDL_GetTicks();
 		}
 		else if (dir == left && getX() > 0)

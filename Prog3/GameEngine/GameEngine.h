@@ -59,7 +59,7 @@ private:
 	StateManager*		_stateManager;
 	//InputHandler* _inputHandler;
 
-	const int FPS = 60;
+	const int FPS = 1;
 	const int tickInterval = 1000 / FPS;
 	Uint32 nextTick = 0;
 	int delay = 0;
