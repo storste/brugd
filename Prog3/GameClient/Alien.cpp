@@ -8,6 +8,14 @@ Alien::Alien(const char* filename, const char* name) : Sprite(filename)
 	setPosition(0, 0);
 }
 
+Alien::Alien(Image* image, const char* name) : Sprite(image,name)
+{
+	_name = name;
+	dir = right;
+	setPosition(0, 0);
+}
+
+
 Alien::~Alien()
 {
 }

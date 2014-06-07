@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Sprite.h"
 #include "GameEngine.h"
+#include <assert.h>
 
 Sprite::Sprite(Animation* a){
 	_w = a->getW();
@@ -17,6 +18,16 @@ Sprite::Sprite(){
 Sprite::Sprite(const char* filename, const char * name) :Sprite(filename){
 	_name = name;
 	_visible = true;
+}
+
+Sprite::Sprite(Image* i, const char * name) : image(i){
+	texture = SDL_CreateTextureFromSurface(GameEngine::getInstance()->getRenderer(), image->getSurface());
+	assert(texture);
+	SDL_QueryTexture(texture, NULL, NULL, &_w, &_h);
+	std::cout << "setting w " << _w << " & h " << _h << " for sprite" << std::endl;
+	_name = name;
+	_visible = true;
+	
 }
 
 Sprite::Sprite(const char* filename)

@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
 {
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
-	Animation b("assets/dude.bmp", 130, 150, 27, 7, 0);
+	Animation a("Assets/giridao.png", 69, 63, 2, 8, 0);
+	Animation b("Assets/giridao.png", 71, 63, 8, 8, 0);
 	Animation alien_anim("assets/alien.jpg", 40,38,2,2,0);
 
 	Sprite* player = new Player();
@@ -36,9 +36,10 @@ int main(int argc, char *argv[])
 	//	alienArray[i]->setPosition((i * 80), 0);
 	//}
 	
-	Sprite* alien = new Alien ("assets/alien.jpg", "Alien");
-	alien->addAnimation("alien", &alien_anim);
-	alien->setAnimation("alien");
+	Image pic("assets/alien.jpg", true);
+	Sprite alien(&pic, "Alien");
+	alien.addAnimation("alien", &alien_anim);
+	alien.setAnimation("alien");
 
 	//Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
 	//test->setPosition(0, 0);
@@ -72,7 +73,7 @@ int main(int argc, char *argv[])
 	main_background.setPosition(0, 0);
 	main_background.toggle_collidable();
 	mainState->addGameObject(&main_background);
-	//mainState->addGameObject(alien);
+	mainState->addGameObject(&alien);
 	mainState->addGameObject(player);
 	//mainState->addGameObject(test);
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
