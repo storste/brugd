@@ -30,10 +30,10 @@ void StateMain::CheckTransition(){
 }
 
 void StateMain::HandleEvents(){
-	_world->getInputHandler()->Update();
+	_world->getInputHandler()->update();
 }
 
-void StateMain::Update(int dt){
+void StateMain::update(int dt){
 
 	for (std::list<GameObject*>::iterator itr = _objects.begin(); itr != _objects.end();)
 	{
@@ -49,16 +49,16 @@ void StateMain::Update(int dt){
 	}
 
 	for (auto& o : _objects){
-		o->Update(dt);
+		o->update(dt);
 	}
 }
 
-void StateMain::Render(){
+void StateMain::render(){
 	SDL_SetRenderDrawColor(_world->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(_world->getRenderer());
 
 	for (const auto& o : _objects){
-		o->Render();
+		o->render();
 	}
 
 	RenderScore();

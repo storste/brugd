@@ -10,19 +10,19 @@ Player::Player(const char* filename, const char* name) :Sprite(filename)
 }
 
 Player::Player(){}
-	
+
 Player::~Player(){
 	std::cout << "Player: Destructor" << std::endl;
 }
 
-void Player::Update(int dt){
+void Player::update(int dt){
 
-	Sprite::Update();
+	Sprite::update();
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-{
+	{
 		Shoot();
-}
+	}
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
@@ -64,16 +64,23 @@ void Player::Update(int dt){
 		Sprite::update();
 	}
 
-	for (const auto& o : GameEngine::getInstance()->getObjects()){
-
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
 		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
 			std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
 			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
-			
+
 		}
 	}
 }
 
+void Player::Shoot(){
+
+	printf("Shooting missile from position %d:%d\n", _x, _y);
+
+	Sprite* missile = new Missile("assets/missile.png", "Missile");
+	missile->setPosition(_x, _y - 20);
+	missile->toggle_collidable();
+	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
+}

@@ -70,15 +70,21 @@
   <ItemGroup>
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="IntroState.cpp" />
-    <ClCompile Include="MainState.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="StateEnd.cpp" />
+    <ClCompile Include="StateIntro.cpp" />
+    <ClCompile Include="StateMain.cpp" />
+    <ClCompile Include="StatePause.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
-    <ClInclude Include="IntroState.h" />
-    <ClInclude Include="MainState.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="StateEnd.h" />
+    <ClInclude Include="StateIntro.h" />
+    <ClInclude Include="StateMain.h" />
+    <ClInclude Include="StatePause.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine\Engine.vcxproj">

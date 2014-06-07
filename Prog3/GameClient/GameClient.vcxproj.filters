@@ -27,10 +27,19 @@
     <ClCompile Include="Alien.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainState.cpp">
+    <ClCompile Include="StateIntro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IntroState.cpp">
+    <ClCompile Include="StateMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StatePause.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,11 +50,20 @@
     <ClInclude Include="Alien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MainState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="StateIntro.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="IntroState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="StateMain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StatePause.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEnd.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

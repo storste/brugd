@@ -19,8 +19,8 @@ int main(int argc, char *argv[])
 {
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation a("assets/dude.png", 130, 150, 27, 7);
-	Animation b("assets/dude.bmp", 130, 150, 27, 7);
+	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
+	Animation b("assets/dude.bmp", 130, 150, 27, 7, 0);
 
 	Sprite* player = new Player();
 	player->addAnimation("run", &a);

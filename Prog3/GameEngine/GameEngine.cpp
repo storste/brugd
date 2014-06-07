@@ -24,9 +24,9 @@ void GameEngine::run(){
 		nextTick = SDL_GetTicks() + tickInterval;
 
 		_stateManager->getCurrentState()->HandleEvents();
-		_stateManager->getCurrentState()->Update(nextTick);
+		_stateManager->getCurrentState()->update(nextTick);
 		_stateManager->getCurrentState()->CheckTransition();
-		_stateManager->getCurrentState()->Render();
+		_stateManager->getCurrentState()->render();
 
 		delay = nextTick - SDL_GetTicks();
 		if (delay > 0){
@@ -46,10 +46,10 @@ void GameEngine::quit()
 
 //void GameEngine::HandleEvents()
 //{
-//	InputHandler::Instance()->Update();
+//	InputHandler::Instance()->update();
 //}
 //
-//void GameEngine::Update(int dt)
+//void GameEngine::update(int dt)
 //{
 //	//for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
 //	//{
@@ -63,7 +63,7 @@ void GameEngine::quit()
 //	//}
 //
 //	for (auto& o : objects){
-//		o->Update(dt);
+//		o->update(dt);
 //	}
 //}
 //
@@ -75,13 +75,13 @@ void GameEngine::quit()
 //	d->set_visible();
 //}
 //
-//void GameEngine::Render(){
+//void GameEngine::render(){
 //
 //	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 //	SDL_RenderClear(_renderer);
 //
 //	for (const auto& o : objects){
-//		o->Render();
+//		o->render();
 //	}
 //
 //	SDL_RenderPresent(_renderer);

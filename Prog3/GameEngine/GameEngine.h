@@ -34,8 +34,8 @@ public:
 
 	//void addGameObject(GameObject* d);
 	//void removeGameObject(GameObject* d);
-	//void Render();
-	//void Update(int dt);
+	//void render();
+	//void update(int dt);
 	//void HandleEvents();
 	//Uint8* getKeyStates();
 

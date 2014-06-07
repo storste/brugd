@@ -19,21 +19,21 @@ void StateIntro::CheckTransition(){
 }
 
 void StateIntro::HandleEvents() {
-	InputHandler::Instance()->Update();
+	InputHandler::Instance()->update();
 }
 
-void StateIntro::Update(int dt){
+void StateIntro::update(int dt){
 	for (const auto& o : _objects) {
-		o->Update(dt);
+		o->update(dt);
 	}
 }
 
-void StateIntro::Render(){
+void StateIntro::render(){
 
 	SDL_SetRenderDrawColor(GameEngine::getInstance()->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(GameEngine::getInstance()->getRenderer());
 
-	for (const auto& o : _objects) { o->Render(); }
+	for (const auto& o : _objects) { o->render(); }
 
 	SDL_RenderPresent(GameEngine::getInstance()->getRenderer());
 }

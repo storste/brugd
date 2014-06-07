@@ -12,10 +12,10 @@ Alien::~Alien()
 {
 }
 
-void Alien::Update(int dt){
+void Alien::update(int dt){
 
 	if ((SDL_GetTicks() - ticks) > 500) {
-		Sprite::Update();
+		Sprite::update();
 		std::cout << getX() << std::endl;
 
 

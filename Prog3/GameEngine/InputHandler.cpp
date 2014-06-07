@@ -12,10 +12,10 @@ InputHandler::~InputHandler()
 {
 }
 
-void InputHandler::Update()
+void InputHandler::update()
 {
 
-	//std::cout << "InputHandler: Update" << std::endl;
+	//std::cout << "InputHandler: update" << std::endl;
 
 	SDL_Event event;
 
