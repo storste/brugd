@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Bullet.h"
+#include "Missile.h"
 #include "../GameEngine/GameEngine.h"
 
 
@@ -55,13 +56,9 @@ void Player::update(int dt){
 		GameEngine::getInstance()->quit();
 	}
 
-	else if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-	{
-	}
-
 	else {
-		Sprite::setAnimation("idle");
-		Sprite::update();
+		//Sprite::setAnimation("idle");
+		//Sprite::update();
 	}
 
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
