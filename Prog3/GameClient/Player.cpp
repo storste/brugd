@@ -1,33 +1,28 @@
+#include <iostream>
 #include "Player.h"
 #include "Bullet.h"
 #include "../GameEngine/GameEngine.h"
-#include "../GameEngine/InputHandler.h"
-#include <iostream>
+
 
 Player::Player(const char* filename, const char* name) :Sprite(filename)
 {
-	setName(name);
+	_name = name;
 }
 
-Player::Player(){
+Player::Player(){}
 	
+Player::~Player(){
+	std::cout << "Player: Destructor" << std::endl;
 }
 
-Player::~Player()
+void Player::Update(int dt){
+
+	Sprite::Update();
+
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
 {
+		Shoot();
 }
-
-//const std::string Player::getName()
-//{
-//	return m_name;
-//}
-//
-//void Player::setName(const char* name)
-//{
-//	m_name = name;
-//}
-
-void Player::update(int dt){
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
@@ -71,20 +66,14 @@ void Player::update(int dt){
 
 	for (const auto& o : GameEngine::getInstance()->getObjects()){
 
-		if (static_cast<GameObject*>(this) != o && GameEngine::getInstance()->cd(this, o)){
-			std::cout << "Collision between " << this->getName() << " and " << o->getName() << std::endl;
+	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
-			GameEngine::getInstance()->removeGameObject(o);
+		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
+			std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
+
+			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
 			
 		}
-
-		//if (this != o){
-		//	std::cout << "Running CD for " << this->getName() << " and " << o->getName() << std::endl;
-		//	if (GameEngine::getInstance()->cd(this, o)){
-		//		std::cout << "player collided with " << o->getName() << std::endl;
-		//	}
-		//}
-
 	}
 }
 

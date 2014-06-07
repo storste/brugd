@@ -1,3 +1,4 @@
+#pragma once
 #include "InputHandler.h"
 #include "GameEngine.h"
 
@@ -11,8 +12,11 @@ InputHandler::~InputHandler()
 {
 }
 
-void InputHandler::update()
+void InputHandler::Update()
 {
+
+	//std::cout << "InputHandler: Update" << std::endl;
+
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event))
@@ -48,20 +52,6 @@ void InputHandler::onKeyUp()
 }
 
 bool InputHandler::isKeyDown(SDL_Scancode key)
-{
+{	
 	return (keystates && keystates[key] == 1 ? true : false);
-
-	//if (keystates != 0)
-	//{
-	//	if (keystates[key] == 1)
-	//	{
-	//		return true;
-	//	}
-	//	else
-	//	{
-	//		return false;
-	//	}
-	//	
-	//}
-	//return false;
 }

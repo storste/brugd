@@ -1,3 +1,4 @@
+#pragma once
 #include "Animation.h"
 #include "GameEngine.h"
 #include <SDL_image.h>

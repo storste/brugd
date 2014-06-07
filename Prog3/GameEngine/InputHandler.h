@@ -4,11 +4,10 @@
 class InputHandler
 {
 public:
-	void update();
 
 	static InputHandler* Instance()
 	{
-		if (instance == 0)
+		if (instance == nullptr)
 		{
 			instance = new InputHandler();
 		}
@@ -16,6 +15,7 @@ public:
 	}
 
 	bool InputHandler::isKeyDown(SDL_Scancode key);
+	void Update();
 
 private:
 	InputHandler();
