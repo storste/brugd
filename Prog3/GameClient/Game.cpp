@@ -3,8 +3,6 @@
 #include "Player.h"
 #include "Alien.h"
 #include "Missile.h"
-#include "Bullet.h"
-//#include "..\GameEngine\InputHandler.h"
 
 #include "StateIntro.h"
 #include "StateMain.h"
@@ -21,6 +19,7 @@ int main(int argc, char *argv[])
 
 	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
 	Animation b("assets/dude.bmp", 130, 150, 27, 7, 0);
+	Animation alien_anim("assets/alien.jpg", 40,38,2,2,0);
 
 	Sprite* player = new Player();
 	player->addAnimation("run", &a);
@@ -38,8 +37,8 @@ int main(int argc, char *argv[])
 	//}
 	
 	Sprite* alien = new Alien ("assets/alien.jpg", "Alien");
-	alien->addAnimation("run", &b);
-	alien->setAnimation("run");
+	alien->addAnimation("alien", &alien_anim);
+	alien->setAnimation("alien");
 
 	//Alien a2("assets/alien.jpg", "Alien");
 	//a2.addAnimation("run", &b);

@@ -69,7 +69,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Alien.cpp" />
-    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -80,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alien.h" />
-    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="StateEnd.h" />
@@ -99,6 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\alien.jpg" />
     <Image Include="Assets\animate.bmp" />
     <Image Include="Assets\bomb.png" />
     <Image Include="Assets\dude.bmp" />

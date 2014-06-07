@@ -1,7 +1,5 @@
 #include <iostream>
 #include "Player.h"
-#include "Bullet.h"
-#include "Missile.h"
 #include "../GameEngine/GameEngine.h"
 
 
@@ -71,12 +69,3 @@ void Player::update(int dt){
 	}
 }
 
-void Player::Shoot(){
-
-	printf("Shooting missile from position %d:%d\n", _x, _y);
-
-	Sprite* missile = new Missile("assets/missile.png", "Missile");
-	missile->setPosition(_x, _y - 20);
-	missile->toggle_collidable();
-	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
-}
