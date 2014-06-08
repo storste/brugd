@@ -5,12 +5,12 @@
 
 StateEnd::StateEnd()
 {
-	std::cout << "StateEnd: Constructor" << std::endl;
+	//std::cout << "StateEnd: Constructor" << std::endl;
 }
 
 StateEnd::~StateEnd()
 {
-	std::cout << "StateEnd: Destructor" << std::endl;
+	//std::cout << "StateEnd: Destructor" << std::endl;
 }
 
 void StateEnd::checkTransition(){

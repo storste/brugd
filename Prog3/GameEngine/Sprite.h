@@ -27,7 +27,8 @@ public:
 	virtual void update();
 	virtual void update(int dt){}
 
-	virtual void doCollission(){ std::cout << "Sprite: doCollission()" << std::endl; };
+	virtual void doCollission(){ //std::cout << "Sprite: doCollission()" << std::endl; 
+	};
 
 	void addAnimation(std::string name, Animation* a);
 	void setAnimation(std::string name);

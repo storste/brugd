@@ -15,7 +15,7 @@ InputHandler::~InputHandler()
 
 void InputHandler::update()
 {
-	//std::cout << "InputHandler: update" << std::endl;
+	////std::cout << "InputHandler: update" << std::endl;
 
 	SDL_Event event;
 	while (SDL_PollEvent(&event))

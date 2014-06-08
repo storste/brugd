@@ -14,10 +14,14 @@ public:
 	void doCollission(){}
 	void setCollideRight();
 	void setCollideLeft(); 
+	void decreaseUpdateSpeed(int);
 private:
 	int ticks;
 	bool collideRight;
 	bool collideLeft;
 	Direction dir;
+	void updateAliens(int x, int y, Direction d);
+	void updateAliens(int x, int y);
+	int updateSpeed;
 };
 

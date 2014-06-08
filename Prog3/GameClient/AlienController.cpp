@@ -3,7 +3,7 @@
 #include "..\GameEngine\GameEngine.h"
 
 
-AlienController::AlienController() : ticks(SDL_GetTicks()), collideRight(false), collideLeft(false), dir(right)
+AlienController::AlienController() : ticks(SDL_GetTicks()), collideRight(false), collideLeft(false), dir(right), updateSpeed(1000)
 {
 	m_name = "AlienController";
 }
@@ -21,53 +21,56 @@ void AlienController::setCollideLeft() {
 	collideLeft = true;
 }
 
+void AlienController::updateAliens(int x, int y, Direction d)
+{
+	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+	{
+		if (a->getName() == "Alien"){
+			static_cast<Alien*>(a)->updatePosition(x, y);
+			static_cast<Alien*>(a)->setDir(d);
+		}
+	}
+}
+
+void AlienController::updateAliens(int x, int y)
+{
+	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+	{
+		if (a->getName() == "Alien"){
+			static_cast<Alien*>(a)->updatePosition(x, y);
+		}
+	}
+}
+
+void AlienController::decreaseUpdateSpeed(int i){
+	updateSpeed = updateSpeed - i;
+	//std::cout << "Updatespeed: " << updateSpeed << std::endl;
+
+}
 
 void AlienController::update(int dt) {
 
-	if ((SDL_GetTicks() - ticks) > 500) {
+	if ((SDL_GetTicks() - ticks) > updateSpeed) {
 
 		if (collideRight) {
-			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
-			{
-				if (a->getName() == "Alien"){
-					static_cast<Alien*>(a)->updatePosition(0, 40);
-					static_cast<Alien*>(a)->setDir(left);
-				}
-			}
+			updateAliens(0, 40, left);
 			collideRight = false;
 			dir = left;
 		}
 		else if (collideLeft)
 		{
-			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
-			{
-				if (a->getName() == "Alien"){
-					static_cast<Alien*>(a)->updatePosition(0, 40);
-					static_cast<Alien*>(a)->setDir(right);
-				}
-			}
+			updateAliens(0, 40, right);
 			collideLeft = false;
 			dir = right;
 		}
 		else if (dir == right)
 		{
-			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
-			{
-				if (a->getName() == "Alien"){
-					static_cast<Alien*>(a)->updatePosition(40, 0);
-				}
-			}
+			updateAliens(40, 0);	
 		}
 
 		else if (dir == left)
 		{
-			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
-			{
-				if (a->getName() == "Alien"){
-					static_cast<Alien*>(a)->updatePosition(-40, 0);
-				}
-			}
-
+			updateAliens(-40, 0);
 		}
 
 		ticks = SDL_GetTicks();

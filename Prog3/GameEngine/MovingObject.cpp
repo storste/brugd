@@ -11,7 +11,7 @@ MovingObject::~MovingObject()
 }
 
 void MovingObject::update(int dt) {
-	std::cout << getX() << std::endl;
+	//std::cout << getX() << std::endl;
 	switch (dir)
 	{
 	case N:

@@ -15,6 +15,7 @@ Sprite::Sprite(){
 	m_visible = true;
 }
 
+
 Sprite::Sprite(std::string filename, std::string name) :Sprite(filename){
 	m_name = name;
 	m_visible = true;
@@ -56,7 +57,7 @@ void Sprite::render()
 void Sprite::update(){
 
 	if (m_currentAnimation){
-		//std::cout << animationTick << std::endl;
+		////std::cout << animationTick << std::endl;
 		m_currentAnimation->setPosition(_x, _y);
 		m_currentAnimation->playAnimation(m_animationTick);
 		m_animationTick++;

@@ -6,21 +6,16 @@
 
 StateMain::StateMain()
 {
-	std::cout << "Main state Constructor" << std::endl;
+	//std::cout << "Main state Constructor" << std::endl;
 	m_world = GameEngine::getInstance();
 }
 
 StateMain::~StateMain()
 {
-	std::cout << "Main state destructor" << std::endl;
+	//std::cout << "Main state destructor" << std::endl;
 }
 
 void StateMain::checkTransition(){
-
-	if (m_world->score == 5)
-	{
-		m_world->getStateManager()->setCurrentState(m_world->getStateManager()->getState("STATE_PAUSE"));
-	}
 
 	if (m_world->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
 	{
@@ -38,7 +33,7 @@ void StateMain::checkTransition(){
 //for (std::list<GameObject*>::iterator itr = m_objects.begin(); itr != m_objects.end();)
 //{
 //	if ((*itr)->is_visible() == false){
-//		std::cout << (*itr)->getName() << " is not visible" << std::endl;
+//		//std::cout << (*itr)->getName() << " is not visible" << std::endl;
 //		delete (*itr);
 //		itr = m_objects.erase(itr);
 //	}

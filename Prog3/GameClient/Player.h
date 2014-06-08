@@ -9,6 +9,7 @@ public:
 	void update(int dt);
 	Player(std::string filename, std::string name);
 	Player();
+	void doCollission();
 	~Player();
 	void Shoot();
 
