@@ -7,7 +7,6 @@
 
 Sprite::Sprite(){
 	m_visible = true;
-	std::cout << "Sprite constructed" << std::endl;
 }
 
 Sprite* Sprite::getInstance(Image* i, std::string name){

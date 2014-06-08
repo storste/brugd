@@ -24,13 +24,12 @@ int main(int argc, char *argv[])
 
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
 	Animation alien_anim("assets/alien.png", 20, 19, 2, 2, 0);
 	Animation tank("assets/tank.png", 70, 52, 7, 7, 0);
 	Animation idle_tank("assets/tank.png", 70, 52, 1, 1, 58);
 	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
 
-	AnimatedSprite* player = Player::getInstance();
+	Player* player = Player::getInstance();
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
 	player->setAnimation("run");
@@ -81,7 +80,6 @@ int main(int argc, char *argv[])
 	}
 	mainState->addGameObject(ac);
 	mainState->addGameObject(player);
-	mainState->addGameObject(asp);
 	engine->getStateManager()->addGameState("STATE_MAIN", mainState);
 
 
@@ -92,8 +90,8 @@ int main(int argc, char *argv[])
 	
 
 	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&AnimatedSprite::shoot, player);
-	/*engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&AnimatedSprite::moveRight, player);
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&AnimatedSprite::moveLeft, player);*/
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&Player::moveRight, player);
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&Player::moveLeft, player);
 
 	// run game
 	engine->run();
