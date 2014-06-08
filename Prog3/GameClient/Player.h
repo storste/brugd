@@ -10,7 +10,10 @@ public:
 	Player(std::string filename, std::string name);
 	Player();
 	~Player();
-	void Shoot();
+
+	void shoot();
+	void moveRight();
+	void moveLeft();
 
 private:
 	int timeSinceLastShot;

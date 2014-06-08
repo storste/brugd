@@ -17,34 +17,6 @@ void Player::update(int dt){
 	if (getAnimation())
 		Sprite::update();
 
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
-	{
-		if (SDL_GetTicks() - timeSinceLastShot > 300)
-		{
-			Shoot();
-			timeSinceLastShot = SDL_GetTicks();
-		}
-
-	}
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
-	{
-		Sprite::setAnimation("run");
-		animationFlip = true;
-		Sprite::getAnimation()->setFlip(animationFlip);
-		if (!(_x > w - 65))
-			setPosition(getX() + 2, getY());
-	}
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
-	{
-		Sprite::setAnimation("run");
-		animationFlip = false;
-		Sprite::getAnimation()->setFlip(animationFlip);
-		if (!(_x < 1))
-			setPosition(getX() - 2, getY());
-	}
-
 	if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
 		Sprite::setAnimation("idle");
@@ -62,18 +34,33 @@ void Player::update(int dt){
 	}
 }
 
-void Player::Shoot(){
+void Player::shoot(){
 
-	printf("Shooting missile from position %d:%d\n", _x, _y);
+	if (SDL_GetTicks() - timeSinceLastShot > 300)
+	{
+		Image missileImage("assets/bullet.png", true);
+		Sprite* missile = new Missile(&missileImage, "a");
 
-	Image missileImage("assets/bullet.png", true);
-	Sprite* missile = new Missile(&missileImage, "a");
+		missile->setPosition(_x + (_w / 2) - 4, _y - 15);
 
-	missile->setPosition(_x + (_w / 2) - 4, _y - 15);
-
-
-
-	missile->toggle_collidable();
-	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
+		missile->toggle_collidable();
+		GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
+		timeSinceLastShot = SDL_GetTicks();
+	}
 }
 
+void Player::moveRight(){
+	Sprite::setAnimation("run");
+	animationFlip = true;
+	Sprite::getAnimation()->setFlip(animationFlip);
+	if (!(_x > w - 65))
+		setPosition(getX() + 2, getY());
+}
+
+void Player::moveLeft(){
+	Sprite::setAnimation("run");
+	animationFlip = false;
+	Sprite::getAnimation()->setFlip(animationFlip);
+	if (!(_x < 1))
+		setPosition(getX() - 2, getY());
+}

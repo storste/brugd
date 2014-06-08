@@ -9,6 +9,7 @@
 class Sprite :public GameObject {
 
 public:
+	virtual void shoot(){}
 
 	Sprite* getSprite(){
 		return new Sprite();

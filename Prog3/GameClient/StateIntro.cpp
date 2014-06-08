@@ -18,3 +18,7 @@ void StateIntro::checkTransition(){
 	}
 }
 
+void StateIntro::update(int ticks){
+
+}
+

@@ -19,17 +19,24 @@ int main(int argc, char *argv[])
 	GameEngine* engine = GameEngine::getInstance();
 
 	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
-	Animation alien_anim("assets/alien.png", 40,38,2,2,0);
-	Animation tank("assets/tank.png" ,70, 56, 7, 7, 0);
+	Animation alien_anim("assets/alien.png", 40, 38, 2, 2, 0);
+	Animation tank("assets/tank.png", 70, 56, 7, 7, 0);
 	Animation idle_tank("assets/tank.png", 70, 56, 1, 1, 58);
 
 
-	Sprite* player = new Player;
-	player->addAnimation("run", &tank);
-	player->addAnimation("idle", &idle_tank);
-	player->setAnimation("run");
-	player->setPosition(320, 430);
-	player->setName("Player");
+	//Sprite* player = new Player;
+	//player->addAnimation("run", &tank);
+	//player->addAnimation("idle", &idle_tank);
+	//player->setAnimation("run");
+	//player->setPosition(320, 430);
+	//player->setName("Player");
+
+	Player player;
+	player.addAnimation("run", &tank);
+	player.addAnimation("idle", &idle_tank);
+	player.setAnimation("run");
+	player.setPosition(320, 430);
+	player.setName("Player");
 
 	Alien* alienArray[5];
 
@@ -40,8 +47,8 @@ int main(int argc, char *argv[])
 		alienArray[i]->setAnimation("run");
 		alienArray[i]->setPosition((i * 80), 0);
 	}
-	
-	
+
+
 	//Sprite* alien = new Alien(&pic, "Alien2");
 	//alien->toggle_collidable();
 	//alien.addAnimation("alien", &alien_anim);
@@ -67,6 +74,9 @@ int main(int argc, char *argv[])
 	intro_background.setPosition(0, 0);
 	introState->addGameObject(&intro_background);
 	engine->getStateManager()->addGameState("STATE_INTRO", introState);
+	//	engine->getStateManager()->getState("STATE_INTRO")->addKeyFunction(SDL_SCANCODE_SPACE, &Player::shoot, player);
+	//std::bind(&ChildB::Walk, ChildB());
+
 
 	GameState *pauseState = new StatePause();
 	Sprite pause_background("assets/pause.png", "Pause background");
@@ -84,14 +94,22 @@ int main(int argc, char *argv[])
 		mainState->addGameObject(alienArray[i]);
 	}
 
-	mainState->addGameObject(player);
+	mainState->addGameObject(&player);
 	engine->getStateManager()->addGameState("STATE_MAIN", mainState);
 
 	GameState *endState = new StateEnd();
 	engine->getStateManager()->addGameState("STATE_END", endState);
 
 	engine->getStateManager()->setCurrentState(introState);
-	
+
+
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, &player);
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&Player::moveRight, &player);
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&Player::moveLeft, &player);
+
+
+	std::cout << engine->getStateManager()->getState("STATE_MAIN")->getKeyMap().size() << std::endl;
+
 	// run game
 	engine->run();
 
