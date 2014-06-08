@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 	AnimatedSprite* player = Player::getInstance();
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
-	player->addAnimation("explosion", &alienExp);
 	player->setAnimation("run");
 	player->setPosition(GameEngine::getInstance()->getWidth() / 2, GameEngine::getInstance()->getHeight() - 52);
 	player->setName("Tank");
@@ -82,6 +81,7 @@ int main(int argc, char *argv[])
 	}
 	mainState->addGameObject(ac);
 	mainState->addGameObject(player);
+	mainState->addGameObject(asp);
 	engine->getStateManager()->addGameState("STATE_MAIN", mainState);
 
 
