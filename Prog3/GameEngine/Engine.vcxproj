@@ -109,9 +109,11 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="StateManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Image.cpp" />

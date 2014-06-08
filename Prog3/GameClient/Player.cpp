@@ -2,9 +2,9 @@
 #include "Player.h"
 #include "../GameEngine/GameEngine.h"
 
-Player::Player(std::string filename, std::string name) :Sprite(filename, name), timeSinceLastShot(SDL_GetTicks()), w(640), h(480)
-{
-}
+//Player::Player(std::string filename, std::string name) :Sprite(filename, name), timeSinceLastShot(SDL_GetTicks()), w(640), h(480)
+//{
+//}
 
 Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(640), h(480) {}
 
@@ -15,7 +15,7 @@ Player::~Player(){
 void Player::update(int dt){
 
 	if (getAnimation())
-	Sprite::update();
+	AnimatedSprite::update();
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
@@ -29,26 +29,26 @@ void Player::update(int dt){
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		Sprite::setAnimation("run");
+		AnimatedSprite::setAnimation("run");
 		animationFlip = true;
-		Sprite::getAnimation()->setFlip(animationFlip);
+		AnimatedSprite::getAnimation()->setFlip(animationFlip);
 		if (!(_x > w - 65))
 			setPosition(getX() + 2, getY());
 	}
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
-		Sprite::setAnimation("run");
+		AnimatedSprite::setAnimation("run");
 		animationFlip = false;
-		Sprite::getAnimation()->setFlip(animationFlip);
+		AnimatedSprite::getAnimation()->setFlip(animationFlip);
 		if (!(_x < 1))
 			setPosition(getX() - 2, getY());
 	}
 
 	if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		Sprite::setAnimation("idle");
-		Sprite::getAnimation()->setFlip(animationFlip);
+		AnimatedSprite::setAnimation("idle");
+		AnimatedSprite::getAnimation()->setFlip(animationFlip);
 	}
 
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){

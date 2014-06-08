@@ -1,16 +1,15 @@
 #pragma once
 #include "..\GameEngine\GameEngine.h"
-#include "..\GameEngine\Sprite.h"
+#include "..\GameEngine\AnimatedSprite.h"
 
 enum Direction {
 	left,
 	right
 };
 
-class Alien :
-	public Sprite {
+class Alien : public AnimatedSprite {
 public:
-	Alien(Image* image, std::string name);
+	Alien(std::string name);
 	~Alien();
 	Direction dir;
 	void update(int dt);

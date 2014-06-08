@@ -23,7 +23,6 @@ void AlienController::setCollideLeft() {
 
 
 void AlienController::update(int dt) {
-
 	if ((SDL_GetTicks() - ticks) > 500) {
 
 		if (collideRight) {

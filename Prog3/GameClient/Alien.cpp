@@ -2,7 +2,7 @@
 #include "AlienController.h"
 #include <iostream>
 
-Alien::Alien(Image* image, std::string name) : Sprite(image, name)
+Alien::Alien(std::string name) : AnimatedSprite(name)
 {
 	dir = right;
 	setPosition(0, 0);
@@ -15,7 +15,6 @@ Alien::~Alien()
 }
 
 void Alien::update(int dt){
-
 
 	//	if (dir == right && getX() < 600)
 	//	{
