@@ -1,6 +1,9 @@
 #include "Alien.h"
 #include "AlienController.h"
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include "../GameEngine/GameEngine.h"
 
 
 Alien* Alien::getInstance(std::string name){
@@ -21,17 +24,15 @@ Alien::~Alien()
 			static_cast<AlienController*>(a)->decreaseUpdateSpeed(20);
 }
 	}
-	std::cout << "alien död" << std::endl;
 }
 
 void Alien::update(int dt){
 
-	if (SDL_GetTicks() - ticks > 2000) {
-		if (clearBelow()){
+	int random = rand() % 300 + 1;
+
+		if (random == 1 && clearBelow()){
 			Shoot();
-			ticks = SDL_GetTicks();
 		}
-	}
 
 	if (dir == right && _x > GameEngine::getInstance()->getWidth() - 41)
 		{
@@ -42,7 +43,7 @@ void Alien::update(int dt){
 				}
 			}
 		}
-	else if (dir == left && _x < 1)
+	else if (dir == left && _x < 10)
 	{
 		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 		{
@@ -61,7 +62,7 @@ void Alien::doCollission(){
 
 void Alien::updatePosition(int x, int y) {
 	setPosition(_x + x, _y + y);
-	Sprite::update();
+	AnimatedSprite::update();
 }
 
 void Alien::setDir(Direction d){
@@ -88,8 +89,8 @@ bool Alien::clearBelow(){
 void Alien::Shoot(){
 
 
-	Image missileImage("assets/bullet.png", true);
-	Sprite* missile = new Bomb(&missileImage, "a");
+	Image bombImage("assets/redLaserRay.png", true);
+	Sprite* missile = new Bomb(&bombImage, "a");
 
 	missile->setPosition(_x + (_w / 2) - 4, _y + 30);
 

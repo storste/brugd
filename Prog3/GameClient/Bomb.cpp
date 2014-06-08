@@ -21,7 +21,7 @@ void Bomb::update(int dt){
 			//std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
 			o->doCollission();
-			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
+			//GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
 			doCollission();
 		}
 	}
