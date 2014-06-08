@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	Animation idle_tank("assets/tank.png", 70, 52, 1, 1, 58);
 	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
 
-	AnimatedSprite* player = Player::getInstance();
+	Player* player = Player::getInstance();
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
 	player->setAnimation("run");
@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	//Image alien("assets/alien.jpg", true);
 	for (int a = 0; a < 50; a += 5) {
 		for (int b = 0; b < 5; b++) {
-			alienArray[a + b] = new Alien("Alien");
+			alienArray[a + b] = Alien::getInstance("Alien");
 			alienArray[a + b]->addAnimation("run", &alien_anim);
 			alienArray[a + b]->addAnimation("explosion", &alienExp);
 			alienArray[a + b]->setAnimation("run");
@@ -48,25 +48,6 @@ int main(int argc, char *argv[])
 	
 	
 
-
-	//Sprite* alien = new Alien(&pic, "Alien2");
-	//alien->toggle_collidable();
-	//alien.addAnimation("alien", &alien_anim);
-	//alien.setAnimation("alien");
-
-	//Sprite* test = new MovingObject("assets/poteto.bmp", E, 3);
-	//test->setPosition(0, 0);
-
-	//Alien a2("assets/alien.jpg", "Alien");
-	//a2.addAnimation("run", &b);
-	//a2.setAnimation("run");
-	//a2.setPosition(40, 0);
-
-	//Sprite s2("assets/alien.jpg");
-	//s2.addAnimation("run", &b);
-	//s2.setAnimation("run");
-	//s2.setPosition(10, 20);
-	//s2.setName("Sprite");
 
 	// set up game states
 	GameState *introState = new StateIntro();
@@ -107,9 +88,9 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->setCurrentState(introState);
 	
 
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, &player);
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&Player::moveRight, &player);
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&Player::moveLeft, &player);
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, player);
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&Player::moveRight, player);
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&Player::moveLeft, player);
 
 
 	std::cout << engine->getStateManager()->getState("STATE_MAIN")->getKeyMap().size() << std::endl;

@@ -54,9 +54,9 @@ void Player::shoot(){
 }
 
 void Player::moveRight(){
-	Sprite::setAnimation("run");
+	setAnimation("run");
 	animationFlip = true;
-	Sprite::getAnimation()->setFlip(animationFlip);
+	getAnimation()->setFlip(animationFlip);
 	if (!(_x > w - 65))
 		setPosition(getX() + 2, getY());
 }
@@ -66,9 +66,9 @@ void Player::doCollission(){
 }
 
 void Player::moveLeft(){
-	Sprite::setAnimation("run");
+	setAnimation("run");
 	animationFlip = false;
-	Sprite::getAnimation()->setFlip(animationFlip);
+	getAnimation()->setFlip(animationFlip);
 	if (!(_x < 1))
 		setPosition(getX() - 2, getY());
 }
