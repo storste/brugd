@@ -28,6 +28,9 @@ Alien::~Alien()
 
 void Alien::update(int dt){
 
+	if (SDL_GetTicks() % 9 == 0)
+	AnimatedSprite::update();
+
 	int random = rand() % 400 + 1;
 
 		if (random == 1 && clearBelow()){
@@ -62,7 +65,6 @@ void Alien::doCollission(){
 
 void Alien::updatePosition(int x, int y) {
 	setPosition(_x + x, _y + y);
-	AnimatedSprite::update();
 }
 
 void Alien::setDir(Direction d){
