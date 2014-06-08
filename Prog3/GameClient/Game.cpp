@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation alien_anim("assets/ufo.png", 25, 19, 12, 12, 0);
+	Animation alien_anim("assets/ufo2.png", 40, 30, 12, 12, 0);
 	Animation tank("assets/tank3.png", 70, 52, 7, 7, 0);
 	Animation idle_tank("assets/tank3.png", 70, 52, 1, 1, 58);
 	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
@@ -44,28 +44,28 @@ int main(int argc, char *argv[])
 		alienArray[i]->addAnimation("run", &alien_anim);
 		alienArray[i]->addAnimation("explosion", &alienExp);
 		alienArray[i]->setAnimation("run");
-		alienArray[i]->setPosition(i * 30, 0);
+		alienArray[i]->setPosition(i * 40, 0);
 	}
 	for (int i = 0; i < 15; i++) {
 		alienArray[i + 15] = Alien::getInstance("Alien");
 		alienArray[i + 15]->addAnimation("run", &alien_anim);
 		alienArray[i + 15]->addAnimation("explosion", &alienExp);
 		alienArray[i + 15]->setAnimation("run");
-		alienArray[i + 15]->setPosition(i * 30, 30);
+		alienArray[i + 15]->setPosition(i * 40, 30);
 	}
 	for (int i = 0; i < 15; i++) {
 		alienArray[i + 30] = Alien::getInstance("Alien");
 		alienArray[i + 30]->addAnimation("run", &alien_anim);
 		alienArray[i + 30]->addAnimation("explosion", &alienExp);
 		alienArray[i + 30]->setAnimation("run");
-		alienArray[i + 30]->setPosition(i * 30, 60);
+		alienArray[i + 30]->setPosition(i * 40, 60);
 		}
 	for (int i = 0; i < 15; i++) {
 		alienArray[i + 45] = Alien::getInstance("Alien");
 		alienArray[i + 45]->addAnimation("run", &alien_anim);
 		alienArray[i + 45]->addAnimation("explosion", &alienExp);
 		alienArray[i + 45]->setAnimation("run");
-		alienArray[i + 45]->setPosition(i * 30, 90);
+		alienArray[i + 45]->setPosition(i * 40, 90);
 	}
 	
 	
