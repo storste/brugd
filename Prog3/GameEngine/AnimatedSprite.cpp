@@ -44,7 +44,6 @@ void AnimatedSprite::render()
 void AnimatedSprite::update(){
 
 	if (m_currentAnimation){
-		//std::cout << animationTick << std::endl;
 		m_currentAnimation->setPosition(_x, _y);
 		m_currentAnimation->playAnimation(m_animationTick);
 		m_animationTick++;

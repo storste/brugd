@@ -21,14 +21,14 @@ Alien::~Alien()
 	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 	{
 		if (a->getName() == "AlienController"){
-			static_cast<AlienController*>(a)->decreaseUpdateSpeed(20);
+			static_cast<AlienController*>(a)->decreaseUpdateSpeed(15);
 }
 	}
 }
 
 void Alien::update(int dt){
 
-	int random = rand() % 300 + 1;
+	int random = rand() % 400 + 1;
 
 		if (random == 1 && clearBelow()){
 			Shoot();
