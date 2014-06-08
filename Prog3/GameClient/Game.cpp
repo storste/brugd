@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	}
 	for (int i = 0; i < 15; i++) {
 		alienArray[i + 15] = Alien::getInstance("Alien");
-		alienArray[i + 15]->addAnimation("run", &alien_anim2);
+		alienArray[i + 15]->addAnimation("run", &alien_anim);
 		alienArray[i + 15]->addAnimation("explosion", &alienExp);
 		alienArray[i + 15]->setAnimation("run");
 		alienArray[i + 15]->setPosition(i * 30, 30);
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 		}
 	for (int i = 0; i < 15; i++) {
 		alienArray[i + 45] = Alien::getInstance("Alien");
-		alienArray[i + 45]->addAnimation("run", &alien_anim2);
+		alienArray[i + 45]->addAnimation("run", &alien_anim);
 		alienArray[i + 45]->addAnimation("explosion", &alienExp);
 		alienArray[i + 45]->setAnimation("run");
 		alienArray[i + 45]->setPosition(i * 30, 90);
