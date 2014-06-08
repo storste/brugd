@@ -8,7 +8,7 @@
 Player* Player::getInstance(){
 	return new Player();
 }
-Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(640), h(480) {
+Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(800), h(600) {
 	std::cout << "im alive!";
 }
 
@@ -57,13 +57,12 @@ void Player::moveRight(){
 	setAnimation("run");
 	animationFlip = true;
 	getAnimation()->setFlip(animationFlip);
-	if (!(_x > w - 65))
+	if (!(_x > GameEngine::getInstance()->getWidth() - 65))
 		setPosition(getX() + 2, getY());
 }
 
 void Player::doCollission(){
 	std::cout << "Player: doCollission()" << std::endl;
-	AnimatedSprite::setAnimation("explosion");
 }
 
 void Player::moveLeft(){

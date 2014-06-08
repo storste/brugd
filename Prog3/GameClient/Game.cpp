@@ -30,10 +30,13 @@ int main(int argc, char *argv[])
 	Animation idle_tank("assets/tank.png", 70, 52, 1, 1, 58);
 	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
 
+	Image ballaballa("assets/explosion3.png", true);
+	Sprite* asp = Sprite::getInstance();
+	asp->setPosition(300, 300);
+
 	Player* player = Player::getInstance();
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
-	player->addAnimation("explosion", &alienExp);
 	player->setAnimation("run");
 	player->setPosition(GameEngine::getInstance()->getWidth() / 2, GameEngine::getInstance()->getHeight() - 52);
 	player->setName("Tank");
@@ -85,6 +88,7 @@ int main(int argc, char *argv[])
 	}
 	mainState->addGameObject(ac);
 	mainState->addGameObject(player);
+	mainState->addGameObject(asp);
 	engine->getStateManager()->addGameState("STATE_MAIN", mainState);
 
 
