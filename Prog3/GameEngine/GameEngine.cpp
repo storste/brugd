@@ -60,7 +60,13 @@ void GameEngine::quit()
 
 void GameEngine::handleEvents()
 {
-	InputHandler::Instance()->update();
+	InputHandler::Instance()->update();	
+	for (const auto& keys : _stateManager->getCurrentState()->getKeyMap()){
+		if (InputHandler::Instance()->isKeyDown(keys.first)){
+			_stateManager->getCurrentState()->getKeyMap()[keys.first]();
+		}
+	}
+
 }
 
 void GameEngine::render(){

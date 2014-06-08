@@ -14,6 +14,7 @@ public:
 	Animation* getAnimation();
 	virtual void render();
 	virtual void update();
+
 	friend class Sprite;
 
 private:

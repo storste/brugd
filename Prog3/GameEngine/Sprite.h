@@ -11,7 +11,7 @@ public:
 	static Sprite* getInstance();
 	static Sprite* getInstance(Image* i, std::string name);
 	virtual ~Sprite() = default;
-
+	virtual void shoot(){}
 	virtual void render();
 	virtual void update();
 	virtual void update(int dt){}

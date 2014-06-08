@@ -12,7 +12,10 @@ public:
 	
 	void doCollission();
 	~Player();
-	void Shoot();
+
+	void shoot();
+	void moveRight();
+	void moveLeft();
 
 private:
 	int timeSinceLastShot;
