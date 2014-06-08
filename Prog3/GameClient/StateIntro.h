@@ -9,6 +9,8 @@ public:
 		
 	void checkTransition() override;
 
+	void update(int ticks);
+
 private:
 
 };

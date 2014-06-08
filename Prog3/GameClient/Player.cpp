@@ -5,8 +5,12 @@
 //Player::Player(std::string filename, std::string name) :Sprite(filename, name), timeSinceLastShot(SDL_GetTicks()), w(640), h(480)
 //{
 //}
-
-Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(640), h(480) {}
+Player* Player::getInstance(){
+	return new Player();
+}
+Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(640), h(480) {
+	std::cout << "im alive!";
+}
 
 Player::~Player(){
 	//std::cout << "Player: Destructor" << std::endl;
@@ -16,34 +20,6 @@ void Player::update(int dt){
 
 	if (getAnimation())
 	AnimatedSprite::update();
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
-	{
-		if (SDL_GetTicks() - timeSinceLastShot > 500)
-		{
-		Shoot();
-			timeSinceLastShot = SDL_GetTicks();
-	}
-
-	}
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
-	{
-		AnimatedSprite::setAnimation("run");
-		animationFlip = true;
-		AnimatedSprite::getAnimation()->setFlip(animationFlip);
-		if (!(_x > GameEngine::getInstance()->getWidth() - 70))
-			setPosition(getX() + 2, getY());
-	}
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
-	{
-		AnimatedSprite::setAnimation("run");
-		animationFlip = false;
-		AnimatedSprite::getAnimation()->setFlip(animationFlip);
-		if (!(_x < 1))
-			setPosition(getX() - 2, getY());
-	}
 
 	if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
@@ -62,17 +38,27 @@ void Player::update(int dt){
 	}
 }
 
-void Player::Shoot(){
+void Player::shoot(){
 
+	if (SDL_GetTicks() - timeSinceLastShot > 300)
+	{
 	Image missileImage("assets/bullet.png", true);
 	Sprite* missile = new Missile(&missileImage, "a");
 
 	missile->setPosition(_x + (_w / 2) - 4, _y - 15);
 
-
-
 	missile->toggle_collidable();
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
+		timeSinceLastShot = SDL_GetTicks();
+	}
+}
+
+void Player::moveRight(){
+	setAnimation("run");
+	animationFlip = true;
+	getAnimation()->setFlip(animationFlip);
+	if (!(_x > w - 65))
+		setPosition(getX() + 2, getY());
 }
 
 void Player::doCollission(){
@@ -80,4 +66,10 @@ void Player::doCollission(){
 	AnimatedSprite::setAnimation("explosion");
 }
 
-
+void Player::moveLeft(){
+	setAnimation("run");
+	animationFlip = false;
+	getAnimation()->setFlip(animationFlip);
+	if (!(_x < 1))
+		setPosition(getX() - 2, getY());
+}

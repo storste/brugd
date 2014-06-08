@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <time.h>
 
+
+Alien* Alien::getInstance(std::string name){
+	return new Alien(name);
+}
+
 Alien::Alien(std::string name) : AnimatedSprite(name)
 {
 	dir = right;

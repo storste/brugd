@@ -8,33 +8,24 @@
 class Sprite :public GameObject {
 
 public:
-
-	Sprite* getSprite(){
-		return new Sprite();
-	}
-
-	Sprite(std::string filename);
-	Sprite(std::string filename, std::string name);
-	Sprite(Image* i, std::string name);
-	Sprite();
-
+	static Sprite* getInstance();
+	static Sprite* getInstance(Image* i, std::string name);
 	virtual ~Sprite() = default;
-
+	virtual void shoot(){}
 	virtual void render();
-
 	virtual void update();
 	virtual void update(int dt){}
 
 	virtual void doCollission(){ //std::cout << "Sprite: doCollission()" << std::endl; 
 	};
 
-	
-
 private:
 	Image* m_image;
 	SDL_Texture* m_texture;
 
 protected:
+	Sprite(Image* i, std::string name);
+	Sprite();
 };
 
 	

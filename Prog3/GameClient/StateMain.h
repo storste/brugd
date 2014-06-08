@@ -9,7 +9,7 @@ public:
 
 	//void update(int ticks) override;
 	void checkTransition() override;
-
+	
 private:
 
 };

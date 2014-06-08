@@ -13,7 +13,7 @@ enum Direction {
 
 class Alien : public AnimatedSprite {
 public:
-	Alien(std::string name);
+	static Alien* Alien::getInstance(std::string name);
 	~Alien();
 	Direction dir;
 	void update(int dt);
@@ -24,5 +24,7 @@ private:
 	Uint32 ticks;
 	bool Alien::clearBelow();
 	void Shoot();
+protected:
+	Alien(std::string name);
 };
 
