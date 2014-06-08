@@ -37,7 +37,7 @@ void Player::update(int dt){
 
 void Player::shoot(){
 
-	if (SDL_GetTicks() - timeSinceLastShot > 300)
+	if (SDL_GetTicks() - timeSinceLastShot > 300 && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
 	Image missileImage("assets/bullet.png", true);
 	Sprite* missile = new Missile(&missileImage, "a");
