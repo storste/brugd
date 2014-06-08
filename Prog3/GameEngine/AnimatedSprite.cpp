@@ -3,6 +3,12 @@
 #include <SDL_image.h>
 
 
+AnimatedSprite* AnimatedSprite::getInstance(){
+	return new AnimatedSprite();
+}
+AnimatedSprite* AnimatedSprite::getInstance(std::string name){
+	return new AnimatedSprite(name);
+}
 AnimatedSprite::AnimatedSprite(std::string name){
 	m_visible = true;
 	m_collidable = true;

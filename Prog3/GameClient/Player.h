@@ -6,9 +6,8 @@
 class Player : public AnimatedSprite {
 
 public:
+	static Player* Player::getInstance();
 	void update(int dt);
-	Player(std::string filename, std::string name);
-	Player();
 	~Player();
 	void Shoot();
 
@@ -17,5 +16,7 @@ private:
 	bool animationFlip;
 	int w;
 	int h;
+protected:
+	Player();
 };
 

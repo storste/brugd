@@ -5,8 +5,12 @@
 //Player::Player(std::string filename, std::string name) :Sprite(filename, name), timeSinceLastShot(SDL_GetTicks()), w(640), h(480)
 //{
 //}
-
-Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(640), h(480) {}
+Player* Player::getInstance(){
+	return new Player();
+}
+Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(640), h(480) {
+	std::cout << "im alive!";
+}
 
 Player::~Player(){
 	std::cout << "Player: Destructor" << std::endl;

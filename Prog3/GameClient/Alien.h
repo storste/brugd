@@ -9,7 +9,7 @@ enum Direction {
 
 class Alien : public AnimatedSprite {
 public:
-	Alien(std::string name);
+	static Alien* Alien::getInstance(std::string name);
 	~Alien();
 	Direction dir;
 	void update(int dt);
@@ -18,5 +18,7 @@ public:
 	void setDir(Direction);
 private:
 	Uint32 ticks;
+protected:
+	Alien(std::string name);
 };
 

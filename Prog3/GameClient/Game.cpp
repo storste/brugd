@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	Animation idle_tank("assets/tank.png", 70, 56, 1, 1, 58);
 	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
 
-	AnimatedSprite* player = new Player;
+	AnimatedSprite* player = Player::getInstance();
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
 	player->setAnimation("run");
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
 	//Image alien("assets/alien.jpg", true);
 	for (int i = 0; i < 5; i++) {
-		alienArray[i] = new Alien("Alien");
+		alienArray[i] = Alien::getInstance("Alien");
 		alienArray[i]->addAnimation("run", &alien_anim);
 		alienArray[i]->addAnimation("explosion", &alienExp);
 		alienArray[i]->setAnimation("run");
@@ -66,22 +66,25 @@ int main(int argc, char *argv[])
 
 	// set up game states
 	GameState *introState = new StateIntro();
-	Sprite intro_background("assets/intro.png", "Intro background");
-	intro_background.setPosition(0, 0);
-	introState->addGameObject(&intro_background);
+	Image introImage("assets/intro.png", true);
+	Sprite* intro_background = Sprite::getInstance(&introImage, "Intro background");
+	intro_background->setPosition(0, 0);
+	introState->addGameObject(intro_background);
 	engine->getStateManager()->addGameState("STATE_INTRO", introState);
 
 	GameState *pauseState = new StatePause();
-	Sprite pause_background("assets/pause.png", "Pause background");
-	pause_background.setPosition(0, 0);
-	pauseState->addGameObject(&pause_background);
+	Image pauseImage("assets/pause.png", true);
+	Sprite* pause_background = Sprite::getInstance(&pauseImage, "Intro background");
+	pause_background->setPosition(0, 0);
+	pauseState->addGameObject(pause_background);
 	engine->getStateManager()->addGameState("STATE_PAUSE", pauseState);
 
 	GameState *mainState = new StateMain();
-	Sprite main_background("assets/Orion_Nebula.jpg", "Main background");
-	main_background.setPosition(0, 0);
-	main_background.toggle_collidable();
-	mainState->addGameObject(&main_background);
+	Image OrionImage("assets/Orion_Nebula.jpg", true);
+	Sprite* main_background = Sprite::getInstance(&OrionImage, "Intro background");
+	main_background->setPosition(0, 0);
+	main_background->toggle_collidable();
+	mainState->addGameObject(main_background);
 
 	for (int i = 0; i < 5; i++) {
 		mainState->addGameObject(alienArray[i]);
