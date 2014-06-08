@@ -21,21 +21,18 @@ public:
 		_x = x; _y = y;
 	}
 
-	std::string getName() const { return _name; }
-	void setName(const char *name) { _name = name; }
+	std::string getName() const { return m_name; }
+	void setName(std::string name) { m_name = name; }
 
-	bool is_visible() const { return _visible; }
-	void set_visible() { _visible = false; }
+	bool is_visible() const { return m_visible; }
+	void set_visible() { m_visible = false; }
 
-	bool is_collidable() const { return _collidable; }
-	void toggle_collidable() { _collidable = !_collidable; }
+	bool is_collidable() const { return m_collidable; }
+	void toggle_collidable() { m_collidable = !m_collidable; }
 
 protected:
-	std::string _name;
+	std::string m_name;
 	int _x, _y, _w, _h;
-	bool _visible = true;
-	bool _collidable = false;
-
-private:
-
+	bool m_visible = true;
+	bool m_collidable = false;
 };

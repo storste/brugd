@@ -14,9 +14,9 @@ public:
 		return new Sprite();
 	}
 
-	Sprite(const char* filename);
-	Sprite(const char* filename, const char * name);
-	Sprite(Image* i, const char * name);
+	Sprite(std::string filename);
+	Sprite(std::string filename, std::string name);
+	Sprite(Image* i, std::string name);
 	Sprite(Animation* a);
 	Sprite();
 
@@ -30,17 +30,17 @@ public:
 	virtual void doCollission(){ std::cout << "Sprite: doCollission()" << std::endl; };
 
 	void addAnimation(std::string name, Animation* a);
-	void setAnimation(const char *name);
+	void setAnimation(std::string name);
 	Animation* getAnimation();
 
 private:
-	Image* image;
-	SDL_Texture* texture;
+	Image* m_image;
+	SDL_Texture* m_texture;
 
-	std::map<std::string, Animation*> animations;
-	Animation* currentAnimation;
+	std::map<std::string, Animation*> m_animations;
+	Animation* m_currentAnimation;
 
-	int animationTick;
+	int m_animationTick;
 
 protected:
 };

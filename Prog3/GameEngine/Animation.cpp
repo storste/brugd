@@ -8,9 +8,9 @@ void Animation::setPosition(int x, int y){
 	destinationRectangle.y = y;
 }
 
-Animation::Animation(const char* filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset) :flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow), yOffset(yOffset)
+Animation::Animation(std::string filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset) :flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow), yOffset(yOffset)
 {
-	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename);
+	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename.c_str());
 
 	sourceRectangle.w = frameWidth;
 	sourceRectangle.h = frameHeight;

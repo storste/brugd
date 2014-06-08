@@ -6,10 +6,26 @@
 #include <stack>
 #include <array>
 #include "GameEngine.h"
-//#include "InputHandler.h"
-//#include "StateManager.h"
 
-GameEngine* GameEngine::_instance;
+GameEngine* GameEngine::getInstance(){
+	static GameEngine _instance;
+	return &_instance;
+	//if (_instance == nullptr)
+	//{
+	//	_instance = new GameEngine();
+	//}
+	//return _instance;
+}
+
+SDL_Renderer* GameEngine::getRenderer()
+{
+	return _renderer;
+}
+
+StateManager* GameEngine::getStateManager()
+{
+	return _stateManager;
+}
 
 void GameEngine::run(){
 
@@ -23,10 +39,10 @@ void GameEngine::run(){
 
 		nextTick = SDL_GetTicks() + tickInterval;
 
-		_stateManager->getCurrentState()->HandleEvents();
+		handleEvents();
 		_stateManager->getCurrentState()->update(nextTick);
-		_stateManager->getCurrentState()->CheckTransition();
-		_stateManager->getCurrentState()->render();
+		_stateManager->getCurrentState()->checkTransition();
+		render();
 
 		delay = nextTick - SDL_GetTicks();
 		if (delay > 0){
@@ -36,57 +52,50 @@ void GameEngine::run(){
 	}
 }
 
-
 void GameEngine::quit()
 {
 	std::cout << "GameEngine: Quit" << std::endl;
-
 	running = false;
 }
 
-//void GameEngine::HandleEvents()
-//{
-//	InputHandler::Instance()->update();
-//}
-//
-//void GameEngine::update(int dt)
-//{
-//	//for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end();)
-//	//{
-//	//	if ((*itr)->is_visible() == false){
-//
-//	//		//delete (*itr);
-//	//		//itr = objects.erase(itr);
-//	//	}
-//	//	else
-//	//		++itr;
-//	//}
-//
-//	for (auto& o : objects){
-//		o->update(dt);
-//	}
-//}
-//
-//void GameEngine::addGameObject(GameObject* d){
-//	objects.push_back(d);
-//}
-//
-//void GameEngine::removeGameObject(GameObject* d){
-//	d->set_visible();
-//}
-//
-//void GameEngine::render(){
-//
-//	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-//	SDL_RenderClear(_renderer);
-//
-//	for (const auto& o : objects){
-//		o->render();
-//	}
-//
-//	SDL_RenderPresent(_renderer);
-//}
+void GameEngine::handleEvents()
+{
+	InputHandler::Instance()->update();
+}
 
+void GameEngine::render(){
+
+	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(_renderer);	
+
+	for (const auto& o : _stateManager->getCurrentState()->getObjects())
+		o->render();
+	
+	//renderScore();
+
+	SDL_RenderPresent(_renderer);
+}
+
+
+void GameEngine::renderScore(){
+
+	GameEngine* world = GameEngine::getInstance();
+
+	std::string score_text = "score: " + std::to_string(world->score);
+	SDL_Color textColor = { 255, 255, 255, 0 };
+	SDL_Surface* textSurface = TTF_RenderText_Solid(world->font, score_text.c_str(), textColor);
+	SDL_Texture* text = SDL_CreateTextureFromSurface(world->getRenderer(), textSurface);
+	int text_width = textSurface->w;
+	int text_height = textSurface->h;
+	SDL_FreeSurface(textSurface);
+	SDL_Rect clearQuad = { 20, 50 - 30, text_width + 30, text_height };
+	SDL_Rect renderQuad = { 20, 50 - 30, text_width, text_height };
+	SDL_SetRenderDrawColor(world->getRenderer(), 0, 0, 0, 0);
+	SDL_RenderFillRect(world->getRenderer(), &clearQuad);
+
+	SDL_RenderCopy(world->getRenderer(), text, NULL, &renderQuad);
+	SDL_DestroyTexture(text);
+}
 
 GameEngine::GameEngine(int width, int height) : screen_width(width), screen_height(height)
 {
@@ -180,25 +189,5 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	}
 
 	return true;
-}
-
-
-void GameEngine::setResolution(int w, int h){
-
-	std::cout << "Changing resolution to " << w << ":" << h << std::endl;
-
-	// funkar inte eftersom texturerna är laddade till den gamla rendern, behöver ladda in alla texturer igen... suck
-
-	//SDL_DestroyRenderer(_renderer);
-	//SDL_DestroyWindow(_window);
-
-	//_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN);
-	//if (_window == NULL)
-	//{
-	//	printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-	//}
-
-	//_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-
 }
 

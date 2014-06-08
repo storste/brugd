@@ -7,7 +7,7 @@ class Player : public Sprite {
 
 public:
 	void update(int dt);
-	Player(const char* filename, const char* name);
+	Player(std::string filename, std::string name);
 	Player();
 	~Player();
 	void Shoot();

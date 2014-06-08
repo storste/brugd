@@ -1,7 +1,6 @@
 #include "..\GameEngine\GameEngine.h"
 #include "..\GameEngine\MovingObject.h"
 
-
 #include "Player.h"
 #include "Alien.h"
 #include "AlienController.h"
@@ -36,16 +35,17 @@ int main(int argc, char *argv[])
 	AlienController* ac = new AlienController();
 	Alien* alienArray[5];
 
+	Image alien("assets/alien.jpg", true);
 	for (int i = 0; i < 5; i++) {
-		alienArray[i] = new Alien("assets/alien.jpg", "Alien");
+		alienArray[i] = new Alien(&alien, "Alien");
 		alienArray[i]->addAnimation("run", &alien_anim);
 		alienArray[i]->setAnimation("run");
 		alienArray[i]->setPosition((i * 80), 0);
 	}
 	
-	Image pic("assets/alien.jpg", true);
-	Sprite* alien = new Alien(&pic, "Alien2");
-	alien->toggle_collidable();
+	
+	//Sprite* alien = new Alien(&pic, "Alien2");
+	//alien->toggle_collidable();
 	//alien.addAnimation("alien", &alien_anim);
 	//alien.setAnimation("alien");
 
@@ -68,44 +68,35 @@ int main(int argc, char *argv[])
 	Sprite intro_background("assets/intro.png", "Intro background");
 	intro_background.setPosition(0, 0);
 	introState->addGameObject(&intro_background);
-	engine->getStateManager()->addGameState(STATE_INTRO, introState);
+	engine->getStateManager()->addGameState("STATE_INTRO", introState);
 
 	GameState *pauseState = new StatePause();
 	Sprite pause_background("assets/pause.png", "Pause background");
 	pause_background.setPosition(0, 0);
 	pauseState->addGameObject(&pause_background);
-	engine->getStateManager()->addGameState(STATE_PAUSE, pauseState);
+	engine->getStateManager()->addGameState("STATE_PAUSE", pauseState);
 
 	GameState *mainState = new StateMain();
 	Sprite main_background("assets/Orion_Nebula.jpg", "Main background");
 	main_background.setPosition(0, 0);
 	main_background.toggle_collidable();
 	mainState->addGameObject(&main_background);
+
 	for (int i = 0; i < 5; i++) {
 		mainState->addGameObject(alienArray[i]);
 	}
 	mainState->addGameObject(ac);
 	mainState->addGameObject(player);
-	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
+	engine->getStateManager()->addGameState("STATE_MAIN", mainState);
 
 
 	GameState *endState = new StateEnd();
-	engine->getStateManager()->addGameState(STATE_END, endState);
+	engine->getStateManager()->addGameState("STATE_END", endState);
 
 	engine->getStateManager()->setCurrentState(introState);
-	//engine->getStateManager()->stateID = STATE_INTRO;
-
-	//engine->addDrawable(&s2);
-	//engine->addDrawable(&player);
-
-	//for (int i = 0; i < 5; i++) {
-	//	engine->addDrawable(alienArray[i]);
-	//}
-
 
 	// run game
 	engine->run();
-
 
 	return (0);
 }

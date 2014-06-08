@@ -2,10 +2,8 @@
 #include "Player.h"
 #include "../GameEngine/GameEngine.h"
 
-
-Player::Player(const char* filename, const char* name) :Sprite(filename), timeSinceLastShot(SDL_GetTicks()), w(640), h(480)
+Player::Player(std::string filename, std::string name) :Sprite(filename, name), timeSinceLastShot(SDL_GetTicks()), w(640), h(480)
 {
-	_name = name;
 }
 
 Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(640), h(480) {}
@@ -16,11 +14,12 @@ Player::~Player(){
 
 void Player::update(int dt){
 
+	if (getAnimation())
 	Sprite::update();
 
 	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		if (SDL_GetTicks() - timeSinceLastShot > 500)
+		if (SDL_GetTicks() - timeSinceLastShot > 300)
 		{
 		Shoot();
 			timeSinceLastShot = SDL_GetTicks();
@@ -44,7 +43,6 @@ void Player::update(int dt){
 		Sprite::getAnimation()->setFlip(animationFlip);
 		if (!(_x < 1))
 			setPosition(getX() - 2, getY());
-
 	}
 
 	if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
@@ -52,22 +50,6 @@ void Player::update(int dt){
 		Sprite::setAnimation("idle");
 		Sprite::getAnimation()->setFlip(animationFlip);
 	}
-
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
-	{
-		//GameEngine::getInstance()->quit();
-	}
-
-	//if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-	//{
-	//	keyPressed = false;
-	//}
-
-
-	//else {
-	//	Sprite::setAnimation("idle");
-	//	Sprite::update();
-	//}
 
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
@@ -84,9 +66,13 @@ void Player::Shoot(){
 
 	printf("Shooting missile from position %d:%d\n", _x, _y);
 
-	Sprite* missile = new Missile("assets/bullet.png", "a");
+	Image missileImage("assets/bullet.png", true);
+	Sprite* missile = new Missile(&missileImage, "a");
+
 	missile->setPosition(_x + (_w / 2) - 4, _y - 15);
-	//Image missileImage("assets/missile.png", true);
+
+
+
 	missile->toggle_collidable();
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
 }

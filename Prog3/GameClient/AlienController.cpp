@@ -5,7 +5,7 @@
 
 AlienController::AlienController() : ticks(SDL_GetTicks()), collideRight(false), collideLeft(false), dir(right)
 {
-	_name = "AlienController";
+	m_name = "AlienController";
 }
 
 

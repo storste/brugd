@@ -2,20 +2,11 @@
 #include "AlienController.h"
 #include <iostream>
 
-Alien::Alien(const char* filename, const char* name) : Sprite(filename)
+Alien::Alien(Image* image, std::string name) : Sprite(image, name)
 {
-	_name = name;
 	dir = right;
 	setPosition(0, 0);
 }
-
-Alien::Alien(Image* image, const char* name) : Sprite(image, name)
-{
-	_name = name;
-	dir = right;
-	setPosition(0, 0);
-}
-
 
 Alien::~Alien()
 {
@@ -33,21 +24,21 @@ void Alien::update(int dt){
 	//	}
 
 	if (dir == right && _x > 599)
-	{
-		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 		{
+			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+			{
 			if (a->getName() == "AlienController"){
 				static_cast<AlienController*>(a)->setCollideRight();
+				}
 			}
 		}
-	}
 	else if (dir == left && _x < 1)
 	{
 		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 		{
 			if (a->getName() == "AlienController"){
 				static_cast<AlienController*>(a)->setCollideLeft();
-			}
+		}
 		}
 	}
 

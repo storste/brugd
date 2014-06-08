@@ -6,12 +6,11 @@
 class Missile :
 	public Sprite {
 public:
-	Missile(const char* filename, const char* name);
-	Missile(Image* image, const char* name);
+	Missile(Image* image, std::string name);
 	~Missile();
 
 	void update(int dt);
+	void doCollission();
 
-	void DoCollission();
 };
 

@@ -9,7 +9,7 @@ class MovingObject :
 	public Sprite
 {
 public:
-	MovingObject(const char* filename, MovementDirection dir, int velocity);
+	MovingObject(std::string filename, MovementDirection dir, int velocity);
 	~MovingObject();
 	void MovingObject::update(int dt);
 private:

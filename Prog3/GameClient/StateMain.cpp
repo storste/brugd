@@ -4,85 +4,57 @@
 #include "..\GameEngine\GameEngine.h"
 #include "Alien.h"
 
-
 StateMain::StateMain()
 {
-	_world = GameEngine::getInstance();
 	std::cout << "Main state Constructor" << std::endl;
+	m_world = GameEngine::getInstance();
 }
 
 StateMain::~StateMain()
 {
 	std::cout << "Main state destructor" << std::endl;
-
 }
 
-void StateMain::CheckTransition(){
+void StateMain::checkTransition(){
 
-	if (_world->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
+	if (m_world->score == 5)
 	{
-		_world->getStateManager()->setCurrentState(_world->getStateManager()->getState(STATE_PAUSE));
+		m_world->getStateManager()->setCurrentState(m_world->getStateManager()->getState("STATE_PAUSE"));
 	}
 
-	if (_world->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
+	if (m_world->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
 	{
-		_world->getStateManager()->setCurrentState(_world->getStateManager()->getState(STATE_END));
+		m_world->getStateManager()->setCurrentState(m_world->getStateManager()->getState("STATE_PAUSE"));
 	}
 
-}
-
-void StateMain::HandleEvents(){
-
-	_world->getInputHandler()->update();
-
-}
-
-void StateMain::update(int dt){
-
-	for (std::list<GameObject*>::iterator itr = _objects.begin(); itr != _objects.end();)
+	if (m_world->getInputHandler()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
-		if ((*itr)->is_visible() == false){
-			std::cout << (*itr)->getName() << " is not visible" << std::endl;
-			delete (*itr);
-			itr = _objects.erase(itr);
-		}
-		else{
-			++itr;
-		}
-	}
-
-	for (auto& o : _objects){
-		o->update(dt);
+		m_world->getStateManager()->setCurrentState(m_world->getStateManager()->getState("STATE_END"));
 	}
 }
 
-void StateMain::render(){
-	SDL_SetRenderDrawColor(_world->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(_world->getRenderer());
+//void StateMain::update(int dt){
 
-	for (const auto& o : _objects){
-		o->render();
-	}
+//for (std::list<GameObject*>::iterator itr = m_objects.begin(); itr != m_objects.end();)
+//{
+//	if ((*itr)->is_visible() == false){
+//		std::cout << (*itr)->getName() << " is not visible" << std::endl;
+//		delete (*itr);
+//		itr = m_objects.erase(itr);
+//	}
+//	else{
+//		++itr;
+//	}
+//}
 
-	RenderScore();
+//if ((_world->score > 0 && _world->score % 5 == 0) || m_objects.size() < 4){
+//	Image* alien_image = new Image("assets/alien.jpg", true);
+//	Sprite* alien = new Alien(alien_image, "Alien");
+//	alien->setPosition(3, 5);
+//	addGameObject(alien);
+//}
 
-	SDL_RenderPresent(_world->getRenderer());
-}
-
-void StateMain::RenderScore(){
-
-	std::string score_text = "score: " + std::to_string(_world->score);
-	SDL_Color textColor = { 255, 255, 255, 0 };
-	SDL_Surface* textSurface = TTF_RenderText_Solid(_world->font, score_text.c_str(), textColor);
-	SDL_Texture* text = SDL_CreateTextureFromSurface(_world->getRenderer(), textSurface);
-	int text_width = textSurface->w;
-	int text_height = textSurface->h;
-	SDL_FreeSurface(textSurface);
-	SDL_Rect clearQuad = { 20, 50 - 30, text_width + 30, text_height };
-	SDL_Rect renderQuad = { 20, 50 - 30, text_width, text_height };
-	SDL_SetRenderDrawColor(_world->getRenderer(), 0, 0, 0, 0);
-	SDL_RenderFillRect(_world->getRenderer(), &clearQuad);
-
-	SDL_RenderCopy(_world->getRenderer(), text, NULL, &renderQuad);
-	SDL_DestroyTexture(text);
-}
+//for (auto& o : m_objects){
+//	o->update(dt);
+//}
+//}
