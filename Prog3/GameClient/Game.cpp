@@ -91,9 +91,9 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->setCurrentState(introState);
 
 
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&AnimatedSprite::shoot, player);
-	/*engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&AnimatedSprite::moveRight, player);
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&AnimatedSprite::moveLeft, player);*/
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, static_cast<Player*>(player));
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&Player::moveRight, static_cast<Player*>(player));
+	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&Player::moveLeft, static_cast<Player*>(player));
 
 	// run game
 	engine->run();
