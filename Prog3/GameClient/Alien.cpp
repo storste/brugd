@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include "../GameEngine/GameEngine.h"
 
 
 Alien* Alien::getInstance(std::string name){
@@ -26,7 +27,7 @@ Alien::~Alien()
 }
 
 void Alien::update(int dt){
-	
+
 	int random = rand() % 300 + 1;
 
 		if (random == 1 && clearBelow()){
