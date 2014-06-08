@@ -2,11 +2,10 @@
 #include "StateMain.h"
 #include <iostream>
 #include "..\GameEngine\GameEngine.h"
-#include "Alien.h"
 
-StateMain::StateMain()
-{	
-	//std::cout << "Main state Constructor" << std::endl;
+StateMain::StateMain(int level)
+{
+	std::cout << "StateMain: level: " << getLevel() << std::endl;
 	m_world = GameEngine::getInstance();
 }
 
@@ -16,6 +15,22 @@ StateMain::~StateMain()
 }
 
 void StateMain::checkTransition(){
+
+	if (m_world->score == 40){
+		++m_level;
+		++m_world->score;
+
+		GameState *mainState = new StateMain(m_level);
+
+		mainState->getKeyMap() = this->m_keymap;
+
+		for (auto& o : getObjects()){
+			mainState->addGameObject(o);
+		}
+
+		m_world->getStateManager()->addGameState("STATE_MAIN_" + m_level, mainState);
+		m_world->getStateManager()->setCurrentState(m_world->getStateManager()->getState("STATE_MAIN_" + m_level));
+	}
 
 	if (m_world->getInputHandler()->isKeyDown(SDL_SCANCODE_P))
 	{
@@ -27,28 +42,3 @@ void StateMain::checkTransition(){
 		m_world->getStateManager()->setCurrentState(m_world->getStateManager()->getState("STATE_END"));
 	}
 }
-
-
-	//for (std::list<GameObject*>::iterator itr = m_objects.begin(); itr != m_objects.end();)
-	//{
-	//	if ((*itr)->is_visible() == false){
-//		//std::cout << (*itr)->getName() << " is not visible" << std::endl;
-	//		delete (*itr);
-	//		itr = m_objects.erase(itr);
-	//	}
-	//	else{
-	//		++itr;
-	//	}
-	//}
-
-	//if ((_world->score > 0 && _world->score % 5 == 0) || m_objects.size() < 4){
-	//	Image* alien_image = new Image("assets/alien.jpg", true);
-	//	Sprite* alien = new Alien(alien_image, "Alien");
-	//	alien->setPosition(3, 5);
-	//	addGameObject(alien);
-	//}
-
-	//for (auto& o : m_objects){
-	//	o->update(dt);
-	//}
-//}
