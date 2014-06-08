@@ -8,6 +8,9 @@ class Player : public AnimatedSprite {
 public:
 	static Player* Player::getInstance();
 	void update(int dt);
+
+	
+	void doCollission();
 	~Player();
 	void Shoot();
 

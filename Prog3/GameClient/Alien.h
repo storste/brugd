@@ -1,6 +1,10 @@
 #pragma once
 #include "..\GameEngine\GameEngine.h"
 #include "..\GameEngine\AnimatedSprite.h"
+#include "..\GameEngine\Sprite.h"
+#include "Missile.h"
+#include "Bomb.h"
+
 
 enum Direction {
 	left,
@@ -18,6 +22,8 @@ public:
 	void setDir(Direction);
 private:
 	Uint32 ticks;
+	bool Alien::clearBelow();
+	void Shoot();
 protected:
 	Alien(std::string name);
 };

@@ -29,13 +29,13 @@ StateManager* GameEngine::getStateManager()
 
 void GameEngine::run(){
 
-	std::cout << "GameEngine: Run" << std::endl;
+	//std::cout << "GameEngine: Run" << std::endl;
 
 	running = true;
 
 	while (running)
 	{
-		//std::cout << "GameEngine: tick " << nextTick << std::endl;
+		////std::cout << "GameEngine: tick " << nextTick << std::endl;
 
 		nextTick = SDL_GetTicks() + tickInterval;
 
@@ -54,7 +54,7 @@ void GameEngine::run(){
 
 void GameEngine::quit()
 {
-	std::cout << "GameEngine: Quit" << std::endl;
+	//std::cout << "GameEngine: Quit" << std::endl;
 	running = false;
 }
 
@@ -99,16 +99,16 @@ void GameEngine::renderScore(){
 
 GameEngine::GameEngine(int width, int height) : screen_width(width), screen_height(height)
 {
-	std::cout << "GameEngine: Constructor" << std::endl;
-	std::cout << FPS << std::endl;
-	std::cout << tickInterval << std::endl;
+	//std::cout << "GameEngine: Constructor" << std::endl;
+	//std::cout << FPS << std::endl;
+	//std::cout << tickInterval << std::endl;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+		//std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
 	}
 	else
 	{
-		std::cout << "SDL inititalized" << std::endl;
+		//std::cout << "SDL inititalized" << std::endl;
 		_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, screen_height, SDL_WINDOW_SHOWN);
 		if (_window == NULL)
 		{
@@ -124,12 +124,14 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 	}
 	else{
-		std::cout << "SDL_image inititalized" << std::endl;
+		//std::cout << "SDL_image inititalized" << std::endl;
 	}
 
-	if ((TTF_Init() < 0)) { std::cout << "could not initialize sdl_ttf" << std::endl; exit(1); }
+	if ((TTF_Init() < 0)) { //std::cout << "could not initialize sdl_ttf" << std::endl; 
+		exit(1); }
 	font = TTF_OpenFont("assets/comic.ttf", 28);
-	if (font == NULL) { std::cout << "could not load font" << std::endl; exit(1); }
+	if (font == NULL) { //std::cout << "could not load font" << std::endl; 
+		exit(1); }
 
 	_stateManager = new StateManager();
 
@@ -139,7 +141,7 @@ GameEngine::~GameEngine()
 {
 	SDL_DestroyRenderer(_renderer);
 	SDL_DestroyWindow(_window);
-	std::cout << "GameEngine: Destructor" << std::endl;
+	//std::cout << "GameEngine: Destructor" << std::endl;
 
 	//Quit TTF subsystems
 	if (ttf_init)
@@ -190,4 +192,13 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 
 	return true;
 }
+
+int GameEngine::getWidth() {
+	return screen_width;
+}
+
+int GameEngine::getHeight() {
+	return screen_height;
+}
+
 

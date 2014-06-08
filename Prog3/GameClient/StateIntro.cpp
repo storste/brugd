@@ -3,12 +3,12 @@
 #include "..\GameEngine\GameEngine.h"
 
 StateIntro::StateIntro() {
-	std::cout << "Intro state constructor" << std::endl;
+	//std::cout << "Intro state constructor" << std::endl;
 	m_world = GameEngine::getInstance();
 }
 
 StateIntro::~StateIntro() {
-	std::cout << "Intro state destructor" << std::endl;
+	//std::cout << "Intro state destructor" << std::endl;
 }
 
 void StateIntro::checkTransition(){

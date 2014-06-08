@@ -5,6 +5,9 @@
 #include "GameEngine.h"
 #include <assert.h>
 
+Sprite::Sprite(){
+	m_visible = true;
+}
 
 Sprite* Sprite::getInstance(Image* i, std::string name){
 	return new Sprite(i, name);

@@ -16,12 +16,13 @@ public:
 	virtual void update();
 	virtual void update(int dt){}
 
-	virtual void doCollission(){ std::cout << "Sprite: doCollission()" << std::endl; };
-	
+	virtual void doCollission(){ //std::cout << "Sprite: doCollission()" << std::endl; 
+	};
+
 private:
 	Image* m_image;
 	SDL_Texture* m_texture;
-	
+
 protected:
 	Sprite(Image* i, std::string name);
 	Sprite();
