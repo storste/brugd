@@ -24,10 +24,9 @@ int main(int argc, char *argv[])
 
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation alien_anim("assets/alien.png", 20, 19, 2, 2, 0);
-	Animation alien_anim2("assets/alien2.png", 20, 20, 2, 2, 0);
-	Animation tank("assets/tank.png", 70, 52, 7, 7, 0);
-	Animation idle_tank("assets/tank.png", 70, 52, 1, 1, 58);
+	Animation alien_anim("assets/ufo.png", 25, 19, 12, 12, 0);
+	Animation tank("assets/tank3.png", 70, 52, 7, 7, 0);
+	Animation idle_tank("assets/tank3.png", 70, 52, 1, 1, 58);
 	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
 
 	Player* player = Player::getInstance();
@@ -80,7 +79,7 @@ int main(int argc, char *argv[])
 	intro_background->setPosition(0, 0);
 	introState->addGameObject(intro_background);
 	engine->getStateManager()->addGameState("STATE_INTRO", introState);
-
+	
 	GameState *pauseState = new StatePause();
 	Image pauseImage("assets/pause.png", true);
 	Sprite* pause_background = Sprite::getInstance(&pauseImage, "Intro background");
@@ -89,7 +88,7 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->addGameState("STATE_PAUSE", pauseState);
 
 	GameState *mainState = new StateMain(0);
-	Image OrionImage("assets/Orion_Nebula.jpg", true);
+	Image OrionImage("assets/bg3.jpg", true);
 	Sprite* main_background = Sprite::getInstance(&OrionImage, "Intro background");
 	main_background->setPosition(0, 0);
 	main_background->toggle_collidable();
@@ -107,7 +106,7 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->addGameState("STATE_END", endState);
 
 	engine->getStateManager()->setCurrentState(introState);
-	
+
 
 	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, static_cast<Player*>(player));
 	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_RIGHT] = std::bind(&Player::moveRight, static_cast<Player*>(player));

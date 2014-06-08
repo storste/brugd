@@ -59,7 +59,8 @@ void Alien::update(int dt){
 
 void Alien::doCollission(){
 	setAnimation("explosion");
-	setPosition(getX()-20,getY()-20);
+	setPosition(getX()-30,getY()-33);
+	std::cout << "Alien: doCollission()" << std::endl;
 }
 
 void Alien::updatePosition(int x, int y) {
