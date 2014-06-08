@@ -7,7 +7,7 @@ public:
 	StateMain();
 	~StateMain();
 
-	void update(int ticks) override;
+	//void update(int ticks) override;
 	void checkTransition() override;
 
 private:

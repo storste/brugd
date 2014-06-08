@@ -28,19 +28,19 @@ void StateMain::checkTransition(){
 	}
 }
 
-void StateMain::update(int dt){
+//void StateMain::update(int dt){
 
-	for (std::list<GameObject*>::iterator itr = m_objects.begin(); itr != m_objects.end();)
-	{
-		if ((*itr)->is_visible() == false){
-			std::cout << (*itr)->getName() << " is not visible" << std::endl;
-			delete (*itr);
-			itr = m_objects.erase(itr);
-		}
-		else{
-			++itr;
-		}
-	}
+	//for (std::list<GameObject*>::iterator itr = m_objects.begin(); itr != m_objects.end();)
+	//{
+	//	if ((*itr)->is_visible() == false){
+	//		std::cout << (*itr)->getName() << " is not visible" << std::endl;
+	//		delete (*itr);
+	//		itr = m_objects.erase(itr);
+	//	}
+	//	else{
+	//		++itr;
+	//	}
+	//}
 
 	//if ((_world->score > 0 && _world->score % 5 == 0) || m_objects.size() < 4){
 	//	Image* alien_image = new Image("assets/alien.jpg", true);
@@ -49,7 +49,7 @@ void StateMain::update(int dt){
 	//	addGameObject(alien);
 	//}
 
-	for (auto& o : m_objects){
-		o->update(dt);
-	}
-}
+	//for (auto& o : m_objects){
+	//	o->update(dt);
+	//}
+//}
