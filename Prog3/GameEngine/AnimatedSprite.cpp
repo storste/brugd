@@ -2,7 +2,6 @@
 #include "AnimatedSprite.h"
 #include <SDL_image.h>
 
-
 AnimatedSprite* AnimatedSprite::getInstance(){
 	return new AnimatedSprite();
 }

@@ -27,5 +27,6 @@ void Missile::update(int dt){
 
 void Missile::doCollission(){
 	GameEngine::getInstance()->score++;
+	std::cout << "Increasing score: " << GameEngine::getInstance()->score << std::endl;
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(this);
 }

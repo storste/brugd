@@ -26,6 +26,6 @@ void Bomb::update(int dt){
 }
 
 void Bomb::doCollission(){
-	GameEngine::getInstance()->score++;
+	//GameEngine::getInstance()->score++;
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(this);
 }

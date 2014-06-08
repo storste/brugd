@@ -8,7 +8,6 @@ public:
 	~StateIntro();
 		
 	void checkTransition() override;
-	void exitState();
 	void update(int ticks);
 
 private:

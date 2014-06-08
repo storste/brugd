@@ -21,7 +21,7 @@ public:
 
 private:
 	int timeSinceLastShot;
-	bool animationFlip;
+	bool animationFlip = false;
 	int w;
 	int h;
 	Player();

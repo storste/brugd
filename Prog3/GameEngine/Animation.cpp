@@ -8,9 +8,13 @@ void Animation::setPosition(int x, int y){
 	destinationRectangle.y = y;
 }
 
-Animation::Animation(std::string filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset) :flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow), yOffset(yOffset)
+Animation::Animation(std::string filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset)
+	:flip(false), frameCount(frameCount), frameWidth(frameWidth), frameHeight(frameHeight), framesPerRow(framesPerRow), yOffset(yOffset)
 {
+	std::cout << "Animation: Constructor" << std::endl;
 	texture = IMG_LoadTexture(GameEngine::getInstance()->getRenderer(), filename.c_str());
+	if (texture == nullptr)
+		std::cout << "IMG_LoadTexture failed" << std::endl;
 
 	sourceRectangle.w = frameWidth;
 	sourceRectangle.h = frameHeight;
@@ -23,6 +27,7 @@ Animation::Animation(std::string filename, int frameWidth, int frameHeight, int 
 
 Animation::~Animation()
 {
+	std::cout << "Animation: Destructor" << std::endl;
 }
 
 void Animation::playAnimation(int dt) {
@@ -39,13 +44,13 @@ void Animation::renderAnimation(int x, int y){
 	destinationRectangle.y = y;
 
 	if (flip) {
+		
 		SDL_RenderCopyEx(GameEngine::getInstance()->getRenderer(), texture,
 			&sourceRectangle, &destinationRectangle,
 			0, 0, SDL_FLIP_HORIZONTAL); // pass in the horizontal flip
 	}
 	else {
-		SDL_RenderCopy(GameEngine::getInstance()->getRenderer(), texture, &sourceRectangle,
-			&destinationRectangle);
+		SDL_RenderCopy(GameEngine::getInstance()->getRenderer(), texture, &sourceRectangle, &destinationRectangle);
 	}
 }
 

@@ -2,8 +2,7 @@
 #include "SDL.h"
 #include <string>
 
-class Animation
-{
+class Animation {
 public:
 	Animation(std::string filename, int frameWidth, int frameHeight, int frameCount, int framesPerRow, int yOffset);
 	~Animation();
@@ -16,13 +15,13 @@ public:
 
 private:
 	int currentFrame;
-	SDL_Texture* texture;
-	
+	SDL_Texture* texture = nullptr;
+
 	SDL_Rect sourceRectangle;
 	SDL_Rect destinationRectangle;
 	int frameWidth;
 	int frameHeight;
-	bool flip;
+	bool flip = false;
 	int frameCount;
 	int framesPerRow;
 	int yOffset;

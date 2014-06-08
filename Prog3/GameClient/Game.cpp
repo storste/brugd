@@ -2,11 +2,11 @@
 
 #include <cstdlib>
 #include <ctime>
-
-#include "GameObjects\Player.h"
-#include "GameObjects\Alien.h"
-#include "GameObjects\AlienController.h"
-#include "GameObjects\Missile.h"
+//
+//#include "GameObjects\Player.h"
+//#include "GameObjects\Alien.h"
+//#include "GameObjects\AlienController.h"
+//#include "GameObjects\Missile.h"
 
 #include "GameStates\StateIntro.h"
 #include "GameStates\StateMain.h"
@@ -24,74 +24,14 @@ int main(int argc, char *argv[])
 
 	GameEngine* engine = GameEngine::getInstance();
 
-	Animation alien_anim("assets/ufo2.png", 40, 30, 12, 12, 0);
-	Animation tank("assets/tank3.png", 70, 52, 7, 7, 0);
-	Animation idle_tank("assets/tank3.png", 70, 52, 1, 1, 58);
-	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
-
-	Player* player = Player::getInstance();
-	player->addAnimation("run", &tank);
-	player->addAnimation("idle", &idle_tank);
-	player->setAnimation("run");
-	player->setPosition(GameEngine::getInstance()->getScreenWidth() / 2, GameEngine::getInstance()->getScreenHeight() - 52);
-	player->setName("Tank");
-
-	AlienController* ac = new AlienController();
-	Alien* alienArray[60];
-
-	for (int i = 0; i < 15; i++) {
-		alienArray[i] = Alien::getInstance("Alien");
-		alienArray[i]->addAnimation("run", &alien_anim);
-		alienArray[i]->addAnimation("explosion", &alienExp);
-		alienArray[i]->setAnimation("run");
-		alienArray[i]->setPosition(i * 40, 0);
-	}
-	for (int i = 0; i < 15; i++) {
-		alienArray[i + 15] = Alien::getInstance("Alien");
-		alienArray[i + 15]->addAnimation("run", &alien_anim);
-		alienArray[i + 15]->addAnimation("explosion", &alienExp);
-		alienArray[i + 15]->setAnimation("run");
-		alienArray[i + 15]->setPosition(i * 40, 30);
-	}
-	for (int i = 0; i < 15; i++) {
-		alienArray[i + 30] = Alien::getInstance("Alien");
-		alienArray[i + 30]->addAnimation("run", &alien_anim);
-		alienArray[i + 30]->addAnimation("explosion", &alienExp);
-		alienArray[i + 30]->setAnimation("run");
-		alienArray[i + 30]->setPosition(i * 40, 60);
-		}
-	for (int i = 0; i < 15; i++) {
-		alienArray[i + 45] = Alien::getInstance("Alien");
-		alienArray[i + 45]->addAnimation("run", &alien_anim);
-		alienArray[i + 45]->addAnimation("explosion", &alienExp);
-		alienArray[i + 45]->setAnimation("run");
-		alienArray[i + 45]->setPosition(i * 40, 90);
-	}
-	
-	
-
-
-
 	// set up game states
 	GameState *introState = new StateIntro();
 	engine->getStateManager()->addGameState("STATE_INTRO", introState);
-	
+
 	GameState *pauseState = new StatePause();
 	engine->getStateManager()->addGameState("STATE_PAUSE", pauseState);
 
-	GameState *mainState = new StateMain(0);
-	Image OrionImage("assets/bg3.jpg", true);
-	Sprite* main_background = Sprite::getInstance(&OrionImage, "Intro background");
-	main_background->setPosition(0, 0);
-	main_background->toggle_collidable();
-	mainState->addGameObject(main_background);
-
-	for (int i = 0; i < 60; i++) {
-		mainState->addGameObject(alienArray[i]);
-	}
-
-	mainState->addGameObject(ac);
-	mainState->addGameObject(player);
+	GameState* mainState = new StateMain(0);
 	engine->getStateManager()->addGameState("STATE_MAIN", mainState);
 
 
@@ -99,11 +39,6 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->addGameState("STATE_END", endState);
 
 	engine->getStateManager()->setCurrentState(introState);
-
-
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, static_cast<Player*>(player));
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_RIGHT] = std::bind(&Player::moveRight, static_cast<Player*>(player));
-	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_LEFT] = std::bind(&Player::moveLeft, static_cast<Player*>(player));
 
 	// run game
 	engine->run();
