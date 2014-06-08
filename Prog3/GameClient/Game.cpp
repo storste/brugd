@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "Alien.h"
+#include "AlienController.h"
 #include "Missile.h"
 
 #include "StateIntro.h"
@@ -32,6 +33,7 @@ int main(int argc, char *argv[])
 	player->setPosition(320, 430);
 	player->setName("Player");
 
+	AlienController* ac = new AlienController();
 	Alien* alienArray[5];
 
 	for (int i = 0; i < 5; i++) {
@@ -79,11 +81,13 @@ int main(int argc, char *argv[])
 	main_background.setPosition(0, 0);
 	main_background.toggle_collidable();
 	mainState->addGameObject(&main_background);
-	for (int i = 4; i > -1; i--) {
+	for (int i = 0; i < 5; i++) {
 		mainState->addGameObject(alienArray[i]);
 	}
+	mainState->addGameObject(ac);
 	mainState->addGameObject(player);
 	engine->getStateManager()->addGameState(STATE_MAIN, mainState);
+
 
 	GameState *endState = new StateEnd();
 	engine->getStateManager()->addGameState(STATE_END, endState);

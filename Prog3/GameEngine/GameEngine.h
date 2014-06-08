@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #include "StateManager.h"
 #include "InputHandler.h"
+#include <iostream>
 
 class GameEngine {
 
@@ -59,7 +60,9 @@ private:
 	StateManager*		_stateManager;
 	//InputHandler* _inputHandler;
 
-	const int FPS = 1;
+
+
+	const int FPS = 60;
 	const int tickInterval = 1000 / FPS;
 	Uint32 nextTick = 0;
 	int delay = 0;

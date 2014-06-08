@@ -91,7 +91,8 @@ void GameEngine::quit()
 GameEngine::GameEngine(int width, int height) : screen_width(width), screen_height(height)
 {
 	std::cout << "GameEngine: Constructor" << std::endl;
-
+	std::cout << FPS << std::endl;
+	std::cout << tickInterval << std::endl;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;

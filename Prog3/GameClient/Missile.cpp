@@ -19,7 +19,7 @@ Missile::~Missile()
 void Missile::update(int dt){
 
 	//std::cout << "Missile: update" << std::endl;
-	setPosition(getX(), _y - 2);
+	setPosition(getX(), _y - 7);
 	if (_y == 0 - _h)
 		_visible = false;
 

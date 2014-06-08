@@ -35,12 +35,6 @@ void StateMain::HandleEvents(){
 
 	_world->getInputHandler()->update();
 
-
-	if ((_world->score > 0 && _world->score % 5 == 0) || _objects.size() < 4){
-		Sprite* alien = new Alien("assets/alien.jpg", "Alien");
-		alien->setPosition(3, 5);
-		addGameObject(alien);
-	}
 }
 
 void StateMain::update(int dt){

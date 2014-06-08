@@ -87,8 +87,6 @@ void Player::Shoot(){
 	Sprite* missile = new Missile("assets/bullet.png", "a");
 	missile->setPosition(_x + (_w / 2) - 4, _y - 15);
 	//Image missileImage("assets/missile.png", true);
-	Sprite* missile = new Missile("assets/missile.png", "a");
-	missile->setPosition(_x, _y - 20);
 	missile->toggle_collidable();
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
 }

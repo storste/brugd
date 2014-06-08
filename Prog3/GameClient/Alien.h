@@ -17,8 +17,9 @@ public:
 	Direction dir;
 	void update(int dt);
 	void doCollission();
-
+	void updatePosition(int, int);
 	void setFlag(bool b) { flag = b; }
+	void setDir(Direction);
 private:
 	Uint32 ticks;
 	bool flag = false;
