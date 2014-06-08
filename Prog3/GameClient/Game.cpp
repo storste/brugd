@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	Animation alien_anim("assets/alien.png", 40,38,2,2,0);
 	Animation tank("assets/tank.png" ,70, 56, 7, 7, 0);
 	Animation idle_tank("assets/tank.png", 70, 56, 1, 1, 58);
-
+	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
 
 	Sprite* player = new Player;
 	player->addAnimation("run", &tank);
@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < 5; i++) {
 		alienArray[i] = new Alien(&alien, "Alien");
 		alienArray[i]->addAnimation("run", &alien_anim);
+		alienArray[i]->addAnimation("explosion", &alienExp);
 		alienArray[i]->setAnimation("run");
 		alienArray[i]->setPosition((i * 80), 0);
 	}
