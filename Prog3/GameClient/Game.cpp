@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 		alienArray[i + 30]->addAnimation("explosion", &alienExp);
 		alienArray[i + 30]->setAnimation("run");
 		alienArray[i + 30]->setPosition(i * 30, 60);
-	}
+		}
 	for (int i = 0; i < 15; i++) {
 		alienArray[i + 45] = Alien::getInstance("Alien");
 		alienArray[i + 45]->addAnimation("run", &alien_anim2);
@@ -68,8 +68,8 @@ int main(int argc, char *argv[])
 		alienArray[i + 45]->setAnimation("run");
 		alienArray[i + 45]->setPosition(i * 30, 90);
 	}
-
-
+	
+	
 
 
 
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->addGameState("STATE_END", endState);
 
 	engine->getStateManager()->setCurrentState(introState);
-
+	
 
 	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, static_cast<Player*>(player));
 	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_RIGHT] = std::bind(&Player::moveRight, static_cast<Player*>(player));
