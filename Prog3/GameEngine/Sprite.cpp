@@ -22,9 +22,6 @@ Sprite::Sprite(Image* i, std::string name) : m_image(i){
 	m_visible = true;
 	m_collidable = true;
 }
-Sprite::Sprite(){
-	m_visible = true;
-}
 
 void Sprite::render()
 {

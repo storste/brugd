@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	//Image alien("assets/alien.jpg", true);
 	for (int a = 0; a < 50; a += 5) {
 		for (int b = 0; b < 5; b++) {
-			alienArray[a + b] = new Alien("Alien");
+			alienArray[a + b] = Alien::getInstance("Alien");
 			alienArray[a + b]->addAnimation("run", &alien_anim);
 			alienArray[a + b]->addAnimation("explosion", &alienExp);
 			alienArray[a + b]->setAnimation("run");
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->addGameState("STATE_PAUSE", pauseState);
 
 	GameState *mainState = new StateMain();
-	Image OrionImage("assets/Orion_Nebula.jpg", true);
+	Image OrionImage("assets/bg.jpg", true);
 	Sprite* main_background = Sprite::getInstance(&OrionImage, "Intro background");
 	main_background->setPosition(0, 0);
 	main_background->toggle_collidable();

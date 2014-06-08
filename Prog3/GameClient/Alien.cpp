@@ -1,6 +1,7 @@
 #include "Alien.h"
 #include "AlienController.h"
 #include <iostream>
+#include "../GameEngine/GameEngine.h"
 
 
 Alien* Alien::getInstance(std::string name){
