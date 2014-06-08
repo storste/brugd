@@ -64,8 +64,6 @@ void Player::update(int dt){
 
 void Player::Shoot(){
 
-	printf("Shooting missile from position %d:%d\n", _x, _y);
-
 	Image missileImage("assets/bullet.png", true);
 	Sprite* missile = new Missile(&missileImage, "a");
 
@@ -79,6 +77,7 @@ void Player::Shoot(){
 
 void Player::doCollission(){
 	std::cout << "Player: doCollission()" << std::endl;
+	AnimatedSprite::setAnimation("explosion");
 }
 
 

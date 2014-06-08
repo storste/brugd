@@ -1,5 +1,7 @@
 #include "..\GameEngine\GameEngine.h"
 #include "..\GameEngine\MovingObject.h"
+#include <stdlib.h>
+#include <time.h>
 
 #include "Player.h"
 #include "Alien.h"
@@ -17,6 +19,9 @@ class Image;
 
 int main(int argc, char *argv[])
 {
+	int seed = static_cast<int>(time(0));
+	srand(seed);
+
 	GameEngine* engine = GameEngine::getInstance();
 
 	Animation a("assets/dude.png", 130, 150, 27, 7, 0);
@@ -28,9 +33,10 @@ int main(int argc, char *argv[])
 	AnimatedSprite* player = new Player;
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
+	player->addAnimation("explosion", &alienExp);
 	player->setAnimation("run");
 	player->setPosition(GameEngine::getInstance()->getWidth() / 2, GameEngine::getInstance()->getHeight() - 52);
-	//player->setName("Player");
+	player->setName("Tank");
 
 	AlienController* ac = new AlienController();
 	Alien* alienArray[50];
