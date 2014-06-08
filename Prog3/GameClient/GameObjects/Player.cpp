@@ -1,12 +1,11 @@
-#include <iostream>
 #include "Player.h"
-#include "../GameEngine/GameEngine.h"
 
 Player* Player::getInstance(){
 	return new Player();
 }
+
 Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(800), h(600) {
-	std::cout << "im alive!";
+	//std::cout << "Player: Constructor" << std::endl;
 }
 
 Player::~Player(){
@@ -16,7 +15,7 @@ Player::~Player(){
 void Player::update(int dt){
 
 	if (getAnimation())
-	AnimatedSprite::update();
+		AnimatedSprite::update();
 
 	if (!InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
@@ -39,13 +38,13 @@ void Player::shoot(){
 
 	if (SDL_GetTicks() - timeSinceLastShot > 300 && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT) && !InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-	Image missileImage("assets/bullet.png", true);
-	Sprite* missile = new Missile(&missileImage, "a");
+		Image missileImage("assets/bullet.png", true);
+		Sprite* missile = new Missile(&missileImage, "a");
 
 		missile->setPosition(getX() + (getW() / 2) - 4, getY() - 15);
 
-	missile->toggle_collidable();
-	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
+		missile->toggle_collidable();
+		GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
 		timeSinceLastShot = SDL_GetTicks();
 	}
 }
@@ -54,7 +53,7 @@ void Player::moveRight(){
 	setAnimation("run");
 	animationFlip = true;
 	getAnimation()->setFlip(animationFlip);
-	if (!(_x > GameEngine::getInstance()->getWidth() - 65))
+	if (!(getX() > GameEngine::getInstance()->getScreenWidth() - 65))
 		setPosition(getX() + 2, getY());
 }
 
@@ -66,6 +65,6 @@ void Player::moveLeft(){
 	setAnimation("run");
 	animationFlip = false;
 	getAnimation()->setFlip(animationFlip);
-	if (!(_x < 1))
+	if (!(getX() < 1))
 		setPosition(getX() - 2, getY());
 }

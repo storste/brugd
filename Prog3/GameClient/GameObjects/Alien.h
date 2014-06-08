@@ -1,10 +1,13 @@
 #pragma once
-#include "..\GameEngine\GameEngine.h"
-#include "..\GameEngine\AnimatedSprite.h"
-#include "..\GameEngine\Sprite.h"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+#include "..\..\GameEngine\GameEngine.h"
+#include "..\..\GameEngine\AnimatedSprite.h"
+
 #include "Missile.h"
 #include "Bomb.h"
-
 
 enum Direction {
 	left,
@@ -24,6 +27,8 @@ private:
 	Uint32 ticks;
 	bool Alien::clearBelow();
 	void Shoot();
+	Alien(const Alien& other);
+	const Alien& operator=(const Alien& other);
 protected:
 	Alien(std::string name);
 };

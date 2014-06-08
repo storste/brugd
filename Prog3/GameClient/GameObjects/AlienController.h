@@ -1,7 +1,6 @@
 #pragma once
-#include <list>
 #include "Alien.h"
-#include "..\GameEngine\GameEngine.h"
+#include "..\..\GameEngine\GameEngine.h"
 
 class AlienController :
 	public GameObject
@@ -16,12 +15,14 @@ public:
 	void setCollideLeft(); 
 	void decreaseUpdateSpeed(int);
 private:
-	int ticks;
+	Uint32 ticks;
 	bool collideRight;
 	bool collideLeft;
 	Direction dir;
 	void updateAliens(int x, int y, Direction d);
 	void updateAliens(int x, int y);
-	int updateSpeed;
+	Uint32 updateSpeed;
+	AlienController(const AlienController& other);
+	const AlienController& operator=(const AlienController& other);
 };
 

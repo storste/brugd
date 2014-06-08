@@ -1,13 +1,9 @@
 #include "AlienController.h"
-#include "Alien.h"
-#include "..\GameEngine\GameEngine.h"
-
 
 AlienController::AlienController() : ticks(SDL_GetTicks()), collideRight(false), collideLeft(false), dir(right), updateSpeed(1000)
 {
-	m_name = "AlienController";
+	setName("AlienController");
 }
-
 
 AlienController::~AlienController()
 {

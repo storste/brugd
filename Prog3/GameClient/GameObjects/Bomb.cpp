@@ -1,18 +1,16 @@
 #include "Bomb.h"
-#include <iostream>
 
 Bomb::Bomb(Image* image, std::string name) : Sprite(image, name)
 {
-	m_collidable = true;
 }
 
 Bomb::~Bomb(){}
 
 void Bomb::update(int dt){
 
-	setPosition(getX(), _y + 3);
-	if (_y > 600 - _h)
-		m_visible = false;
+	setPosition(getX(), getY() + 3);
+	if (getY() > 600 - getH())
+		toggle_visible();
 
 	for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 

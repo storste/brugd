@@ -107,7 +107,6 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputHandler.h" />
-    <ClInclude Include="MovingObject.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="StateManager.h" />
@@ -118,7 +117,6 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputHandler.cpp" />
-    <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StateManager.cpp" />
   </ItemGroup>

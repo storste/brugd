@@ -1,5 +1,4 @@
 #include "Missile.h"
-#include <iostream>
 
 Missile::Missile(Image* image, std::string name) : Sprite(image, name)
 {
@@ -9,9 +8,9 @@ Missile::~Missile(){}
 
 void Missile::update(int dt){
 
-	setPosition(getX(), _y - 7);
-	if (_y < 0 - _h)
-		m_visible = false;
+	setPosition(getX(), getY() - 7);
+	if (getY() < 0 - getH())
+		toggle_visible();
 
 	for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 

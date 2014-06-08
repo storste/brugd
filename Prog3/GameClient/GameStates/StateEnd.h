@@ -1,5 +1,6 @@
 #pragma once
-#include "..\GameEngine\GameState.h"
+#include "..\..\GameEngine\GameState.h"
+#include "..\..\GameEngine\GameEngine.h"
 
 class StateEnd :
 	public GameState {

@@ -14,6 +14,7 @@ class GameEngine {
 public:
 
 	static GameEngine* getInstance();
+	static GameEngine* getInstance(int screenWidth, int screenHeight, int fps);
 
 	SDL_Renderer* getRenderer();
 	StateManager* getStateManager();
@@ -31,8 +32,8 @@ public:
 	
 	TTF_Font* font = nullptr;
 	int score;
-	int getWidth();
-	int getHeight();
+	int getScreenWidth();
+	int getScreenHeight();
 private:
 
 	GameEngine::GameEngine(int width = 800, int height = 600);

@@ -13,11 +13,12 @@ public:
 	virtual ~Sprite() = default;
 
 	virtual void render();
-	virtual void update();
+	virtual void update(){}
 	virtual void update(int dt){}
 
-	virtual void doCollission(){ //std::cout << "Sprite: doCollission()" << std::endl; 
-	};
+	virtual void doCollission(){ 
+		//std::cout << "Sprite: doCollission()" << std::endl; 
+	}
 
 private:
 	Image* m_image;
@@ -26,6 +27,9 @@ private:
 protected:
 	Sprite(Image* i, std::string name);
 	Sprite();
+	Sprite(const Sprite& other);
+	const Sprite& operator=(const Sprite& other);
+
 };
 
 	

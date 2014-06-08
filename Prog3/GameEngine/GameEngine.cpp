@@ -8,14 +8,20 @@
 #include "GameEngine.h"
 
 GameEngine* GameEngine::getInstance(){
-	static GameEngine _instance;
-	return &_instance;
+	static GameEngine instance;
+	return &instance;
 	//if (_instance == nullptr)
 	//{
 	//	_instance = new GameEngine();
 	//}
 	//return _instance;
 }
+
+GameEngine* GameEngine::getInstance(int screenWidth, int screenHeight, int fps){
+	static GameEngine instance;
+	return &instance;
+}
+
 
 SDL_Renderer* GameEngine::getRenderer()
 {
@@ -145,9 +151,10 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 
 GameEngine::~GameEngine()
 {
+	//std::cout << "GameEngine: Destructor" << std::endl;
+
 	SDL_DestroyRenderer(_renderer);
 	SDL_DestroyWindow(_window);
-	//std::cout << "GameEngine: Destructor" << std::endl;
 
 	//Quit TTF subsystems
 	if (ttf_init)
@@ -199,11 +206,11 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	return true;
 }
 
-int GameEngine::getWidth() {
+int GameEngine::getScreenWidth() {
 	return screen_width;
 }
 
-int GameEngine::getHeight() {
+int GameEngine::getScreenHeight() {
 	return screen_height;
 }
 

@@ -1,17 +1,17 @@
-#include "..\GameEngine\GameEngine.h"
-#include "..\GameEngine\MovingObject.h"
-#include <stdlib.h>
-#include <time.h>
+#include "..\..\GameEngine\GameEngine.h"
 
-#include "Player.h"
-#include "Alien.h"
-#include "AlienController.h"
-#include "Missile.h"
+#include <cstdlib>
+#include <ctime>
 
-#include "StateIntro.h"
-#include "StateMain.h"
-#include "StatePause.h"
-#include "StateEnd.h"
+#include "GameObjects\Player.h"
+#include "GameObjects\Alien.h"
+#include "GameObjects\AlienController.h"
+#include "GameObjects\Missile.h"
+
+#include "GameStates\StateIntro.h"
+#include "GameStates\StateMain.h"
+#include "GameStates\StatePause.h"
+#include "GameStates\StateEnd.h"
 
 // forward declarations
 class Animation;
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
 	player->setAnimation("run");
-	player->setPosition(GameEngine::getInstance()->getWidth() / 2, GameEngine::getInstance()->getHeight() - 52);
+	player->setPosition(GameEngine::getInstance()->getScreenWidth() / 2, GameEngine::getInstance()->getScreenHeight() - 52);
 	player->setName("Tank");
 
 	AlienController* ac = new AlienController();
@@ -74,17 +74,9 @@ int main(int argc, char *argv[])
 
 	// set up game states
 	GameState *introState = new StateIntro();
-	Image introImage("assets/intro.png", true);
-	Sprite* intro_background = Sprite::getInstance(&introImage, "Intro background");
-	intro_background->setPosition(0, 0);
-	introState->addGameObject(intro_background);
 	engine->getStateManager()->addGameState("STATE_INTRO", introState);
 	
 	GameState *pauseState = new StatePause();
-	Image pauseImage("assets/pause.png", true);
-	Sprite* pause_background = Sprite::getInstance(&pauseImage, "Intro background");
-	pause_background->setPosition(0, 0);
-	pauseState->addGameObject(pause_background);
 	engine->getStateManager()->addGameState("STATE_PAUSE", pauseState);
 
 	GameState *mainState = new StateMain(0);
@@ -97,6 +89,7 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < 60; i++) {
 		mainState->addGameObject(alienArray[i]);
 	}
+
 	mainState->addGameObject(ac);
 	mainState->addGameObject(player);
 	engine->getStateManager()->addGameState("STATE_MAIN", mainState);

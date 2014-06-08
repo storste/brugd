@@ -98,27 +98,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Alien.cpp" />
-    <ClCompile Include="AlienController.cpp" />
-    <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="GameObjects\Alien.cpp" />
+    <ClCompile Include="GameObjects\AlienController.cpp" />
+    <ClCompile Include="GameObjects\Bomb.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Missile.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="StateEnd.cpp" />
-    <ClCompile Include="StateIntro.cpp" />
-    <ClCompile Include="StateMain.cpp" />
-    <ClCompile Include="StatePause.cpp" />
+    <ClCompile Include="GameObjects\Missile.cpp" />
+    <ClCompile Include="GameObjects\Player.cpp" />
+    <ClCompile Include="GameStates\StateEnd.cpp" />
+    <ClCompile Include="GameStates\StateIntro.cpp" />
+    <ClCompile Include="GameStates\StateMain.cpp" />
+    <ClCompile Include="GameStates\StatePause.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Alien.h" />
-    <ClInclude Include="AlienController.h" />
-    <ClInclude Include="Bomb.h" />
-    <ClInclude Include="Missile.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="StateEnd.h" />
-    <ClInclude Include="StateIntro.h" />
-    <ClInclude Include="StateMain.h" />
-    <ClInclude Include="StatePause.h" />
+    <ClInclude Include="GameObjects\Alien.h" />
+    <ClInclude Include="GameObjects\AlienController.h" />
+    <ClInclude Include="GameObjects\Bomb.h" />
+    <ClInclude Include="GameObjects\Missile.h" />
+    <ClInclude Include="GameObjects\Player.h" />
+    <ClInclude Include="GameStates\StateEnd.h" />
+    <ClInclude Include="GameStates\StateIntro.h" />
+    <ClInclude Include="GameStates\StateMain.h" />
+    <ClInclude Include="GameStates\StatePause.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine\Engine.vcxproj">
@@ -131,22 +131,56 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\35957.gif" />
+    <Image Include="Assets\alien copy.png" />
     <Image Include="Assets\alien.jpg" />
+    <Image Include="Assets\alien.png" />
+    <Image Include="Assets\alien2.jpg" />
+    <Image Include="Assets\alien2.png" />
     <Image Include="Assets\animate.bmp" />
+    <Image Include="Assets\bg.jpg" />
+    <Image Include="Assets\bg2.jpg" />
+    <Image Include="Assets\bg3.jpg" />
+    <Image Include="Assets\bgww2.jpg" />
     <Image Include="Assets\bomb.png" />
+    <Image Include="Assets\bullet.png" />
     <Image Include="Assets\dude.bmp" />
     <Image Include="Assets\dude.png" />
+    <Image Include="Assets\Explosion.png" />
+    <Image Include="Assets\explosion2.png" />
+    <Image Include="Assets\explosion3.png" />
+    <Image Include="Assets\giridao.png" />
     <Image Include="Assets\intro.png" />
     <Image Include="Assets\main.png" />
     <Image Include="Assets\megaman.bmp" />
     <Image Include="Assets\missile.png" />
+    <Image Include="Assets\Orion_Nebula.jpg" />
     <Image Include="Assets\pause.png" />
+    <Image Include="Assets\plane.gif" />
+    <Image Include="Assets\plane.jpg" />
     <Image Include="Assets\poteto.bmp" />
+    <Image Include="Assets\redLaserRay.png" />
+    <Image Include="Assets\run.png" />
     <Image Include="Assets\runningSprite.bmp" />
     <Image Include="Assets\skrapan.bmp" />
+    <Image Include="Assets\Sparks1.png" />
+    <Image Include="Assets\Sparks2.png" />
+    <Image Include="Assets\tank.png" />
+    <Image Include="Assets\tank2.png" />
+    <Image Include="Assets\tank3.png" />
+    <Image Include="Assets\ufo.gif" />
+    <Image Include="Assets\ufo.png" />
+    <Image Include="Assets\ufo2.png" />
+    <Image Include="Assets\usagitsukino.png" />
   </ItemGroup>
   <ItemGroup>
+    <Font Include="Assets\comic.ttf" />
+    <Font Include="Assets\comicbd.ttf" />
     <Font Include="Assets\cour.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\35957.xcf" />
+    <None Include="Assets\tank.xcf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,6 @@
+#pragma once
 #include "Alien.h"
 #include "AlienController.h"
-#include <iostream>
-#include <stdlib.h>
-#include <time.h>
-#include "../GameEngine/GameEngine.h"
-
 
 Alien* Alien::getInstance(std::string name){
 	return new Alien(name);
@@ -22,48 +18,48 @@ Alien::~Alien()
 	{
 		if (a->getName() == "AlienController"){
 			static_cast<AlienController*>(a)->decreaseUpdateSpeed(15);
-}
+		}
 	}
 }
 
 void Alien::update(int dt){
 
 	if (SDL_GetTicks() % 9 == 0)
-	AnimatedSprite::update();
+		AnimatedSprite::update();
 
 	int random = rand() % 400 + 1;
 
-		if (random == 1 && clearBelow()){
-			Shoot();
-		}
+	if (random == 1 && clearBelow()){
+		Shoot();
+	}
 
-	if (dir == right && _x > GameEngine::getInstance()->getWidth() - 41)
+	if (dir == right && getX() > GameEngine::getInstance()->getScreenWidth() - 41)
+	{
+		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 		{
-			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
-			{
 			if (a->getName() == "AlienController"){
 				static_cast<AlienController*>(a)->setCollideRight();
-				}
 			}
 		}
-	else if (dir == left && _x < 10)
+	}
+	else if (dir == left && getX() < 10)
 	{
 		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 		{
 			if (a->getName() == "AlienController"){
 				static_cast<AlienController*>(a)->setCollideLeft();
-		}
+			}
 		}
 	}
 }
 
 void Alien::doCollission(){
 	setAnimation("explosion");
-	setPosition(getX()-30,getY()-33);
+	setPosition(getX() - 30, getY() - 33);
 }
 
 void Alien::updatePosition(int x, int y) {
-	setPosition(_x + x, _y + y);
+	setPosition(getX() + x, getY() + y);
 }
 
 void Alien::setDir(Direction d){
@@ -77,8 +73,8 @@ bool Alien::clearBelow(){
 	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 	{
 		if (a->getName() == "Alien"){
-			if (static_cast<Alien*>(a)->getY() > _y) {
-				if (static_cast<Alien*>(a)->getX() == _x) {
+			if (static_cast<Alien*>(a)->getY() > getY()) {
+				if (static_cast<Alien*>(a)->getX() == getX()) {
 					clear = false;
 				}
 			}
@@ -89,14 +85,10 @@ bool Alien::clearBelow(){
 
 void Alien::Shoot(){
 
-
 	Image bombImage("assets/redLaserRay.png", true);
-	Sprite* missile = new Bomb(&bombImage, "a");
+	Sprite* bomb = new Bomb(&bombImage, "a");
 
-	missile->setPosition(_x + (_w / 2) - 4, _y + 30);
-
-
-
-	missile->toggle_collidable();
-	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
+	bomb->setPosition(getX() + (getW() / 2) - 4, getY() + 30);
+	bomb->toggle_collidable();
+	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(bomb);
 }

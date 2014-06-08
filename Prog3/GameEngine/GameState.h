@@ -48,7 +48,7 @@ public:
 	}
 
 	void removeGameObject(GameObject* d){
-		d->set_visible();
+		d->toggle_visible();
 	}
 
 	std::list<GameObject*> getObjects(){

@@ -14,12 +14,14 @@ public:
 		return instance;
 	}
 
-	bool InputHandler::isKeyDown(SDL_Scancode key);
+	bool isKeyDown(SDL_Scancode key);
 	void update();
 
 private:
 	InputHandler();
 	~InputHandler();
+	InputHandler(const InputHandler& other);
+	const InputHandler& operator=(const InputHandler& other);
 	void onKeyDown();
 	void onKeyUp();
 	const Uint8* keystates;
