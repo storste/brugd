@@ -15,6 +15,7 @@ Sprite* Sprite::getInstance(Image* i, std::string name){
 Sprite* Sprite::getInstance(){
 	return new Sprite();
 }
+
 Sprite::Sprite(Image* i, std::string name) : m_image(i){
 	m_texture = SDL_CreateTextureFromSurface(GameEngine::getInstance()->getRenderer(), m_image->getSurface());
 	SDL_QueryTexture(m_texture, NULL, NULL, &_w, &_h);

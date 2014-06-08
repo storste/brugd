@@ -17,8 +17,6 @@ AnimatedSprite::AnimatedSprite(std::string name){
 AnimatedSprite::AnimatedSprite(){
 	m_visible = true;
 	m_collidable = true;
-
-
 }
 void AnimatedSprite::addAnimation(std::string name, Animation* a){
 	std::pair<std::string, Animation*> pair = std::make_pair(name, a);
