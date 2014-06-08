@@ -63,6 +63,7 @@ void Player::moveRight(){
 
 void Player::doCollission(){
 	std::cout << "Player: doCollission()" << std::endl;
+	AnimatedSprite::setAnimation("explosion");
 }
 
 void Player::moveLeft(){
