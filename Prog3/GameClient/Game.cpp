@@ -62,10 +62,7 @@ int main(int argc, char *argv[])
 	intro_background->setPosition(0, 0);
 	introState->addGameObject(intro_background);
 	engine->getStateManager()->addGameState("STATE_INTRO", introState);
-	//	engine->getStateManager()->getState("STATE_INTRO")->addKeyFunction(SDL_SCANCODE_SPACE, &Player::shoot, player);
-	//std::bind(&ChildB::Walk, ChildB());
-
-
+	
 	GameState *pauseState = new StatePause();
 	Image pauseImage("assets/pause.png", true);
 	Sprite* pause_background = Sprite::getInstance(&pauseImage, "Intro background");
@@ -97,9 +94,6 @@ int main(int argc, char *argv[])
 	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_SPACE] = std::bind(&AnimatedSprite::shoot, player);
 	/*engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_D] = std::bind(&AnimatedSprite::moveRight, player);
 	engine->getStateManager()->getState("STATE_MAIN")->getKeyMap()[SDL_SCANCODE_A] = std::bind(&AnimatedSprite::moveLeft, player);*/
-
-
-	std::cout << engine->getStateManager()->getState("STATE_MAIN")->getKeyMap().size() << std::endl;
 
 	// run game
 	engine->run();
