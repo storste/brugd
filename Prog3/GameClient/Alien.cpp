@@ -1,7 +1,13 @@
 #include "Alien.h"
+#include "AlienController.h"
 #include <iostream>
 
-Alien::Alien(Image* image, std::string name) : Sprite(image, name)
+
+Alien* Alien::getInstance(std::string name){
+	return new Alien(name);
+}
+
+Alien::Alien(std::string name) : AnimatedSprite(name)
 {
 	dir = right;
 	setPosition(0, 0);
@@ -9,67 +15,86 @@ Alien::Alien(Image* image, std::string name) : Sprite(image, name)
 
 Alien::~Alien()
 {
-	std::cout << "aLIEN : I AAAAM DESTRUCTOR - WARAWRARARWARWA" << std::endl;
+	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+	{
+		if (a->getName() == "AlienController"){
+			static_cast<AlienController*>(a)->decreaseUpdateSpeed(20);
+}
+	}
+	std::cout << "alien död" << std::endl;
 }
 
 void Alien::update(int dt){
 
-	if ((SDL_GetTicks() - ticks) > 500) {
-		Sprite::update();
-
-		if (dir == right && getX() < 560)
-		{
-			setPosition(getX() + 40, getY());
-			ticks = SDL_GetTicks();
-		}
-		else if (dir == right && getX() > 559)
-		{
-			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
-			{
-				if (a->getName() == "Alien"){
-					static_cast<Alien*>(a)->setPosition(a->getX(), a->getY() + 40);
-					static_cast<Alien*>(a)->dir = left;
-				}
-			}
-
-			//setPosition(getX() + 40, getY() );
-			//dir = left;
-			ticks = SDL_GetTicks();
-		}
-		else if (dir == left && getX() > 0)
-		{
-			setPosition(getX() - 40, getY());
-			ticks = SDL_GetTicks();
-		}
-		else if (dir == left && getX() < 1)
-		{
-			setPosition(getX(), getY() + 40);
-			dir = right;
+	if (SDL_GetTicks() - ticks > 2000) {
+		if (clearBelow()){
+			Shoot();
 			ticks = SDL_GetTicks();
 		}
 	}
-	//	//std::cout << "moving alien" << std::endl;
-	//
-	//	if (dir == left && getX() > 0)
-	//		setPosition(getX() - 1, getY());
-	//	else if (dir == left && getX() == 0)
-	//	{
-	//		setPosition(getX(), getY() + 1);
-	//		dir = right;
-	//	}
-	//	else if (dir == right && getX() < 200)
-	//		setPosition(getX() + 1, getY());
-	//	else if (dir == right && getX() == 200)
-	//	{
-	//		setPosition(getX(), getY() + 1);
-	//		dir = left;
-	//	}
-	//
-	//	std::cout << "Alien @ " << getX() << ":" << getY() << std::endl;
 
-
+	if (dir == right && _x > GameEngine::getInstance()->getWidth() - 41)
+		{
+			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+			{
+			if (a->getName() == "AlienController"){
+				static_cast<AlienController*>(a)->setCollideRight();
+				}
+			}
+		}
+	else if (dir == left && _x < 1)
+	{
+		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+		{
+			if (a->getName() == "AlienController"){
+				static_cast<AlienController*>(a)->setCollideLeft();
+		}
+		}
+	}
 }
 
 void Alien::doCollission(){
+	setAnimation("explosion");
+	setPosition(getX()-20,getY()-20);
 	std::cout << "Alien: doCollission()" << std::endl;
+}
+
+void Alien::updatePosition(int x, int y) {
+	setPosition(_x + x, _y + y);
+	Sprite::update();
+}
+
+void Alien::setDir(Direction d){
+	dir = d;
+}
+
+bool Alien::clearBelow(){
+
+	bool clear = true;
+
+	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+	{
+		if (a->getName() == "Alien"){
+			if (static_cast<Alien*>(a)->getY() > _y) {
+				if (static_cast<Alien*>(a)->getX() == _x) {
+					clear = false;
+				}
+			}
+		}
+	}
+	return clear;
+}
+
+void Alien::Shoot(){
+
+
+	Image missileImage("assets/bullet.png", true);
+	Sprite* missile = new Bomb(&missileImage, "a");
+
+	missile->setPosition(_x + (_w / 2) - 4, _y + 30);
+
+
+
+	missile->toggle_collidable();
+	GameEngine::getInstance()->getStateManager()->getCurrentState()->addGameObject(missile);
 }

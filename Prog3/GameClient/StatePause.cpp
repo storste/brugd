@@ -5,12 +5,12 @@
 
 StatePause::StatePause()
 {
-	std::cout << "StatePause: Constructor" << std::endl;
+	//std::cout << "StatePause: Constructor" << std::endl;
 }
 
 StatePause::~StatePause()
 {
-	std::cout << "StatePause: Destructor" << std::endl;
+	//std::cout << "StatePause: Destructor" << std::endl;
 }
 
 void StatePause::checkTransition(){

@@ -5,7 +5,6 @@
 class GameObject {
 public:
 
-	GameObject() = default;
 	virtual ~GameObject() = default;
 
 	virtual void render() = 0;
@@ -31,8 +30,10 @@ public:
 	void toggle_collidable() { m_collidable = !m_collidable; }
 
 protected:
+	GameObject() = default;
 	std::string m_name;
 	int _x, _y, _w, _h;
 	bool m_visible = true;
 	bool m_collidable = false;
+
 };

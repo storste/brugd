@@ -14,10 +14,9 @@ class GameState {
 public:
 
 	GameState()  {
-		std::cout << "GameState: Constructor" << std::endl;
-		//m_world = GameEngine::getInstance();
-		
-	}
+		//std::cout << "GameState: Constructor" << std::endl;
+		//_world = GameEngine::getInstance();
+	} 
 
 	virtual ~GameState(){}
 
@@ -26,7 +25,7 @@ public:
 		for (std::list<GameObject*>::iterator itr = m_objects.begin(); itr != m_objects.end();)
 		{
 			if ((*itr)->is_visible() == false){
-				std::cout << (*itr)->getName() << " is not visible" << std::endl;
+				//std::cout << (*itr)->getName() << " is not visible" << std::endl;
 				delete (*itr);
 				itr = m_objects.erase(itr);
 			}

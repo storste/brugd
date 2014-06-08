@@ -6,6 +6,7 @@
 #include <list>
 #include "GameObject.h"
 #include "InputHandler.h"
+#include <iostream>
 #include "StateManager.h"
 
 class GameEngine {
@@ -30,10 +31,11 @@ public:
 	
 	TTF_Font* font = nullptr;
 	int score;
-
+	int getWidth();
+	int getHeight();
 private:
 
-	GameEngine::GameEngine(int width = 640, int height = 480);
+	GameEngine::GameEngine(int width = 800, int height = 600);
 	~GameEngine();
 
 	StateManager*		_stateManager;

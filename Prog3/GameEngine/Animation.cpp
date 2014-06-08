@@ -28,7 +28,7 @@ Animation::~Animation()
 void Animation::playAnimation(int dt) {
 	//currentFrame = int(((SDL_GetTicks() / 30) % frameCount));
 	currentFrame = int(((dt) % frameCount));
-	//		std::cout << currentFrame << std::endl;
+	//		//std::cout << currentFrame << std::endl;
 	sourceRectangle.x = frameWidth * (currentFrame % framesPerRow);
 	sourceRectangle.y = yOffset + frameHeight * (currentFrame / framesPerRow);
 }

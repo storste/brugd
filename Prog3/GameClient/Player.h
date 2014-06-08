@@ -1,14 +1,16 @@
 #pragma once
-#include "..\GameEngine\Sprite.h"
+#include "..\GameEngine\AnimatedSprite.h"
 #include "..\GameEngine\GameEngine.h"
 #include "Missile.h"
 
-class Player : public Sprite {
+class Player : public AnimatedSprite {
 
 public:
+	static Player* Player::getInstance();
 	void update(int dt);
-	Player(std::string filename, std::string name);
-	Player();
+
+	
+	void doCollission();
 	~Player();
 
 	void shoot();
@@ -20,5 +22,7 @@ private:
 	bool animationFlip;
 	int w;
 	int h;
+protected:
+	Player();
 };
 
