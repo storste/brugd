@@ -2,7 +2,7 @@
 #include "AlienController.h"
 #include <iostream>
 
-Alien::Alien(Image* image, std::string name) : Sprite(image, name), ticks(SDL_GetTicks())
+Alien::Alien(std::string name) : AnimatedSprite(name)
 {
 	dir = right;
 	setPosition(0, 0);
@@ -14,7 +14,7 @@ Alien::~Alien()
 	{
 		if (a->getName() == "AlienController"){
 			static_cast<AlienController*>(a)->decreaseUpdateSpeed(20);
-		}
+}
 	}
 	std::cout << "alien död" << std::endl;
 }
@@ -29,28 +29,29 @@ void Alien::update(int dt){
 	}
 
 	if (dir == right && _x > GameEngine::getInstance()->getWidth() - 41)
-	{
-		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 		{
+			for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+			{
 			if (a->getName() == "AlienController"){
 				static_cast<AlienController*>(a)->setCollideRight();
+				}
 			}
 		}
-	}
 	else if (dir == left && _x < 1)
 	{
 		for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 		{
 			if (a->getName() == "AlienController"){
 				static_cast<AlienController*>(a)->setCollideLeft();
-			}
+		}
 		}
 	}
 }
 
 void Alien::doCollission(){
 	setAnimation("explosion");
-	//std::cout << "Alien: doCollission()" << std::endl;
+	setPosition(getX()-20,getY()-20);
+	std::cout << "Alien: doCollission()" << std::endl;
 }
 
 void Alien::updatePosition(int x, int y) {

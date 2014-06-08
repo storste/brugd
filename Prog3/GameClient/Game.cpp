@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	Animation idle_tank("assets/tank.png", 70, 52, 1, 1, 58);
 	Animation alienExp("assets/explosion3.png", 80, 80, 7, 5, 0);
 
-	Sprite* player = new Player("assets/dude.png", "Tank");
+	AnimatedSprite* player = new Player;
 	player->addAnimation("run", &tank);
 	player->addAnimation("idle", &idle_tank);
 	player->setAnimation("run");
@@ -35,18 +35,18 @@ int main(int argc, char *argv[])
 	AlienController* ac = new AlienController();
 	Alien* alienArray[50];
 
-	Image alien("assets/alien.jpg", true);
+	//Image alien("assets/alien.jpg", true);
 	for (int a = 0; a < 50; a += 5) {
 		for (int b = 0; b < 5; b++) {
-			alienArray[a + b] = new Alien(&alien, "Alien");
+			alienArray[a + b] = new Alien("Alien");
 			alienArray[a + b]->addAnimation("run", &alien_anim);
 			alienArray[a + b]->addAnimation("explosion", &alienExp);
 			alienArray[a + b]->setAnimation("run");
 			alienArray[a + b]->setPosition((a * 6), b * 28);
 		}
 	}
-
-
+	
+	
 
 
 	//Sprite* alien = new Alien(&pic, "Alien2");
