@@ -10,14 +10,14 @@ class Sprite :public GameObject {
 public:
 	static Sprite* getInstance();
 	static Sprite* getInstance(Image* i, std::string name);
-	virtual ~Sprite() = default;
 
-	virtual void render();
-	virtual void update();
-	virtual void update(int dt){}
+	void render();
+	void update(){}
+	void update(int dt){}
 
-	virtual void doCollission(){ //std::cout << "Sprite: doCollission()" << std::endl; 
-	};
+	void doCollission(){ 
+		//std::cout << "Sprite: doCollission()" << std::endl; 
+	}
 
 private:
 	Image* m_image;
@@ -26,6 +26,9 @@ private:
 protected:
 	Sprite(Image* i, std::string name);
 	Sprite();
+	Sprite(const Sprite& other);
+	const Sprite& operator=(const Sprite& other);
+
 };
 
 	

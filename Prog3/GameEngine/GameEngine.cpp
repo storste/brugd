@@ -7,63 +7,67 @@
 #include <array>
 #include "GameEngine.h"
 
+GameEngine* GameEngine::instance;
+
 GameEngine* GameEngine::getInstance(){
-	static GameEngine _instance;
-	return &_instance;
-	//if (_instance == nullptr)
-	//{
-	//	_instance = new GameEngine();
-	//}
-	//return _instance;
+	if (instance == nullptr)
+	{
+		instance = new GameEngine();
+	}
+	return instance;
 }
+
+GameEngine* GameEngine::getInstance(int screenWidth, int screenHeight, int fps){
+	if (instance == nullptr)
+	{
+		instance = new GameEngine(screenWidth, screenHeight, fps);
+	}
+	return instance;
+}
+
 
 SDL_Renderer* GameEngine::getRenderer()
 {
-	return _renderer;
+	return m_renderer;
 }
 
 StateManager* GameEngine::getStateManager()
 {
-	return _stateManager;
+	return m_stateManager;
 }
 
 void GameEngine::run(){
-
-	//std::cout << "GameEngine: Run" << std::endl;
 
 	running = true;
 
 	while (running)
 	{
-		////std::cout << "GameEngine: tick " << nextTick << std::endl;
-
 		nextTick = SDL_GetTicks() + tickInterval;
 
 		handleEvents();
-		_stateManager->getCurrentState()->update(nextTick);
-		_stateManager->getCurrentState()->checkTransition();
+		m_stateManager->getCurrentState()->update(nextTick);
+		m_stateManager->getCurrentState()->checkTransition();
 		render();
 
 		delay = nextTick - SDL_GetTicks();
 		if (delay > 0){
 			SDL_Delay(delay);
 		}
-			
+
 	}
 }
 
 void GameEngine::quit()
 {
-	//std::cout << "GameEngine: Quit" << std::endl;
 	running = false;
 }
 
 void GameEngine::handleEvents()
 {
-	InputHandler::Instance()->update();	
-	for (const auto& keys : _stateManager->getCurrentState()->getKeyMap()){
+	InputHandler::Instance()->update();
+	for (const auto& keys : m_stateManager->getCurrentState()->getKeyMap()){
 		if (InputHandler::Instance()->isKeyDown(keys.first)){
-			_stateManager->getCurrentState()->getKeyMap()[keys.first]();
+			m_stateManager->getCurrentState()->getKeyMap()[keys.first]();
 		}
 	}
 
@@ -71,43 +75,22 @@ void GameEngine::handleEvents()
 
 void GameEngine::render(){
 
-	SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(_renderer);	
+	SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(m_renderer);
 
-	for (const auto& o : _stateManager->getCurrentState()->getObjects())
+	for (const auto& o : m_stateManager->getCurrentState()->getObjects())
 		o->render();
-	
-	//renderScore();
 
-	SDL_RenderPresent(_renderer);
+	SDL_RenderPresent(m_renderer);
 }
 
-
-void GameEngine::renderScore(){
-
-	GameEngine* world = GameEngine::getInstance();
-
-	std::string score_text = "score: " + std::to_string(world->score);
-	SDL_Color textColor = { 255, 255, 255, 0 };
-	SDL_Surface* textSurface = TTF_RenderText_Solid(world->font, score_text.c_str(), textColor);
-	SDL_Texture* text = SDL_CreateTextureFromSurface(world->getRenderer(), textSurface);
-	int text_width = textSurface->w;
-	int text_height = textSurface->h;
-	SDL_FreeSurface(textSurface);
-	SDL_Rect clearQuad = { 20, 50 - 30, text_width + 30, text_height };
-	SDL_Rect renderQuad = { 20, 50 - 30, text_width, text_height };
-	SDL_SetRenderDrawColor(world->getRenderer(), 0, 0, 0, 0);
-	SDL_RenderFillRect(world->getRenderer(), &clearQuad);
-
-	SDL_RenderCopy(world->getRenderer(), text, NULL, &renderQuad);
-	SDL_DestroyTexture(text);
-}
-
-GameEngine::GameEngine(int width, int height) : screen_width(width), screen_height(height)
+GameEngine::GameEngine(int width, int height, int f) : screen_width(width), screen_height(height), fps(f)
 {
+	int seed = static_cast<int>(time(0));
+	srand(seed);
+
 	//std::cout << "GameEngine: Constructor" << std::endl;
-	//std::cout << FPS << std::endl;
-	//std::cout << tickInterval << std::endl;
+
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		//std::cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
@@ -115,16 +98,17 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 	else
 	{
 		//std::cout << "SDL inititalized" << std::endl;
-		_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, screen_height, SDL_WINDOW_SHOWN);
-		if (_window == NULL)
-		{
+		m_window = SDL_CreateWindow("The worst Space Invaders game ever...",
+			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, canvas_height, SDL_WINDOW_SHOWN);
+
+		if (m_window == NULL) {
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 		}
 
-		_renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
+		m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
 	}
 
-	int imgFlags = IMG_INIT_PNG;
+	int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
 	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
 		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
@@ -134,20 +118,25 @@ GameEngine::GameEngine(int width, int height) : screen_width(width), screen_heig
 	}
 
 	if ((TTF_Init() < 0)) { //std::cout << "could not initialize sdl_ttf" << std::endl; 
-		exit(1); }
+		exit(1);
+	}
 	font = TTF_OpenFont("assets/comic.ttf", 28);
 	if (font == NULL) { //std::cout << "could not load font" << std::endl; 
-		exit(1); }
+		exit(1);
+	}
 
-	_stateManager = new StateManager();
+	m_stateManager = new StateManager();
+	m_inputHandler = InputHandler::Instance();
+
 
 }
 
 GameEngine::~GameEngine()
 {
-	SDL_DestroyRenderer(_renderer);
-	SDL_DestroyWindow(_window);
 	//std::cout << "GameEngine: Destructor" << std::endl;
+
+	SDL_DestroyRenderer(m_renderer);
+	SDL_DestroyWindow(m_window);
 
 	//Quit TTF subsystems
 	if (ttf_init)
@@ -157,7 +146,7 @@ GameEngine::~GameEngine()
 
 	SDL_Quit();
 
-	delete _stateManager;
+	delete m_stateManager;
 }
 
 const bool GameEngine::cd(GameObject* a, GameObject* b)
@@ -199,12 +188,26 @@ const bool GameEngine::cd(GameObject* a, GameObject* b)
 	return true;
 }
 
-int GameEngine::getWidth() {
+int GameEngine::getScreenWidth() {
 	return screen_width;
 }
 
-int GameEngine::getHeight() {
+int GameEngine::getScreenHeight() {
 	return screen_height;
 }
 
+int GameEngine::getCanvasHeight() {
+	return canvas_height;
+}
 
+int GameEngine::getScore(){
+	return m_score;
+}
+
+void GameEngine::addToScore(int addend){
+	m_score += addend;
+}
+
+TTF_Font* GameEngine::getFont() const{
+	return font;
+}

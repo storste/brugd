@@ -5,35 +5,39 @@
 class GameObject {
 public:
 
-	virtual ~GameObject() = default;
+	virtual ~GameObject(){}
 
 	virtual void render() = 0;
 	virtual void update(int dt) = 0;
 	virtual void doCollission() = 0;
 
-	int getY() const { return _y; }
-	int getX() const { return _x; }
-	int getW() const { return _w; }
-	int getH() const { return _h; }
+	int getY() const;
+	int getX() const;
+	int getW() const;
+	int getH() const;
 
-	void setPosition(int x, int y) {
-		_x = x; _y = y;
-	}
+	void setY(const int y);
+	void setX(const int x);
+	void setW(const int w);
+	void setH(const int h);
 
-	std::string getName() const { return m_name; }
-	void setName(std::string name) { m_name = name; }
+	void setPosition(int x, int y);
 
-	bool is_visible() const { return m_visible; }
-	void set_visible() { m_visible = false; }
+	std::string getName() const;
+	void setName(const std::string name);
 
-	bool is_collidable() const { return m_collidable; }
-	void toggle_collidable() { m_collidable = !m_collidable; }
+	bool is_visible() const;
+	void toggle_visible();
+
+	bool is_collidable() const;
+	void toggle_collidable();
 
 protected:
 	GameObject() = default;
+
+private:
 	std::string m_name;
-	int _x, _y, _w, _h;
+	int m_xPos, m_yPos, m_width, m_height;
 	bool m_visible = true;
 	bool m_collidable = false;
-
 };

@@ -2,32 +2,35 @@
 #include "AnimatedSprite.h"
 #include <SDL_image.h>
 
-
 AnimatedSprite* AnimatedSprite::getInstance(){
 	return new AnimatedSprite();
 }
-AnimatedSprite* AnimatedSprite::getInstance(std::string name){
+
+AnimatedSprite* AnimatedSprite::getInstance(const std::string name){
 	return new AnimatedSprite(name);
 }
-AnimatedSprite::AnimatedSprite(std::string name){
-	m_visible = true;
-	//m_collidable = true;
-	m_name = name;
+
+AnimatedSprite::AnimatedSprite(const std::string name){
+
+	toggle_collidable();
+	setName(name);
 }
+
 AnimatedSprite::AnimatedSprite(){
-	m_visible = true;
-	m_collidable = true;
+
+	toggle_collidable();
 }
-void AnimatedSprite::addAnimation(std::string name, Animation* a){
-	std::pair<std::string, Animation*> pair = std::make_pair(name, a);
+
+void AnimatedSprite::addAnimation(const std::string name, Animation* a){
+	std::pair<const std::string, Animation*> pair = std::make_pair(name, a);
 	m_animations.insert(pair);
 }
 
-void AnimatedSprite::setAnimation(std::string name){
+void AnimatedSprite::setAnimation(const std::string name){
 	m_currentAnimation = m_animations[name];
 
-	_w = m_currentAnimation->getW();
-	_h = m_currentAnimation->getH();
+	setW(m_currentAnimation->getW());
+	setH(m_currentAnimation->getH());
 }
 
 Animation* AnimatedSprite::getAnimation()
@@ -37,14 +40,14 @@ Animation* AnimatedSprite::getAnimation()
 
 void AnimatedSprite::render()
 {
-	m_currentAnimation->renderAnimation(_x, _y);
+	m_currentAnimation->renderAnimation(getX(), getY());
 }
 
 
 void AnimatedSprite::update(){
 
 	if (m_currentAnimation){
-		m_currentAnimation->setPosition(_x, _y);
+		m_currentAnimation->setPosition(getX(), getY());
 		m_currentAnimation->playAnimation(m_animationTick);
 		m_animationTick++;
 	}

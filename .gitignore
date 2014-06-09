@@ -149,3 +149,8 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+/Prog3/Intel_SSA
+/Prog3/GameEngine/My Inspector XE Results - GameEngine
+/Prog3/GameEngine/Intel_SSA/GameEngine.tlog
+/Prog3/GameClient/Intel_SSA/GameClient.tlog
+/Prog3/GameClient/My Inspector XE Results - GameClient/My Inspector XE Results - GameClient.inspxeproj
