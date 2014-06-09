@@ -43,7 +43,7 @@ public:
 
 	virtual void checkTransition() = 0;
 
-	void addGameObject(GameObject* d){
+	void addGameObject(GameObject* d) {
 		m_objects.push_back(d);
 	}
 

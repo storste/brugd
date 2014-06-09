@@ -28,7 +28,6 @@ Alien::~Alien()
 
 void Alien::update(int dt){
 
-	if (SDL_GetTicks() % 9 == 0)
 	AnimatedSprite::update();
 
 	int random = rand() % 400 + 1;

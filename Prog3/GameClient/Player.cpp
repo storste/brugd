@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Player.h"
+#include "Explosion.h"
 #include "../GameEngine/GameEngine.h"
 
 Player* Player::getInstance(){
 	return new Player();
 }
 Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(800), h(600) {
-	std::cout << "im alive!";
 }
 
 Player::~Player(){
@@ -24,13 +24,15 @@ void Player::update(int dt){
 		getAnimation()->setFlip(animationFlip);
 	}
 
-	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
+	for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
-		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
-			//std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
+		if (static_cast<GameObject*>(this) != o && o->getName() != "Intro background" && o->getName() != "hanna" && GameEngine::getInstance()->cd(this, o)){
 
+			std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
+
+			//o->doCollission();
 			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
-
+			doCollission();
 		}
 	}
 }
@@ -59,7 +61,7 @@ void Player::moveRight(){
 }
 
 void Player::doCollission(){
-	std::cout << "Player: doCollission()" << std::endl;
+	
 }
 
 void Player::moveLeft(){

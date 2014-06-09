@@ -44,8 +44,8 @@ void Animation::renderAnimation(int x, int y){
 			0, 0, SDL_FLIP_HORIZONTAL); // pass in the horizontal flip
 	}
 	else {
-		SDL_RenderCopy(GameEngine::getInstance()->getRenderer(), texture, &sourceRectangle,
-			&destinationRectangle);
+		SDL_RenderCopyEx(GameEngine::getInstance()->getRenderer(), texture, &sourceRectangle,
+			&destinationRectangle, 0 ,0, SDL_FLIP_NONE);
 	}
 }
 

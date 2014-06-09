@@ -14,17 +14,17 @@ void Bomb::update(int dt){
 	if (_y > 600 - _h)
 		m_visible = false;
 
-	for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
+	//for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 
-		if (static_cast<GameObject*>(this) != o && o->getName() != "Alien" && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
+	//	if (static_cast<GameObject*>(this) != o && o->getName() != "Alien" && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
 
-			//std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
+	//		//std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
-			o->doCollission();
-			//GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
-			doCollission();
-		}
-	}
+	//		//o->doCollission();
+	//		//GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
+	//		doCollission();
+	//	}
+	//}
 }
 
 void Bomb::doCollission(){

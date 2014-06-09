@@ -11,7 +11,7 @@ AnimatedSprite* AnimatedSprite::getInstance(std::string name){
 }
 AnimatedSprite::AnimatedSprite(std::string name){
 	m_visible = true;
-	m_collidable = true;
+	//m_collidable = true;
 	m_name = name;
 }
 AnimatedSprite::AnimatedSprite(){

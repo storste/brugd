@@ -14,6 +14,7 @@ StateIntro::~StateIntro() {
 void StateIntro::checkTransition(){
 	if (GameEngine::getInstance()->getInputHandler()->isKeyDown(SDL_SCANCODE_RETURN))
 	{
+		std::cout << "setting current state main" << std::endl;
 		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState("STATE_MAIN"));
 	}
 }
