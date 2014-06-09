@@ -1,28 +1,14 @@
 #include "..\..\GameEngine\GameEngine.h"
 
-#include <cstdlib>
-#include <ctime>
-//
-//#include "GameObjects\Player.h"
-//#include "GameObjects\Alien.h"
-//#include "GameObjects\AlienController.h"
-//#include "GameObjects\Missile.h"
-
 #include "GameStates\StateIntro.h"
 #include "GameStates\StateMain.h"
 #include "GameStates\StatePause.h"
 #include "GameStates\StateEnd.h"
 
-// forward declarations
-class Animation;
-class Image;
-
 int main(int argc, char *argv[])
 {
-	int seed = static_cast<int>(time(0));
-	srand(seed);
 
-	GameEngine* engine = GameEngine::getInstance();
+	GameEngine* engine = GameEngine::getInstance(800,600, 60);
 
 	// set up game states
 	GameState *introState = new StateIntro();
@@ -33,7 +19,6 @@ int main(int argc, char *argv[])
 
 	GameState* mainState = new StateMain(0);
 	engine->getStateManager()->addGameState("STATE_MAIN", mainState);
-
 
 	GameState *endState = new StateEnd();
 	engine->getStateManager()->addGameState("STATE_END", endState);

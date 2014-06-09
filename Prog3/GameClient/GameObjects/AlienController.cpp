@@ -5,10 +5,6 @@ AlienController::AlienController() : ticks(SDL_GetTicks()), collideRight(false),
 	setName("AlienController");
 }
 
-AlienController::~AlienController()
-{
-}
-
 void AlienController::setCollideRight() {
 	collideRight = true;
 }
@@ -23,7 +19,7 @@ void AlienController::updateAliens(int x, int y)
 	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 	{
 		if (a->getName() == "Alien"){
-			static_cast<Alien*>(a)->updatePosition(x, y);
+			a->setPosition(a->getX() + x, a->getY() + y);
 		}
 	}
 }
@@ -33,8 +29,8 @@ void AlienController::updateAliens(int x, int y, Direction d)
 	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
 	{
 		if (a->getName() == "Alien"){
-			static_cast<Alien*>(a)->updatePosition(x, y);
-			static_cast<Alien*>(a)->setDir(d);
+			a->setPosition(a->getX() + x, a->getY() + y);
+			dynamic_cast<Alien*>(a)->setDir(d);
 		}
 	}
 }

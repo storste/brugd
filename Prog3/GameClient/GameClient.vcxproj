@@ -58,13 +58,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\SDL2\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\SDL2\lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Intel_SSA|Win32'">
@@ -72,15 +72,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\SDL2\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LevelOfStaticAnalysis>Verbose</LevelOfStaticAnalysis>
       <ModeOfStaticAnalysis>Full</ModeOfStaticAnalysis>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\SDL2\lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -90,11 +90,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -104,21 +108,25 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObjects\Missile.cpp" />
     <ClCompile Include="GameObjects\Player.cpp" />
+    <ClCompile Include="GameObjects\TextSprite.cpp" />
     <ClCompile Include="GameStates\StateEnd.cpp" />
     <ClCompile Include="GameStates\StateIntro.cpp" />
     <ClCompile Include="GameStates\StateMain.cpp" />
     <ClCompile Include="GameStates\StatePause.cpp" />
+    <ClCompile Include="GameObjects\ScoreSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObjects\Alien.h" />
     <ClInclude Include="GameObjects\AlienController.h" />
     <ClInclude Include="GameObjects\Bomb.h" />
+    <ClInclude Include="GameObjects\TextSprite.h" />
     <ClInclude Include="GameObjects\Missile.h" />
     <ClInclude Include="GameObjects\Player.h" />
     <ClInclude Include="GameStates\StateEnd.h" />
     <ClInclude Include="GameStates\StateIntro.h" />
     <ClInclude Include="GameStates\StateMain.h" />
     <ClInclude Include="GameStates\StatePause.h" />
+    <ClInclude Include="GameObjects\ScoreSprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameEngine\Engine.vcxproj">
@@ -131,56 +139,57 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\35957.gif" />
-    <Image Include="Assets\alien copy.png" />
-    <Image Include="Assets\alien.jpg" />
-    <Image Include="Assets\alien.png" />
-    <Image Include="Assets\alien2.jpg" />
-    <Image Include="Assets\alien2.png" />
-    <Image Include="Assets\animate.bmp" />
-    <Image Include="Assets\bg.jpg" />
-    <Image Include="Assets\bg2.jpg" />
+    <Image Include="AssetsOld\35957.gif" />
+    <Image Include="AssetsOld\alien copy.png" />
+    <Image Include="AssetsOld\alien.jpg" />
+    <Image Include="AssetsOld\alien.png" />
+    <Image Include="AssetsOld\alien2.jpg" />
+    <Image Include="AssetsOld\alien2.png" />
+    <Image Include="AssetsOld\animate.bmp" />
+    <Image Include="AssetsOld\bg.jpg" />
+    <Image Include="AssetsOld\bg2.jpg" />
     <Image Include="Assets\bg3.jpg" />
-    <Image Include="Assets\bgww2.jpg" />
-    <Image Include="Assets\bomb.png" />
+    <Image Include="AssetsOld\bgww2.jpg" />
+    <Image Include="AssetsOld\bomb.png" />
     <Image Include="Assets\bullet.png" />
-    <Image Include="Assets\dude.bmp" />
-    <Image Include="Assets\dude.png" />
-    <Image Include="Assets\Explosion.png" />
-    <Image Include="Assets\explosion2.png" />
+    <Image Include="AssetsOld\dude.bmp" />
+    <Image Include="AssetsOld\dude.png" />
+    <Image Include="Assets\end.png" />
+    <Image Include="AssetsOld\Explosion.png" />
+    <Image Include="AssetsOld\explosion2.png" />
     <Image Include="Assets\explosion3.png" />
-    <Image Include="Assets\giridao.png" />
+    <Image Include="AssetsOld\giridao.png" />
     <Image Include="Assets\intro.png" />
     <Image Include="Assets\main.png" />
-    <Image Include="Assets\megaman.bmp" />
-    <Image Include="Assets\missile.png" />
-    <Image Include="Assets\Orion_Nebula.jpg" />
+    <Image Include="AssetsOld\megaman.bmp" />
+    <Image Include="AssetsOld\missile.png" />
+    <Image Include="AssetsOld\Orion_Nebula.jpg" />
     <Image Include="Assets\pause.png" />
-    <Image Include="Assets\plane.gif" />
-    <Image Include="Assets\plane.jpg" />
-    <Image Include="Assets\poteto.bmp" />
+    <Image Include="AssetsOld\plane.gif" />
+    <Image Include="AssetsOld\plane.jpg" />
+    <Image Include="AssetsOld\poteto.bmp" />
     <Image Include="Assets\redLaserRay.png" />
-    <Image Include="Assets\run.png" />
-    <Image Include="Assets\runningSprite.bmp" />
-    <Image Include="Assets\skrapan.bmp" />
-    <Image Include="Assets\Sparks1.png" />
-    <Image Include="Assets\Sparks2.png" />
-    <Image Include="Assets\tank.png" />
-    <Image Include="Assets\tank2.png" />
+    <Image Include="AssetsOld\run.png" />
+    <Image Include="AssetsOld\runningSprite.bmp" />
+    <Image Include="AssetsOld\skrapan.bmp" />
+    <Image Include="AssetsOld\Sparks1.png" />
+    <Image Include="AssetsOld\Sparks2.png" />
+    <Image Include="AssetsOld\tank.png" />
+    <Image Include="AssetsOld\tank2.png" />
     <Image Include="Assets\tank3.png" />
-    <Image Include="Assets\ufo.gif" />
-    <Image Include="Assets\ufo.png" />
+    <Image Include="AssetsOld\ufo.gif" />
+    <Image Include="AssetsOld\ufo.png" />
     <Image Include="Assets\ufo2.png" />
-    <Image Include="Assets\usagitsukino.png" />
+    <Image Include="AssetsOld\usagitsukino.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\comic.ttf" />
-    <Font Include="Assets\comicbd.ttf" />
-    <Font Include="Assets\cour.ttf" />
+    <Font Include="AssetsOld\comicbd.ttf" />
+    <Font Include="AssetsOld\cour.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\35957.xcf" />
-    <None Include="Assets\tank.xcf" />
+    <None Include="AssetsOld\35957.xcf" />
+    <None Include="AssetsOld\tank.xcf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

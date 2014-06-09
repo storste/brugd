@@ -9,16 +9,16 @@ StateIntro::StateIntro() {
 	Sprite* intro_background = Sprite::getInstance(&introImage, "Intro background");
 	intro_background->setPosition(0, 0);
 	addGameObject(intro_background);
-	getKeyMap()[SDL_SCANCODE_RETURN] = std::bind([](){ GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState("STATE_MAIN"));	});
-}
 
-StateIntro::~StateIntro() {
-	std::cout << "Intro state destructor" << std::endl;
+	getKeyMap()[SDL_SCANCODE_RETURN] = std::bind([this](){
+		deleteState = true;
+	});
 }
 
 void StateIntro::checkTransition(){
-}
 
-void StateIntro::update(int ticks){
-
+	if (deleteState == true){
+		GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState("STATE_MAIN"));
+		delete this;
+	}
 }

@@ -8,9 +8,6 @@ Player::Player() : timeSinceLastShot(SDL_GetTicks()), w(800), h(600) {
 	//std::cout << "Player: Constructor" << std::endl;
 }
 
-Player::~Player(){
-	//std::cout << "Player: Destructor" << std::endl;
-}
 
 void Player::update(int dt){
 
@@ -24,12 +21,10 @@ void Player::update(int dt){
 	}
 
 	for (const auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
-
-		if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
-			//std::cout << "Collision between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
-
-			GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
-
+		if (o){
+			if (static_cast<GameObject*>(this) != o && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
+				GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
+			}
 		}
 	}
 }

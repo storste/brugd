@@ -7,7 +7,7 @@ class Bomb :
 	public Sprite {
 public:
 	Bomb(Image* image, std::string name);
-	~Bomb();
+
 
 	void update(int dt);
 	void doCollission();

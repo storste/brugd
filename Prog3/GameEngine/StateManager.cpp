@@ -4,16 +4,18 @@
 
 StateManager::StateManager() {
 	//std::cout << "StateManager: Constructor" << std::endl;
+
 }
 
 StateManager::~StateManager() {
-	//std::cout << "StateManager: Destructor" << std::endl;
+
+
+	delete m_currentState;
+	std::cout << "StateManager: Destructor" << std::endl;
 }
 
 void StateManager::addGameState(const std::string stateID, GameState* state){
 	m_gameStates[stateID] = state;
-	//std::pair<const std::string, GameState*> pair = std::make_pair(stateID, state);
-	//m_gameStates.insert(pair);
 }
 
 void StateManager::setCurrentState(GameState *state){

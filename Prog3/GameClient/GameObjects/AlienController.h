@@ -7,13 +7,14 @@ class AlienController :
 {
 public:
 	AlienController();
-	~AlienController();
+
 	void update(int dt);
 	void render(){}
 	void doCollission(){}
 	void setCollideRight();
 	void setCollideLeft(); 
 	void decreaseUpdateSpeed(int);
+
 private:
 	Uint32 ticks;
 	bool collideRight;

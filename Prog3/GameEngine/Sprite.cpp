@@ -4,13 +4,12 @@
 #include "Sprite.h"
 #include "GameEngine.h"
 
-Sprite::Sprite(){
-	
-}
+Sprite::Sprite(){}
 
 Sprite* Sprite::getInstance(Image* i, std::string name){
 	return new Sprite(i, name);
 }
+
 Sprite* Sprite::getInstance(){
 	return new Sprite();
 }
@@ -34,6 +33,4 @@ void Sprite::render()
 
 	SDL_RenderCopyEx(GameEngine::getInstance()->getRenderer(), m_texture, NULL /*&src*/, &dst, 0.0, NULL, SDL_FLIP_NONE);
 }
-
-//void Sprite::update(){}
 

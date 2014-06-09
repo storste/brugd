@@ -13,8 +13,6 @@ public:
 	void update(int dt);
 	void doCollission();
 
-	~Player();
-
 	void shoot();
 	void moveRight();
 	void moveLeft();

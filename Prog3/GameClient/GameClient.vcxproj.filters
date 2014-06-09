@@ -27,9 +27,6 @@
     <ClCompile Include="GameStates\StateIntro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameStates\StateMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameStates\StatePause.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\ScoreSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\TextSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStates\StateMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,105 +83,30 @@
     <ClInclude Include="GameObjects\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\ScoreSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\TextSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Sparks1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\Sparks2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\tank.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\tank2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Assets\tank3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\ufo.gif">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\ufo.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\ufo2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\usagitsukino.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\run.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\plane.gif">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\plane.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Assets\redLaserRay.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\Orion_Nebula.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\giridao.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\explosion3.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\explosion2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\Explosion.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Assets\bullet.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\bgww2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\bg.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\bg2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Assets\bg3.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\alien2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\alien.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\alien2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\alien copy.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\35957.gif">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\alien.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\animate.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\bomb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\dude.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\dude.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\intro.png">
@@ -184,22 +115,106 @@
     <Image Include="Assets\main.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\megaman.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Assets\missile.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Assets\pause.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\poteto.bmp">
+    <Image Include="Assets\end.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\runningSprite.bmp">
+    <Image Include="AssetsOld\usagitsukino.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Assets\skrapan.bmp">
+    <Image Include="AssetsOld\ufo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\ufo.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\tank2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\tank.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\Sparks2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\Sparks1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\skrapan.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\runningSprite.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\run.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\poteto.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\plane.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\plane.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\Orion_Nebula.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\missile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\megaman.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\giridao.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\explosion2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\Explosion.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\dude.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\dude.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\bomb.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\bgww2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\bg2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\bg.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\animate.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\alien2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\alien2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\alien.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\alien.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\alien copy.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="AssetsOld\35957.gif">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -207,18 +222,18 @@
     <Font Include="Assets\comic.ttf">
       <Filter>Resource Files</Filter>
     </Font>
-    <Font Include="Assets\comicbd.ttf">
+    <Font Include="AssetsOld\cour.ttf">
       <Filter>Resource Files</Filter>
     </Font>
-    <Font Include="Assets\cour.ttf">
+    <Font Include="AssetsOld\comicbd.ttf">
       <Filter>Resource Files</Filter>
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\35957.xcf">
+    <None Include="AssetsOld\tank.xcf">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Assets\tank.xcf">
+    <None Include="AssetsOld\35957.xcf">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

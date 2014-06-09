@@ -12,8 +12,8 @@ public:
 	void addAnimation(const std::string name, Animation* a);
 	void setAnimation(const std::string name);
 	Animation* getAnimation();
-	virtual void render();
-	virtual void update();
+	void render();
+	void update();
 
 private:
 	std::map<std::string, Animation*> m_animations;

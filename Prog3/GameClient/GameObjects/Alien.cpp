@@ -14,12 +14,12 @@ Alien::Alien(std::string name) : AnimatedSprite(name)
 
 Alien::~Alien()
 {
-	for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
-	{
-		if (a->getName() == "AlienController"){
-			static_cast<AlienController*>(a)->decreaseUpdateSpeed(15);
-		}
-	}
+	//for (auto& a : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects())
+	//{
+	//	if (a->getName() == "AlienController"){
+	//		dynamic_cast<AlienController*>(a)->decreaseUpdateSpeed(15);
+	//	}
+	//}
 }
 
 void Alien::update(int dt){
@@ -30,7 +30,7 @@ void Alien::update(int dt){
 	int random = rand() % 400 + 1;
 
 	if (random == 1 && clearBelow()){
-		Shoot();
+		dropBomb();
 	}
 
 	if (dir == right && getX() > GameEngine::getInstance()->getScreenWidth() - 41)
@@ -58,10 +58,6 @@ void Alien::doCollission(){
 	setPosition(getX() - 30, getY() - 33);
 }
 
-void Alien::updatePosition(int x, int y) {
-	setPosition(getX() + x, getY() + y);
-}
-
 void Alien::setDir(Direction d){
 	dir = d;
 }
@@ -83,10 +79,10 @@ bool Alien::clearBelow(){
 	return clear;
 }
 
-void Alien::Shoot(){
+void Alien::dropBomb(){
 
 	Image bombImage("assets/redLaserRay.png", true);
-	Sprite* bomb = new Bomb(&bombImage, "a");
+	Sprite* bomb = new Bomb(&bombImage, "Bomb");
 
 	bomb->setPosition(getX() + (getW() / 2) - 4, getY() + 30);
 	bomb->toggle_collidable();

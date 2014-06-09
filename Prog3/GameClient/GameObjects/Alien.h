@@ -6,27 +6,27 @@
 #include "..\..\GameEngine\GameEngine.h"
 #include "..\..\GameEngine\AnimatedSprite.h"
 
-#include "Missile.h"
 #include "Bomb.h"
 
 enum Direction {
-	left,
-	right
+	left = -40,
+	right = 40,
+	no_change = 0
 };
 
 class Alien : public AnimatedSprite {
 public:
 	static Alien* Alien::getInstance(std::string name);
 	~Alien();
-	Direction dir;
 	void update(int dt);
 	void doCollission();
-	void updatePosition(int, int);
 	void setDir(Direction);
+
 private:
 	Uint32 ticks;
-	bool Alien::clearBelow();
-	void Shoot();
+	Direction dir;
+	bool clearBelow();
+	void dropBomb();
 	Alien(const Alien& other);
 	const Alien& operator=(const Alien& other);
 protected:

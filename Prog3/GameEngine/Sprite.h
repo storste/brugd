@@ -10,13 +10,12 @@ class Sprite :public GameObject {
 public:
 	static Sprite* getInstance();
 	static Sprite* getInstance(Image* i, std::string name);
-	virtual ~Sprite() = default;
 
-	virtual void render();
-	virtual void update(){}
-	virtual void update(int dt){}
+	void render();
+	void update(){}
+	void update(int dt){}
 
-	virtual void doCollission(){ 
+	void doCollission(){ 
 		//std::cout << "Sprite: doCollission()" << std::endl; 
 	}
 
