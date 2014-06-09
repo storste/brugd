@@ -8,7 +8,7 @@
 class Player : public AnimatedSprite {
 
 public:
-	static Player* Player::getInstance();
+	static Player* getInstance();
 
 	void update(int dt);
 	void doCollission();

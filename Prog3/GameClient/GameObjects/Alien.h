@@ -16,7 +16,7 @@ enum Direction {
 
 class Alien : public AnimatedSprite {
 public:
-	static Alien* Alien::getInstance(std::string name);
+	static Alien* getInstance(std::string name);
 	~Alien();
 	void update(int dt);
 	void doCollission();
