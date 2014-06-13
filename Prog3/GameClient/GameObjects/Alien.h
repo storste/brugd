@@ -1,12 +1,7 @@
-#pragma once
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#ifndef ALIEN_H
+#define ALIEN_H
 
-#include "..\..\GameEngine\GameEngine.h"
-#include "..\..\GameEngine\AnimatedSprite.h"
-
-#include "Bomb.h"
+#include "../../GameEngine/AnimatedSprite.h"
 
 enum Direction {
 	left = -40,
@@ -33,3 +28,4 @@ protected:
 	Alien(std::string name);
 };
 
+#endif

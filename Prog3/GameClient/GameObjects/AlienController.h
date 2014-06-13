@@ -1,6 +1,5 @@
-#pragma once
-#include "Alien.h"
-#include "..\..\GameEngine\GameEngine.h"
+#ifndef ALIENCONTROLLER_H
+#define ALIENCONTROLLER_H
 
 class AlienController :
 	public GameObject
@@ -27,3 +26,4 @@ private:
 	const AlienController& operator=(const AlienController& other);
 };
 
+#endif

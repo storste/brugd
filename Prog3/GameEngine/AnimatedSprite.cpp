@@ -1,4 +1,4 @@
-#pragma once
+
 #include "AnimatedSprite.h"
 #include <SDL_image.h>
 

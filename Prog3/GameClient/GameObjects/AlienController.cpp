@@ -1,3 +1,5 @@
+#include "../../GameEngine/GameEngine.h"
+#include "Alien.h"
 #include "AlienController.h"
 
 AlienController::AlienController() : ticks(SDL_GetTicks()), collideRight(false), collideLeft(false), dir(right), updateSpeed(1000)

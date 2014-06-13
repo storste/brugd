@@ -1,6 +1,6 @@
 #include "StateIntro.h"
-#include "..\..\GameEngine\GameEngine.h"
-#include "..\..\GameEngine\Sprite.h"
+#include "../../GameEngine/GameEngine.h"
+#include "../../GameEngine/Sprite.h"
 
 StateIntro::StateIntro() {
 	//std::cout << "Intro state constructor" << std::endl;

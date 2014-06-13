@@ -1,12 +1,11 @@
-#pragma once
 #include "StateMain.h"
 #include <iostream>
-
-#include "..\GameObjects\Player.h"
-#include "..\GameObjects\ScoreSprite.h"
-#include "..\GameObjects\Alien.h"
-#include "..\GameObjects\AlienController.h"
-#include "..\GameObjects\Missile.h"
+#include "../../GameEngine/GameEngine.h"
+#include "../GameObjects/Player.h"
+#include "../GameObjects/ScoreSprite.h"
+#include "../GameObjects/Alien.h"
+#include "../GameObjects/AlienController.h"
+#include "../GameObjects/Missile.h"
 
 StateMain::StateMain(int level)
 {

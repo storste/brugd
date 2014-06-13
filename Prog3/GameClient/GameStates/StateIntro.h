@@ -1,5 +1,7 @@
-#pragma once
-#include "..\..\GameEngine\GameState.h"
+#ifndef STATEINTRO_H
+#define STATEINTRO_H	
+
+#include "../../GameEngine/GameState.h"
 
 class StateIntro :
 	public GameState {
@@ -11,3 +13,4 @@ private:
 
 };
 
+#endif

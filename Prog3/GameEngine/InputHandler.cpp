@@ -1,4 +1,4 @@
-#pragma once
+
 #include "InputHandler.h"
 #include "GameEngine.h"
 #include "SDL.h"

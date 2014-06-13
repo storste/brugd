@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
+
 #include <string>
 #include <iostream>
 
@@ -41,3 +43,5 @@ private:
 	bool m_visible = true;
 	bool m_collidable = false;
 };
+
+#endif

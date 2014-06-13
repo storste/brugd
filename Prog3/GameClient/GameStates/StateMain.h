@@ -1,6 +1,6 @@
-#pragma once
-#include "..\..\GameEngine\GameState.h"
-#include "..\..\GameEngine\GameEngine.h"
+#ifndef STATEMAIN_H
+#define STATEMAIN_H	
+#include "../../GameEngine/GameState.h"
 
 class StateMain :
 	public GameState {
@@ -12,3 +12,4 @@ private:
 	
 };
 
+#endif

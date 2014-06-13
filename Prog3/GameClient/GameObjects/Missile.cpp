@@ -1,3 +1,5 @@
+#include "../../GameEngine/GameEngine.h"
+#include <iostream>
 #include "Missile.h"
 
 Missile::Missile(Image* image, std::string name) : Sprite(image, name)

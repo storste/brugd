@@ -1,3 +1,7 @@
+#include "../../GameEngine/GameEngine.h"
+#include "Missile.h"
+
+#include <iostream>
 #include "Player.h"
 
 Player* Player::getInstance(){

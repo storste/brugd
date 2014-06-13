@@ -1,7 +1,8 @@
 #include <iostream>
 #include "StateEnd.h"
-#include "..\GameObjects\ScoreSprite.h"
-#include "..\GameObjects\TextSprite.h"
+#include "../../GameEngine/GameEngine.h"
+#include "../GameObjects/ScoreSprite.h"
+#include "../GameObjects/TextSprite.h"
 
 StateEnd::StateEnd()
 {

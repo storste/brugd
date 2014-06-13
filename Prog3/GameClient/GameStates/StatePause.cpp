@@ -1,6 +1,7 @@
-#pragma once
 #include <iostream>
 #include "StatePause.h"
+#include "../../GameEngine/GameEngine.h"
+#include "../../GameEngine/Sprite.h"
 
 StatePause::StatePause()
 {

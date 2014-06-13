@@ -1,5 +1,7 @@
-#pragma once
-#include "SDL.h"
+#ifndef INPUTHANDLER_H
+#define INPUTHANDLER_H
+
+#include <SDL.h>
 
 class InputHandler
 {
@@ -28,3 +30,5 @@ private:
 	static InputHandler* instance;
 };
 
+
+#endif

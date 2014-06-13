@@ -1,5 +1,7 @@
-#pragma once
-#include "SDL.h"
+#ifndef ANIMATION_H
+#define ANIMATION_H
+
+#include <SDL.h>
 #include <string>
 
 class Animation {
@@ -27,3 +29,4 @@ private:
 	int yOffset;
 };
 
+#endif

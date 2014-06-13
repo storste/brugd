@@ -1,9 +1,9 @@
-#include "..\..\GameEngine\GameEngine.h"
+#include "../../GameEngine/GameEngine.h"
 
-#include "GameStates\StateIntro.h"
-#include "GameStates\StateMain.h"
-#include "GameStates\StatePause.h"
-#include "GameStates\StateEnd.h"
+#include "GameStates/StateIntro.h"
+#include "GameStates/StateMain.h"
+#include "GameStates/StatePause.h"
+#include "GameStates/StateEnd.h"
 
 int main(int argc, char *argv[])
 {

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SPRITE_H
+#define SPRITE_H
+
 #include <SDL.h>
 #include "GameObject.h"
 #include "Image.h"
@@ -31,4 +33,4 @@ protected:
 
 };
 
-	
+#endif

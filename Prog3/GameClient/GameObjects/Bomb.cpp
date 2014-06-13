@@ -1,3 +1,5 @@
+#include "../../GameEngine/GameEngine.h"
+#include <iostream>
 #include "Bomb.h"
 
 Bomb::Bomb(Image* image, std::string name) : Sprite(image, name)

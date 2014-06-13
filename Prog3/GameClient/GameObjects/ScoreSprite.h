@@ -1,6 +1,7 @@
-#pragma once
-#include "..\..\GameEngine\GameEngine.h"
-#include "..\..\GameEngine\Sprite.h"
+#ifndef SCORESPRITE_H
+#define SCORESPRITE_H
+
+#include "../../GameEngine/Sprite.h"
 
 class ScoreSprite :
 	public Sprite {
@@ -9,3 +10,4 @@ public:
 	void render();
 };
 
+#endif

@@ -1,9 +1,7 @@
-#pragma once
-#include <iostream>
-#include "..\..\GameEngine\AnimatedSprite.h"
-#include "..\..\GameEngine\GameEngine.h"
-#include "Missile.h"
+#ifndef PLAYER_H
+#define PLAYER_H
 
+#include "../../GameEngine/AnimatedSprite.h"
 
 class Player : public AnimatedSprite {
 
@@ -27,3 +25,4 @@ private:
 	const Player& operator=(const Player& other);
 };
 
+#endif

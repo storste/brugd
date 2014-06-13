@@ -1,4 +1,10 @@
-#pragma once
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+#include "../../GameEngine/GameEngine.h"
+#include "Bomb.h"
+
 #include "Alien.h"
 #include "AlienController.h"
 

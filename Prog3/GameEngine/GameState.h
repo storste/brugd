@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GAMESTATE_H
+#define GAMESTATE_H
+
 #include <list>
 #include <map>
 #include <functional>
@@ -49,3 +51,5 @@ private:
 	int m_level = 0;
 };
 
+
+#endif

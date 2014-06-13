@@ -1,6 +1,7 @@
-#pragma once
-#include "..\..\GameEngine\GameEngine.h"
-#include "..\..\GameEngine\Sprite.h"
+#ifndef TEXTSPRITE_H
+#define TEXTSPRITE_H
+
+#include "../../GameEngine/Sprite.h"
 
 class TextSprite :
 	public Sprite {
@@ -13,3 +14,4 @@ private:
 	SDL_Color clearColor;
 };
 
+#endif

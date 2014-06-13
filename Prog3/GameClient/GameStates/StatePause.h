@@ -1,7 +1,6 @@
-#pragma once
-#include "..\..\GameEngine\GameState.h"
-#include "..\..\GameEngine\GameEngine.h"
-#include "..\..\GameEngine\Sprite.h"
+#ifndef STATEPAUSE_H
+#define STATEPAUSE_H	
+#include "../../GameEngine/GameState.h"
 
 class StatePause :
 	public GameState {
@@ -16,3 +15,4 @@ private:
 	
 };
 
+#endif

@@ -1,3 +1,4 @@
+#include "../../GameEngine/GameEngine.h"
 #include "ScoreSprite.h"
 
 

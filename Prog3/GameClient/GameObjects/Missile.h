@@ -1,7 +1,7 @@
-#pragma once
-#include "..\..\GameEngine\Sprite.h"
-#include "..\..\GameEngine\GameEngine.h"
-#include <iostream>
+#ifndef MISSILE_H
+#define MISSILE_H
+
+#include "../../GameEngine/Sprite.h"
 
 class Missile :
 	public Sprite {
@@ -16,3 +16,4 @@ private:
 	const Missile& operator=(const Missile& other);
 };
 
+#endif

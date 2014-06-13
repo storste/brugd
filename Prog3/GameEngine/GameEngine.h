@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GAMEENGINE_H
+#define GAMEENGINE_H
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -45,7 +47,7 @@ public:
 private:
 	static GameEngine* instance;
 
-	GameEngine::GameEngine(int width = 640, int height = 480, int fps = 60);
+	GameEngine(int width = 640, int height = 480, int fps = 60);
 	~GameEngine();
 
 	StateManager*	m_stateManager;
@@ -69,3 +71,4 @@ private:
 	int m_score = 0;
 };
 
+#endif

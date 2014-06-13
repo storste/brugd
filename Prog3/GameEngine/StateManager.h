@@ -1,4 +1,6 @@
-#pragma once
+#ifndef STATEMANAGER_H
+#define STATEMANAGER_H
+
 #include "GameState.h"
 #include <map>
 
@@ -20,3 +22,4 @@ private:
 	std::map<std::string, GameState*> m_gameStates;
 };
 
+#endif

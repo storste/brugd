@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ANIMATEDSPRITE_H
+#define ANIMATEDSPRITE_H
+
 #include "Animation.h"
 #include "Sprite.h"
 #include <map>
@@ -26,3 +28,5 @@ protected:
 	AnimatedSprite(const std::string name);
 	AnimatedSprite();
 };
+
+#endif
