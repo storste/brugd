@@ -11,25 +11,26 @@ Bomb::Bomb(Image* image, std::string name) : Sprite(image, name)
 void Bomb::update(int dt){
 
 	setPosition(getX(), getY() + 3);
-	if (getY() > 600 - getH())
+	if (getY() > GameEngine::getInstance()->getScreenHeight() - getH())
 		toggle_visible();
 
 	for (auto& o : GameEngine::getInstance()->getStateManager()->getCurrentState()->getObjects()){
 		if (o){
-			if (static_cast<GameObject*>(this) != o && o->getName() != "Alien" && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
+			//if (static_cast<GameObject*>(this) != o && o->getName() != "Alien" && o->is_collidable() && GameEngine::getInstance()->cd(this, o)){
+			if (this != o && o->getName() == "Tank" && GameEngine::getInstance()->cd(this, o)){
 
 				//		//std::cout << "Collission between " << static_cast<GameObject*>(this)->getName() << " and " << o->getName() << std::endl;
 
-				//		//o->doCollission();
+				o->doCollission();
 				//		//GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(o);
-				//		doCollission();
+				doCollission();
 			}
 		}
 	}
 }
 
 void Bomb::doCollission(){
-	//GameEngine::getInstance()->score++;
+	GameEngine::getInstance()->addToScore(-10);
 	GameEngine::getInstance()->getStateManager()->getCurrentState()->removeGameObject(this);
 }
 

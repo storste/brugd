@@ -57,7 +57,10 @@ void Player::moveRight(){
 }
 
 void Player::doCollission(){
-	
+
+	std::cout << "Player: Collission. You died..." << std::endl;
+	SDL_Delay(1000);
+	GameEngine::getInstance()->getStateManager()->setCurrentState(GameEngine::getInstance()->getStateManager()->getState("STATE_END"));
 }
 
 void Player::moveLeft(){

@@ -65,9 +65,9 @@ StateMain::StateMain(int level)
 	ScoreSprite* scoreSprite = new ScoreSprite();
 	addGameObject(scoreSprite);
 
-	m_keymap[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, static_cast<Player*>(player));
-	m_keymap[SDL_SCANCODE_RIGHT] = std::bind(&Player::moveRight, static_cast<Player*>(player));
-	m_keymap[SDL_SCANCODE_LEFT] = std::bind(&Player::moveLeft, static_cast<Player*>(player));
+	m_keymap[SDL_SCANCODE_SPACE] = std::bind(&Player::shoot, player);
+	m_keymap[SDL_SCANCODE_RIGHT] = std::bind(&Player::moveRight, player);
+	m_keymap[SDL_SCANCODE_LEFT] = std::bind(&Player::moveLeft, player);
 
 	// här läcker det minne eftersom det nuvarande tillståndet inte tas bort...
 	m_keymap[SDL_SCANCODE_ESCAPE] = std::bind([this](){
